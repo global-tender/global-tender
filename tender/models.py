@@ -19,7 +19,7 @@ class Cities(models.Model):
 		verbose_name = 'Citie'
 
 	name                = models.CharField(max_length=1000)
-	picture             = models.CharField(max_length=1000)
+	picture             = models.FileField(upload_to='city_pictures/')
 	posted              = models.DateTimeField('date published')
 
 
@@ -31,8 +31,8 @@ class Seminar_Programs(models.Model):
 
 	program_short_name  = models.CharField(max_length=50) # matches name of html file on disk
 	program_time_limit  = models.CharField(max_length=1000)
-	program_top_title   = models.CharField(max_length=1000)
-	#program_file        = models.CharField(max_length=1000)
+	program_top_title   = models.CharField(max_length=1000, blank=True)
+	program_file        = models.FileField(upload_to='seminar_programs/', null=True)
 
 
 

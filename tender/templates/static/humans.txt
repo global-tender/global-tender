@@ -1,0 +1,10 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    <Igor Popov> -- <web-developer> -- <https://github.com/ihptru>
+
+# THANKS
+
+    <Kostya Durnev>
