@@ -17,4 +17,6 @@ urlpatterns = patterns('',
 	url(r'^robots.txt$', views.robots, name='robots.txt'),
 	url(r'^sitemap.xml$', views.sitemap_xml, name='sitemap.xml'),
 	url(r'^humans.txt$', views.humans, name='humans.txt'),
+
+	url(r'^.*$', views.handle404, name='handle404'),
 )

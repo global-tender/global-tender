@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
+import re
 
 from django.conf import settings
-from django.http import StreamingHttpResponse
+from django.http import StreamingHttpResponse, HttpResponseNotFound
 from django.template import RequestContext, loader
 from django.http import HttpResponseRedirect, Http404
 
@@ -18,6 +19,7 @@ def index(request):
 		'request': request,
 		'title': '',
 		'menu_color_class': 'menu-white',
+		'menu_inner': '',
 	}
 	context = RequestContext(request, template_args)
 	return StreamingHttpResponse(template.render(context))
@@ -31,6 +33,7 @@ def seminars(request):
 		'request': request,
 		'title': 'Расписание семинаров',
 		'menu_color_class': 'menu-black',
+		'menu_inner': 'menu-inner',
 	}
 	context = RequestContext(request, template_args)
 	return StreamingHttpResponse(template.render(context))
@@ -43,6 +46,7 @@ def seminar_detail(request, arg):
 		'request': request,
 		'title': '',
 		'menu_color_class': 'menu-white',
+		'menu_inner': 'menu-inner',
 	}
 	context = RequestContext(request, template_args)
 	return StreamingHttpResponse(template.render(context))
@@ -56,6 +60,7 @@ def feedback(request):
 		'request': request,
 		'title': 'Отзывы',
 		'menu_color_class': 'menu-white',
+		'menu_inner': 'menu-inner',
 	}
 	context = RequestContext(request, template_args)
 	return StreamingHttpResponse(template.render(context))
@@ -69,6 +74,7 @@ def contacts(request):
 		'request': request,
 		'title': 'Контактная информация',
 		'menu_color_class': 'menu-white',
+		'menu_inner': 'menu-inner',
 	}
 	context = RequestContext(request, template_args)
 	return StreamingHttpResponse(template.render(context))
@@ -81,6 +87,7 @@ def lektors(request):
 		'request': request,
 		'title': 'Наши лекторы',
 		'menu_color_class': 'menu-white',
+		'menu_inner': 'menu-inner',
 	}
 	context = RequestContext(request, template_args)
 	return StreamingHttpResponse(template.render(context))
@@ -93,6 +100,7 @@ def services(request):
 		'request': request,
 		'title': 'Сопровождение по 44-ФЗ и 223-ФЗ',
 		'menu_color_class': 'menu-white',
+		'menu_inner': 'menu-inner',
 	}
 	context = RequestContext(request, template_args)
 	return StreamingHttpResponse(template.render(context))
@@ -131,3 +139,15 @@ def sitemap_xml(request):
 
 def sitemap_html(request):
 	pass
+
+def handle404(request):
+	template = loader.get_template('router.html')
+	template_args = {
+		'content': 'static/404.html',
+		'request': request,
+		'title': 'Страница не найдена',
+		'menu_color_class': 'menu-white',
+		'menu_inner': 'menu-inner',
+	}
+	context = RequestContext(request, template_args)
+	return HttpResponseNotFound(template.render(context))

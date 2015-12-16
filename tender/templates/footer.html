@@ -10,17 +10,21 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="/static/js/plugins/vendor/jquery-1.11.3.min.js"><\/script>')</script>
 
-	<!--<script type="text/javascript" src="/static/js/plugins/move-top.js"></script>-->
-	<!--<script type="text/javascript" src="/static/js/plugins/easing.js"></script>-->
-	<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/0.9.0/jquery.mask.min.js"></script>-->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/0.9.0/jquery.mask.min.js"></script>
 
 	<!-- Add fancyBox main JS and CSS files -->
 	<script type="text/javascript" src="/static/js/plugins/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
 	<link rel="stylesheet" type="text/css" href="/static/js/plugins/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
 
-	<!--<script type='text/javascript' src='/static/js/plugins/highslide/highslide-with-gallery.packed.js'></script>
-	<script type='text/javascript' src='/static/js/plugins/highslide/highslide.config.js'></script>
-	<link href='/static/js/plugins/highslide/highslide.css' rel='stylesheet'>-->
+	{% if request.path == '/feedback/' and request.user_agent.is_mobile == False %}
+		<script type='text/javascript' src='/static/js/plugins/highslide/highslide-with-gallery.packed.js'></script>
+		<script type='text/javascript' src='/static/js/plugins/highslide/highslide.config.js'></script>
+		<link href='/static/js/plugins/highslide/highslide.css' rel='stylesheet'>
+	{% endif %}
+
+	{% if request.path == '/feedback/' and request.user_agent.is_mobile == True %}
+		<script type='text/javascript' src='/static/js/configs/feedback.js'></script>
+	{% endif %}
 
 
 	<script src="/static/js/main.js"></script>

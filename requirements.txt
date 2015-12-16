@@ -4,6 +4,7 @@ configobj==4.7.2
 cups==1.0
 decorator==3.3.3
 Django==1.8.1
+django-user-agents==0.3.0
 docutils==0.8.1
 fpconst==0.7.2
 gunicorn==19.4.1
@@ -26,14 +27,16 @@ pygpgme==0.2
 python-apt==0.8.8.2
 python-debian==0.1.21
 python-debianbts==1.11
+PyYAML==3.11
 reportbug==6.4.4
 requests==2.8.1
 simplegeneric==0.8.1
 simplejson==2.5.2
 six==1.9.0
 SOAPpy==0.12.0
-South==1.0.2
 stevedore==1.4.0
+ua-parser==0.5.1
+user-agents==1.0.1
 virtualenv==12.1.1
 virtualenv-clone==0.2.5
 virtualenvwrapper==4.5.1

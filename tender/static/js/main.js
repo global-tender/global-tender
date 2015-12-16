@@ -68,6 +68,3 @@ var Popup = (function(){
 
 	return { show: show, close: close };
 })();
-
-
-
