@@ -171,9 +171,13 @@ h3.title {
 		margin-left: 0px;
 	}
 
-	/* inner pages have this class */
+	/* inner pages have next classes, they differ on different pages to rewrite primary menu styles*/
 	.menu.menu-inner {
 		height: 84px;
+	}
+
+	.menu.menu-inner-seminars {
+		background: none;
 	}
 }
 @media screen and (max-width: 460px) {
@@ -769,4 +773,311 @@ nav {
 
 .not_found_page a:hover{
 	text-decoration: none;
+}
+
+/* ******************************************** */
+/* ******************************************** */
+/* ******************************************** */
+
+.seminar-title {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background: #c03f31;
+	color: #fff;
+	font-weight: 300;
+	padding: 10px 15px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+.seminars {
+	list-style: none;
+	padding: 0 0 25px;
+	margin: 0;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+.seminars .seminar {
+	position: relative;
+	z-index: 2;
+	line-height: 50px;
+	margin-bottom: 15px;
+	overflow: hidden;
+}
+.seminars .seminar a {
+	position: relative;
+	display: block;
+	height: 50px;
+	width: 100%;
+	color: #000;
+	text-decoration: none;
+	z-index: 3;
+	font-size: 18px;
+}
+
+
+.seminars .seminar .seminar-back {
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	transition: all ease 0.5s;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-size: cover;
+	background-position: center center;
+	z-index: 1;
+}
+.seminars .seminar:after {
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	transition: all ease 0.5s;
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #fff;
+	opacity: .9;
+	z-index: 2;
+}
+.seminars .seminar:hover:after {
+	opacity: 0.7;
+}
+.seminars .seminar:hover .seminar-back {
+	-webkit-transform: scale(1.2, 1.2);
+	-ms-transform: scale(1.2, 1.2);
+	transform: scale(1.2, 1.2);
+}
+
+
+.seminars .sem-date {
+	display: inline-block;
+	font-family: 'Ubuntu Condensed', sans-serif;
+	font-size: 25px;
+	padding: 0 15px;
+	margin-right: 15px;
+	background: #fff;
+	height: 100%;
+	width: 125px;
+}
+.seminars .sem-date .year {
+	position: relative;
+	top: -1em;
+	font-size: 12px;
+}
+
+.seminars-list h2.title {
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+@media screen and (max-width: 640px) {
+	.seminars-list h2.title {
+		font-size: 22px;
+	}
+
+	.seminar-title {
+		font-size: 16px;
+	}
+
+	.seminars .sem-date {
+		font-size: 20px;
+		width: 100px;
+		padding-left: 0px;
+	}
+
+	.seminars .seminar a {
+		font-size: 15px;
+	}
+}
+
+/* ******************************************** */
+/* ******************************************** */
+/* ******************************************** */
+
+
+.sem-city {
+	height: 400px;
+	max-height: 100vh;
+	background-size: cover;
+	background-position: center center;
+}
+.sem-city:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: #000;
+	opacity: .65;
+}
+.sem-city .city-info {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	color: #fff;
+	z-index: 2;
+	line-height: 60px;
+	height: 60px;
+	font-size: 30px;
+}
+.sem-city .city-info .city-date {
+	display: inline-block;
+	height: 100%;
+	background: #fff;
+	color: #000;
+	padding: 0 15px;
+	margin-right: 15px;
+}
+.sem-city .city-info .city-under {
+	color: #000;
+	padding: 0 20px;
+	font-size: 20px;
+}
+
+
+.sem-info {
+	margin-top: 25px;
+	padding: 0 15px 25px;
+}
+.sem-info span {
+	display: inline-block;
+	vertical-align: top;
+}
+.sem-info .sem-name {
+	width: 200px;
+}
+.sem-info .sem-val a {
+	color: #32495e;
+}
+.sem-info .sem-val a span {
+	display: block;
+}
+.sem-info .sem-val a:hover {
+	text-decoration: none;
+}
+.sem-info .row {
+	line-height: 30px;
+}
+
+.sem-info .row.pd-bot-sml {
+	padding-bottom: 15px;
+}
+
+.sem-info .row.sem-program-title {
+	text-align: center;
+	line-height: inherit;
+}
+
+
+.seminar-table tr:first-child {
+	height: 50px;
+	font-weight: bold;
+}
+.seminar-table td:first-child {
+	width: 150px;
+}
+.seminar-table td {
+	border: 1px solid;
+	padding: 20px;
+}
+
+.apply-seminar-btn {
+	display: inline-block;
+	vertical-align: middle;
+	height: 30px;
+	line-height: 30px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: bold;
+	background: #ff0000;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	color: #fff;
+	font-weight: 600;
+	padding: 0 15px;
+	-webkit-transition: all .1s ease;
+	transition: all .1s ease;
+}
+
+.apply-seminar-btn:hover {
+	background: maroon;
+}
+
+@media screen and (max-width: 640px) {
+	.sem-city {
+		height: 300px;
+	}
+	.sem-city-date-name {
+		font-size: 16px;
+	}
+	.sem-program-title {
+		font-size: 14px;
+	}
+	.seminar-table {
+		font-size: 14px;
+	}
+	.seminar-table td:first-child {
+		width: 80px;
+	}
+	.seminar-table td {
+		padding: 8px;
+	}
+	.seminar-table ul {
+		padding-left: 15px;
+	}
+
+	.sem-info .row {
+		line-height: inherit;
+		font-size: 14px;
+	}
+
+	.sem-info .sem-name {
+		font-style: italic;
+	}
+
+	.sem-info .sem-val {
+		margin-bottom: 15px;
+		border-bottom: 1px dashed #ccc;
+	}
+
+	.sem-info span {
+		display: block;
+	}
+
+	.apply-seminar-btn {
+		margin: 0 auto;
+		display: table;
+		margin-bottom: 15px;
+	}
+}
+
+
+.download-block {
+	display: none;
+	margin-top: 25px;
+	font-size: 20px;
+}
+.download-block a {
+	color: #83395f;
+	text-decoration: none;
+	-webkit-transition: all .1s ease;
+	transition: all .1s ease;
+}
+.download-block a:hover {
+	color: #000;
+}
+.download-block i {
+	font-size: 35px;
+	vertical-align: middle;
+	margin-right: 10px;
 }

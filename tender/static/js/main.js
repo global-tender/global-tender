@@ -13,6 +13,12 @@ $(document).ready(function() {
 		$('.down-link').animate({"bottom":"2%"}, 'slow');
 	});
 
+
+	if ($('.sem-phone'))
+	{
+		$('.sem-phone').mask('+0 (000) 000-00-00');
+	}
+
 });
 
 var down_link = (function(){

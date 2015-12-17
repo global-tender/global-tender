@@ -1,0 +1,46 @@
+{% load customTags %}
+
+<div class="wrapper-full sem-city" style="background-image: url('/uploads/{{seminar.event_city.picture.name}}')">
+	<div class="city-info">
+		<div class="wrapper">
+			<div class="sem-city-date-name"><span class="city-date">{{seminar.event_date.day}} {{seminar.event_date.month|rus_month}} {{seminar.event_date.year}}</span> {{seminar.event_city.name}}</div>
+		</div>
+	</div>
+</div>
+
+<main class="wrapper clearfix">
+
+	<div class="sem-info">
+
+		<div class="row">
+			<span class="sem-name">Время:</span><span class="sem-val">{{seminar.event_program.program_time_limit}}</span>
+		</div>
+		<div class="row">
+			<a class="apply-seminar-btn" href="#">Подать заявку</a></span>
+		</div>
+
+		<div class="row">
+			<span class="sem-name">Контактное лицо:</span><span class="sem-val">{{seminar.event_contact_name}}</span>
+		</div>
+		<div class="row">
+			<span class="sem-name">Телефон:</span><span class="sem-val">{% if request.user_agent.is_mobile %}<a href="tel:{{seminar.event_contact_phone}}" title="Позвонить"><span class="sem-phone">{{seminar.event_contact_phone}}</span></a>{% else %}<span class="sem-phone">{{seminar.event_contact_phone}}</span>{% endif %}</span>
+		</div>
+		<div class="row">
+			<span class="sem-name">Электронная почта:</span><span class="sem-val"><a href="mailto:{{seminar.event_contact_email}}" title="Написать на почту">{{seminar.event_contact_email}}</a></span>
+		</div>
+		<hr>
+
+		<div class="row pd-bot-sml sem-program-title">
+			{% if seminar.event_program.program_top_title %}
+				{{seminar.event_program.program_top_title}}
+			{% endif %}
+		</div>
+
+		{% include seminar_program_template %}
+
+		<div class="download-block">
+			<a href="#"><i class="fa fa-file"></i> Скачать программу в pdf</a>
+		</div>
+
+	</div>
+</main>

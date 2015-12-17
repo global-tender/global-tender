@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import re
+import operator
 
 from django.conf import settings
 from django.http import StreamingHttpResponse, HttpResponseNotFound
@@ -39,7 +40,9 @@ def seminars(request):
 		if seminar.event_fz.name in seminars_all:
 			seminars_all[seminar.event_fz.name]['seminars'].append(seminar)
 		else:
-			seminars_all[seminar.event_fz.name] = {'seminars': [seminar], 'description': seminar.event_fz.description}
+			seminars_all[seminar.event_fz.name] = {'seminars': [seminar], 'description': seminar.event_fz.description, 'sort': seminar.event_fz.sort}
+
+	seminars_all_sorted = sorted(seminars_all.iteritems(), key=lambda (k, v): v['sort'], reverse=False)
 
 	template = loader.get_template('router.html')
 	template_args = {
@@ -47,22 +50,31 @@ def seminars(request):
 		'request': request,
 		'title': 'Расписание семинаров',
 		'menu_color_class': 'menu-black',
-		'menu_inner': 'menu-inner',
+		'menu_inner': 'menu-inner-seminars',
 
-		'seminars': seminars_all,
+		'seminars': seminars_all_sorted,
 	}
 	context = RequestContext(request, template_args)
 	return StreamingHttpResponse(template.render(context))
 
 @xframe_options_exempt
 def seminar_detail(request, arg):
+
+	seminar = Seminars.objects.filter(id=arg)
+
+	if seminar:
+		seminar = seminar[0]
+
 	template = loader.get_template('router.html')
 	template_args = {
 		'content': 'pages/seminar.html',
 		'request': request,
-		'title': '',
+		'title': '%s %s.%s.%s - %s' % (seminar.event_city.name, seminar.event_date.day, seminar.event_date.month, seminar.event_date.year, seminar.event_fz.name),
 		'menu_color_class': 'menu-white',
 		'menu_inner': 'menu-inner',
+
+		'seminar': seminar,
+		'seminar_program_template': "seminar_programs/" + seminar.event_program.program_short_name + ".html"
 	}
 	context = RequestContext(request, template_args)
 	return StreamingHttpResponse(template.render(context))

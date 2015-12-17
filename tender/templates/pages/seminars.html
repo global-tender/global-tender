@@ -1,16 +1,16 @@
 {% load customTags %}
 
-<main class="wrapper clearfix padding-t60">
+<main class="wrapper clearfix padding-t60 seminars-list">
 	<h2 class="title padding-t25">Расписание семинаров</h2>
 
-	{% for key, values in seminars.items %}
+	{% for item in seminars %}
 		
 		{% autoescape off %}
-		<h3 class="seminar-title">{{values.description}}</h3>
+		<h3 class="seminar-title">{{item.1.description}}</h3>
 		{% endautoescape %}
 
 		<ul class="seminars">
-		{% for seminar in values.seminars %}
+		{% for seminar in item.1.seminars %}
 
 			<li class="seminar">
 				<div class="seminar-back" style="background-image: url(/uploads/{{seminar.event_city.picture.name}});"></div>
