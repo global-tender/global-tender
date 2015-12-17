@@ -1,0 +1,27 @@
+{% load customTags %}
+
+<main class="wrapper clearfix padding-t60">
+	<h2 class="title padding-t25">Расписание семинаров</h2>
+
+	{% for key, values in seminars.items %}
+		
+		{% autoescape off %}
+		<h3 class="seminar-title">{{values.description}}</h3>
+		{% endautoescape %}
+
+		<ul class="seminars">
+		{% for seminar in values.seminars %}
+
+			<li class="seminar">
+				<div class="seminar-back" style="background-image: url(/uploads/{{seminar.event_city.picture.name}});"></div>
+				<a href="/seminars/{{seminar.id}}/">
+					<span class="sem-date">{{seminar.event_date.day}} {{seminar.event_date.month|rus_month}} <span class="year">{{seminar.event_date.year|year_short}}</span></span>
+					<span class="place">{{seminar.event_city.name}}</span>
+				</a>
+			</li>
+
+		{% endfor %}
+		</ul>
+
+	{% endfor %}
+</main>

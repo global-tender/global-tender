@@ -9,6 +9,8 @@ from django.http import HttpResponseRedirect, Http404
 
 from django.views.decorators.clickjacking import xframe_options_exempt
 
+from tender.models import FZs, Seminars, Seminar_Programs, Cities
+
 
 
 @xframe_options_exempt
@@ -27,6 +29,18 @@ def index(request):
 
 @xframe_options_exempt
 def seminars(request):
+
+	seminars = Seminars.objects.filter(event_is_active=True).order_by('event_date')
+
+	seminars_all = {}
+
+	for seminar in seminars:
+
+		if seminar.event_fz.name in seminars_all:
+			seminars_all[seminar.event_fz.name]['seminars'].append(seminar)
+		else:
+			seminars_all[seminar.event_fz.name] = {'seminars': [seminar], 'description': seminar.event_fz.description}
+
 	template = loader.get_template('router.html')
 	template_args = {
 		'content': 'pages/seminars.html',
@@ -34,6 +48,8 @@ def seminars(request):
 		'title': 'Расписание семинаров',
 		'menu_color_class': 'menu-black',
 		'menu_inner': 'menu-inner',
+
+		'seminars': seminars_all,
 	}
 	context = RequestContext(request, template_args)
 	return StreamingHttpResponse(template.render(context))
