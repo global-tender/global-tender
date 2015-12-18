@@ -18,5 +18,7 @@ urlpatterns = patterns('',
 	url(r'^sitemap.xml$', views.sitemap_xml, name='sitemap.xml'),
 	url(r'^humans.txt$', views.humans, name='humans.txt'),
 
+	url(r'^ajax/seminar/(?P<arg>\d+)/?$', views.ajax_seminar, name='ajax_seminar'),
+
 	url(r'^.*$', views.handle404, name='handle404'),
 )

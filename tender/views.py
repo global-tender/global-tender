@@ -2,6 +2,7 @@
 import os
 import re
 import operator
+import datetime
 
 from django.conf import settings
 from django.http import StreamingHttpResponse, HttpResponseNotFound
@@ -9,6 +10,9 @@ from django.template import RequestContext, loader
 from django.http import HttpResponseRedirect, Http404
 
 from django.views.decorators.clickjacking import xframe_options_exempt
+from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
+from django.core import mail
 
 from tender.models import FZs, Seminars, Seminar_Programs, Cities
 
@@ -31,7 +35,7 @@ def index(request):
 @xframe_options_exempt
 def seminars(request):
 
-	seminars = Seminars.objects.filter(event_is_active=True).order_by('event_date')
+	seminars = Seminars.objects.filter(event_is_active=True).filter(event_date__gte=(timezone.now() + timezone.timedelta(days=-1))).order_by('event_date')
 
 	seminars_all = {}
 
@@ -65,6 +69,12 @@ def seminar_detail(request, arg):
 	if seminar:
 		seminar = seminar[0]
 
+	status = 'active'
+	if seminar.event_date <= (timezone.now() + timezone.timedelta(days=-1)):
+		status = 'completed'
+	if seminar.event_is_active == False:
+		status = 'canceled'
+
 	template = loader.get_template('router.html')
 	template_args = {
 		'content': 'pages/seminar.html',
@@ -74,7 +84,42 @@ def seminar_detail(request, arg):
 		'menu_inner': 'menu-inner',
 
 		'seminar': seminar,
-		'seminar_program_template': "seminar_programs/" + seminar.event_program.program_short_name + ".html"
+		'seminar_program_template': "seminar_programs/" + seminar.event_program.program_short_name + ".html",
+		'status': status,
+	}
+	context = RequestContext(request, template_args)
+	return StreamingHttpResponse(template.render(context))
+
+@xframe_options_exempt
+@csrf_exempt
+def ajax_seminar(request, arg):
+
+	seminar = Seminars.objects.filter(id=arg)
+	if seminar:
+		seminar = seminar[0]
+
+	submitted = False
+	if request.method == 'POST':
+		submitted = True
+
+		form_contact_email = request.POST.get('contact-email', '')
+
+
+		connection = mail.get_connection()
+		connection.open()
+		body = u"пусто, email: %s" % (form_contact_email)
+		subject = u'Заявка "Глобал-Тендер": %s %s.%s.%s' % (seminar.event_city.name, seminar.event_date.day, seminar.event_date.month, seminar.event_date.year)
+		email = mail.EmailMessage(subject, body, 'info@ihptru.net',
+						  ['ihptru@yandex.ru'], headers = {'Reply-To': 'info@ihptru.net'}, connection=connection)
+		email.send()
+		connection.close()
+
+
+	template = loader.get_template('ajax/seminar.html')
+	template_args = {
+		'request': request,
+		'seminar': seminar,
+		'submitted': submitted,
 	}
 	context = RequestContext(request, template_args)
 	return StreamingHttpResponse(template.render(context))

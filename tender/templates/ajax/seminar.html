@@ -1,0 +1,193 @@
+{% if submitted %}
+
+	<div class="modal-wrap">
+		<br /><br /><br />
+
+		<h2>Заявка успешно отправлена!</h2>
+		<!--<h3>Вам также направлена копия.</h3>-->
+
+		<br /><br /><br />
+	</div>
+
+{% else %}
+<div class="seminar-apply">
+	
+
+	<div class="seminar-apply-wrapper">
+		<a href="#" class="seminar-apply-close">
+			<i class="fa fa-times"></i>
+		</a>
+		
+
+		<form class="seminar-apply-form" name="seminar-apply-form" action="/ajax/seminar/{{seminar.id}}/" method="POST" onsubmit="return ajaxFormTry($(this));">
+
+			<div class="seminar-apply-block">
+				<div class="seminar-apply-block-title">Организация:</div>
+				<div class="seminar-apply-block-body">
+					<div class="seminar-apply-block-row">
+						<span>Полное название организации (включая форму собственности):</span>
+						<span><input type="text" name="org-name"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Название организации (краткое):</span>
+						<span><input type="text" name="org-short"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>ИНН:</span>
+						<span><input type="text" name="inn"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>КПП:</span>
+						<span><input type="text" name="kpp"></span>
+					</div>
+					<div class="seminar-apply-block-h2">
+						Почтовый адрес
+						<span class="desc">Указываются индекс и фактический адрес организации. Необходимо указать тот адрес, который указывался при регистрации в ИФНС.</span>
+						
+					</div>
+					<div class="seminar-apply-block-row">
+						<span class="checkbox-title">совпадает с юридическим</span>
+						<span><input type="checkbox" name="uri"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Индекс:</span>
+						<span><input class="min-input" type="text" name="zip-code"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Область:</span>
+						<span><input type="text" name="region"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Город:</span>
+						<span><input type="text" name="city"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Улица:</span>
+						<span><input type="text" name="street"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Дом:</span>
+						<span><input class="min-input" type="text" name="home"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="seminar-apply-block">
+				<div class="seminar-apply-block-title">Руководитель:</div>
+				<div class="seminar-apply-block-body">
+					<div class="seminar-apply-block-row">
+						<span>ФИО:</span>
+						<span><input type="text" name="fio"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Должность:</span>
+						<span><input type="text" name="post"></span>
+					</div>
+					<div class="seminar-apply-block-h2">
+						Руководитель действует на основании
+					</div>
+					<div class="seminar-apply-block-row">
+						<span class="checkbox-title">Устава:</span>
+						<span><input type="checkbox" name="act" value="ustav"></span>
+						<span class="checkbox-title">Положения:</span>
+						<span><input type="checkbox" name="act" value="polozhenie"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="seminar-apply-block">
+				<div class="seminar-apply-block-title">Список участников семинара:</div>
+				<div class="seminar-apply-block-body">
+					<div class="seminar-apply-block-row">
+						<span>Количество участников:</span>
+						<span><input type="text" name="amount"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="seminar-apply-block">
+				<div class="seminar-apply-block-title">Контактное лицо:</div>
+				<div class="seminar-apply-block-body">
+					<div class="seminar-apply-block-row">
+						<span>ФИО:</span>
+						<span><input type="text" name="contact-name"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Должность:</span>
+						<span><input type="text" name="contact-post"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>E-mail:</span>
+						<span><input type="email" name="contact-email"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Телефон:</span>
+						<span><input type="text" name="contact-phone"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="seminar-apply-block">
+				<div class="seminar-apply-block-title">Комментарий:</div>
+				<div class="seminar-apply-block-body">
+					<div class="seminar-apply-block-row">
+						<span><textarea name="comment"></textarea></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="seminar-submit">
+				<button class="seminar-submit-button" type="submit">Подать заявку</button>
+			</div>
+
+		</form>
+
+	</div>
+
+</div>
+
+
+<script>
+
+	$(document).ready(function(){
+
+		$('.seminar-apply-close').on('click', function(){
+			$.fancybox.close();
+		});
+
+	});
+
+</script>
+
+{% endif %}
+
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+	(function (d, w, c) {
+		(w[c] = w[c] || []).push(function() {
+			try {
+				w.yaCounter33786709 = new Ya.Metrika({
+					id:33786709,
+					clickmap:true,
+					trackLinks:true,
+					accurateTrackBounce:true,
+					webvisor:true
+				});
+			} catch(e) { }
+		});
+
+		var n = d.getElementsByTagName("script")[0],
+		s = d.createElement("script"),
+		f = function () { n.parentNode.insertBefore(s, n); };
+		s.type = "text/javascript";
+		s.async = true;
+		s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+		if (w.opera == "[object Opera]") {
+			d.addEventListener("DOMContentLoaded", f, false);
+		} else { f(); }
+	})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/33786709" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->

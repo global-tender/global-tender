@@ -30,47 +30,34 @@ var down_link = (function(){
 	});
 })();
 
-var Popup = (function(){
 
-	allow = true;
-	opened = false;
-	var show = function(popup) {
-		if(!allow) return;
-		$('.overlay').addClass('active').css('z-index', 99);
-		$('.pop-window[data-popup=' + popup + ']').removeClass('closed');
-		$('html').css('overflow', 'hidden');
-		opened = popup;
-	}
+function showSeminarForm(seminar_id)
+{
+	$.fancybox('/ajax/seminar/'+seminar_id+'/', {
+		type:'ajax',
 
-	var close = function(popup) {
-		allow = false;
-		$('.overlay').removeClass('active');
-		$('html').removeAttr('style');
-		setTimeout(function(){
-			$('.overlay').css('z-index', -1);
-			$('.pop-window[data-popup=' + popup + ']').addClass('closed');
-			allow = true;
-			opened = false;
-		}, 500);
-	}
+		autoSize: true,
+		fitToView: false,
+		maxWidth: "100%",
 
-	$(document).on('click', '.js-pop-close', function(){
-		if(opened) {
-			close(opened);
-		}
-		return false;
+		modal: true,
+		helpers: {
+			overlay:{
+				locked:true,
+				closeClick: false,
+			}
+		},
 	});
 
-	$(document).on('click', '.js-pop-show', function(){
-		if(!opened) {
-			show($(this).attr('data-popup'));
-		}
-		return false;
+	return false;
+}
+
+function ajaxFormTry(ajaxForm){
+	$.post(
+		ajaxForm.attr('action'),
+		ajaxForm.serialize(),
+		function(data){
+			$.fancybox.open(data);
 	});
-
-	if(window.location.hash != '') {
-		show(window.location.hash.substr(1));
-	}
-
-	return { show: show, close: close };
-})();
+	return false;
+}

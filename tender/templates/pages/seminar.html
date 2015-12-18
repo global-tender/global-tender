@@ -12,12 +12,21 @@
 
 	<div class="sem-info">
 
+		{% if status != 'active' %}
+			<div class="row">
+				<span class="sem-name">Статус:</span><span class="sem-val sem-status">{% if status == 'completed' %}Проведен{% elif status == 'canceled' %}Отменен{% endif %}</span>
+			</div>
+		{% endif %}
+
 		<div class="row">
 			<span class="sem-name">Время:</span><span class="sem-val">{{seminar.event_program.program_time_limit}}</span>
 		</div>
-		<div class="row">
-			<a class="apply-seminar-btn" href="#">Подать заявку</a></span>
-		</div>
+
+		{% if status == 'active' %}
+			<div class="row">
+				<a class="apply-seminar-btn" href="#" onclick="return showSeminarForm({{seminar.id}});">Подать заявку</a></span>
+			</div>
+		{% endif %}
 
 		<div class="row">
 			<span class="sem-name">Контактное лицо:</span><span class="sem-val">{{seminar.event_contact_name}}</span>
