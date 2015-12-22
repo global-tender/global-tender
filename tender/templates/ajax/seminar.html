@@ -4,7 +4,10 @@
 		<br /><br /><br />
 
 		<h2>Заявка успешно отправлена!</h2>
-		<!--<h3>Вам также направлена копия.</h3>-->
+		{% if send_copy_email == 'yes' %}
+			<h3>Также направлена копия на E-Mail контактного лица.</h3>
+		{% endif %}
+
 
 		<br /><br /><br />
 	</div>
@@ -118,7 +121,7 @@
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>E-mail:</span>
-						<span><input type="email" name="contact-email"></span>
+						<span><input type="email" name="contact-email" required></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Телефон:</span>
@@ -132,6 +135,9 @@
 				<div class="seminar-apply-block-body">
 					<div class="seminar-apply-block-row">
 						<span><textarea name="comment"></textarea></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span><input type="checkbox" name="send-copy-email" value="yes" checked> Отправить копию заявки на E-Mail контактного лица</span>
 					</div>
 				</div>
 			</div>

@@ -1240,6 +1240,7 @@ nav {
 .modal-wrap {
 	border: rgba(2, 0, 35, 0.6) solid 3px;
 	font-family: "Exo 2", "Play", sans-serif;
+	padding: 10px;
 }
 
 .modal-wrap h2 {
