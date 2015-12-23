@@ -4,6 +4,19 @@
 
 	<footer class="footer">
 		<span class="fl-l footer-text">Учебный центр «Глобал-Тендер» &copy; 2010 - {% now "Y" %}</span>
+
+		{% if request.path != '/contacts/' %}
+			<div class="hidden-contacts" itemscope itemtype="http://schema.org/Organization">
+				<span itemprop="name">Учебный центр «Глобал-Тендер»</span>
+				<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+					<span itemprop="streetAddress">ул.Серафимовича, д.58А, к.502, эт.5</span>
+					<span itemprop="postalCode">344002</span>
+					<span itemprop="addressLocality">Ростов-на-Дону</span>,
+				</div>
+				<span itemprop="telephone">+74951250905</span>,
+				<a href="mailto:global-tender@yandex.ru" itemprop="email">global-tender@yandex.ru</a>
+			</div>
+		{% endif %}
 	</footer>
 
 
@@ -27,7 +40,7 @@
 	{% endif %}
 
 
-	<script src="/static/js/main.js"></script>
+	<script type='text/javascript' src="/static/js/main.js"></script>
 
 	<script src="/static/js/plugins/vendor/modernizr-2.8.3.min.js"></script>
 
@@ -66,7 +79,7 @@
 		} else { f(); }
 	})(document, window, "yandex_metrika_callbacks");
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/33786709" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img src="https://mc.yandex.ru/watch/33786709" style="position:absolute; left:-9999px;" alt="metrika" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 
 </body>

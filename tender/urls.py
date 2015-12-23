@@ -1,7 +1,15 @@
 from django.conf.urls import patterns, url, include
 from django.http import StreamingHttpResponse
 
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticViewSitemap, SeminarsViewSitemap
+
 from tender import views
+
+sitemaps = {
+	'static': StaticViewSitemap,
+	'seminars': SeminarsViewSitemap,
+}
 
 urlpatterns = patterns('',
 	url(r'^$', views.index, name='index'),
@@ -15,7 +23,7 @@ urlpatterns = patterns('',
 	url(r'^services/?$', views.services, name='services'),
 
 	url(r'^robots.txt$', views.robots, name='robots.txt'),
-	url(r'^sitemap.xml$', views.sitemap_xml, name='sitemap.xml'),
+	url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 	url(r'^humans.txt$', views.humans, name='humans.txt'),
 
 	url(r'^ajax/seminar/(?P<arg>\d+)/?$', views.ajax_seminar, name='ajax_seminar'),

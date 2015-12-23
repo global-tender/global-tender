@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 
 	$('.main-info-text').hover(function(){

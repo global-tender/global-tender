@@ -283,17 +283,6 @@ def humans(request):
 	context = RequestContext(request, template_args)
 	return StreamingHttpResponse(template.render(context), content_type='text/plain')
 
-def sitemap_xml(request):
-	template = loader.get_template('static/sitemap.xml')
-	template_args = {
-		'request': request,
-	}
-	context = RequestContext(request, template_args)
-	return StreamingHttpResponse(template.render(context), content_type='text/xml')
-
-def sitemap_html(request):
-	pass
-
 def handle404(request):
 	template = loader.get_template('router.html')
 	template_args = {

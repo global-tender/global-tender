@@ -4,6 +4,7 @@ configobj==4.7.2
 cups==1.0
 decorator==3.3.3
 Django==1.8.1
+django-sites==0.9
 django-user-agents==0.3.0
 docutils==0.8.1
 fpconst==0.7.2

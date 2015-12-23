@@ -55,6 +55,9 @@ class Seminars(models.Model):
 	def __unicode__(self):
 		return u'' + self.event_city.name + ': ' + str(self.event_date.year) + '-' + str(self.event_date.month) + '-' + str(self.event_date.day)
 
+	def get_absolute_url(self):
+		return '/seminars/' + str(self.id) + '/'
+
 	event_date          = models.DateTimeField('event date')
 	event_city          = models.ForeignKey(Cities)
 	event_fz            = models.ForeignKey(FZs)

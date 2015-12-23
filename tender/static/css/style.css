@@ -391,7 +391,10 @@ nav {
 	vertical-align: middle;
 	height: 100%;
 }
-.btn-links span {
+
+.btn-links h3 {
+	font: 20px 'Ubuntu', sans-serif;
+	font-weight: 400;
 	margin: 15px;
 	display: inline-block;
 	vertical-align: middle;
@@ -529,6 +532,18 @@ nav {
 	border-bottom: 1px dashed #ccc;
 	height: 40px;
 	line-height: 40px;
+}
+
+.contacts-basic .cnt-address {
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+}
+
+.hidden-contacts {
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
 }
 
 .contacts-detail {
