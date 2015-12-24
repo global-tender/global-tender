@@ -107,84 +107,115 @@ def ajax_seminar(request, arg):
 		submitted = True
 
 		############################################################
-		send_copy_email = request.POST.get('send-copy-email', '')
+		############################################################
+		send_copy_email = request.POST.get('send_copy_email', '')
 		if send_copy_email == "yes":
-			send_copy_email_to = unicode(request.POST.get('contact-email',''))
+			send_copy_email_to = unicode(request.POST.get('contact_email',''))
 			try:
 				validate_email(send_copy_email_to)
 			except ValidationError as e:
 				send_copy_email = ''
 
 
-		form_uri = request.POST.get('uri', '')
-		if ( form_uri != '' ):
-			form_uri = u" - совпадает с юридическим "
-
-		form_act = request.POST.get('act', '')
+		form_act = request.POST.get('org_acting', '')
 		form_act_type = ''
 		if ( form_act != '' ):
 			if ( form_act == 'ustav' ):
-				form_act_type = u" устава "
+				form_act_type = u"устава"
 			if ( form_act == 'polozhenie' ):
-				form_act_type = u" положения "
+				form_act_type = u"положения"
 
-		form_pol = request.POST.get('act', '')
-		if ( form_pol != '' ):
-			form_pol = " положения "
+		ur_addr_matches = request.POST.get('ur_addr_matches')
+		ur_addr_matches_val = u'нет'
+		if ( ur_addr_matches == 'yes' ):
+			ur_addr_matches_val = u'да'
 
-		body_head = u"Семинар: %s  %s.%s.%s\n\n" % (unicode(seminar.event_city.name), seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
+
+		body_head = u"Семинар: %s %s.%s.%s\n\n" % (unicode(seminar.event_city.name), seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
 		body = u"""
-		1. Организация: %s \n
-			Название организации (краткое): %s \n
-			ИНН: %s \n
-			КПП: %s \n\n
-			Почтовый адрес: %s, %s, %s, %s, %s  %s \n\n
-		2. Руководитель (для оформления договора): %s \n
-			Должность: %s \n
-			Руководитель действует на основании: %s \n
-		3. Количество участников семинара: %s \n
-		4. Контактные лицо: %s \n
-			Должность: %s \n
-			email: %s \n
-			Телефон: %s \n
-		5. Комментарий: %s \n
-		""" % (unicode(request.POST.get('org-name','')),
-				unicode(request.POST.get('org-short','')),
-				unicode(request.POST.get('inn','')),
-				unicode(request.POST.get('kpp','')),
-				unicode(request.POST.get('zip-code','')),
-				unicode(request.POST.get('region','')),
-				unicode(request.POST.get('city','')),
-				unicode(request.POST.get('street','')),
-				unicode(request.POST.get('home','')),
-				unicode(form_uri),
-				unicode(request.POST.get('fio','')),
-				unicode(request.POST.get('post','')),
+		1. Организация: %s\n
+			Действует на основании: %s\n
+			ИНН: %s\n
+			КПП: %s\n
+			Расчетный счет: %s\n
+			Название и адрес банка: %s\n
+			Кор/счет банка: %s\n
+			БИК: %s\n\n
+			Почтовый адрес: %s, %s, %s, %s\n\n
+			Юридический адрес совпадает с почтовым: %s\n\n
+			Юридический адрес: %s, %s, %s, %s\n\n
+		2. Руководитель (для оформления договора): %s\n
+			Должность: %s\n\n
+		3. Контактные лицо: %s\n
+			Должность: %s\n
+			E-mail: %s\n
+			Телефон: %s\n\n
+		4. Комментарий: %s\n\n
+		5. Количество участников семинара: %s\n
+		""" % (unicode(request.POST.get('org_name','')),
 				unicode(form_act_type),
-				unicode(request.POST.get('amount','')),
-				unicode(request.POST.get('contact-name','')),
-				unicode(request.POST.get('contact-post','')),
-				unicode(request.POST.get('contact-email','')),
-				unicode(request.POST.get('contact-phone','')),
-				unicode(request.POST['comment'])
+				unicode(request.POST.get('org_inn','')),
+				unicode(request.POST.get('org_kpp','')),
+				unicode(request.POST.get('org_account','')),
+				unicode(request.POST.get('org_bank','')),
+				unicode(request.POST.get('org_kor_account','')),
+				unicode(request.POST.get('org_bik','')),
+				unicode(request.POST.get('p_addr_zip_code','')),
+				unicode(request.POST.get('p_addr_region','')),
+				unicode(request.POST.get('p_addr_city','')),
+				unicode(request.POST.get('p_addr_addr','')),
+				unicode(ur_addr_matches_val),
+				unicode(request.POST.get('ur_addr_zip_code','')),
+				unicode(request.POST.get('ur_addr_region','')),
+				unicode(request.POST.get('ur_addr_city','')),
+				unicode(request.POST.get('ur_addr_addr','')),
+				unicode(request.POST.get('head_fio','')),
+				unicode(request.POST.get('head_post','')),
+				unicode(request.POST.get('contact_name','')),
+				unicode(request.POST.get('contact_post','')),
+				unicode(request.POST.get('contact_email','')),
+				unicode(request.POST.get('contact_phone','')),
+				unicode(request.POST['comment']),
+				unicode(request.POST.get('visitors_amount','')),
 		)
-		############################################################
 		
-		subject = u'Заявка на семинар: %s %s.%s.%s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
+		visitors_fio = request.POST.getlist('visitors_fio[]', [])
+		visitors_post = request.POST.getlist('visitors_post[]', [])
+		visitors_phone = request.POST.getlist('visitors_phone[]', [])
 
+		if visitors_fio[0]:
+			body += u"""
+		6. Список участников семинара:\n
+			"""
+			for i in range(len(visitors_fio)):
+				body += u"""
+			Ф.И.О.: %s\n
+			Должность: %s\n
+			Телефон: %s\n
+			======================\n
+				""" % (unicode(visitors_fio[i]),
+						unicode(visitors_post[i]),
+						unicode(visitors_phone[i])
+				)
+		############################################################
+		############################################################
+		subject = u'Заявка на семинар: %s %s.%s.%s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
+		body_foot = ''
+		if send_copy_email == "yes":
+			body_foot = u"\nКопия заявки отправлена на E-Mail адрес контактного лица.\n"
 
 		connection = mail.get_connection()
 		connection.open()
 		
-		email = mail.EmailMessage(subject, body_head + body, settings.ADMIN_EMAIL_FROM,
-			settings.ADMIN_EMAIL_TO, headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
-
+		email = mail.EmailMessage(subject, body_head + body + body_foot, settings.ADMIN_EMAIL_FROM,
+			['ihptru@gmail.com'], headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
+		#settings.ADMIN_EMAIL_TO
 		email.send()
 
 
 		if send_copy_email == "yes":
 			subject = u'Вами отправлена заявка на семинар: %s %s.%s.%s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
-			body = u'Заявка на семинар отправлена, ожидайте обработки.\n\nСодержимое заявки:\n\n' + body
+			body = u'Заявка на семинар отправлена, ожидайте обработки.\n\nСодержимое заявки:\n' + body
 
 			email = mail.EmailMessage(subject, body_head + body, settings.ADMIN_EMAIL_FROM,
 				[send_copy_email_to], headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import urllib
 from django import template
 
 register = template.Library()
@@ -24,3 +25,7 @@ register.filter('rus_month', rus_month)
 def year_short(value):
 	return str(value)[2:]
 register.filter('year_short', year_short)
+
+def unescape(value):
+	return urllib.unquote(value)
+register.filter('unescape', unescape)

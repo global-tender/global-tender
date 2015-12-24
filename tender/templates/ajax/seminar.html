@@ -1,3 +1,5 @@
+{% load customTags %}
+
 {% if submitted %}
 
 	<div class="modal-wrap">
@@ -29,115 +31,184 @@
 				<div class="seminar-apply-block-body">
 					<div class="seminar-apply-block-row">
 						<span>Полное название организации (включая форму собственности):</span>
-						<span><input type="text" name="org-name"></span>
+						<span><input type="text" name="org_name" value="{{request.COOKIES.org_name|unescape}}"></span>
 					</div>
+
 					<div class="seminar-apply-block-row">
-						<span>Название организации (краткое):</span>
-						<span><input type="text" name="org-short"></span>
+						<span>Действующая на основании:</span>
+						<span>
+							<input type="radio" name="org_acting" value="ustav"> Устава<br />
+							<input type="radio" name="org_acting" value="polozhenie"> Положения
+						</span>
 					</div>
+
 					<div class="seminar-apply-block-row">
 						<span>ИНН:</span>
-						<span><input type="text" name="inn"></span>
+						<span><input type="text" name="org_inn" value="{{request.COOKIES.org_inn|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>КПП:</span>
-						<span><input type="text" name="kpp"></span>
-					</div>
-					<div class="seminar-apply-block-h2">
-						Почтовый адрес
-						<span class="desc">Указываются индекс и фактический адрес организации. Необходимо указать тот адрес, который указывался при регистрации в ИФНС.</span>
-						
+						<span><input type="text" name="org_kpp" value="{{request.COOKIES.org_kpp|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
-						<span class="checkbox-title">совпадает с юридическим</span>
-						<span><input type="checkbox" name="uri"></span>
+						<span>Расчетный счет:</span>
+						<span><input type="text" name="org_account" value="{{request.COOKIES.org_account|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
-						<span>Индекс:</span>
-						<span><input class="min-input" type="text" name="zip-code"></span>
+						<span>Название и адрес банка:</span>
+						<span><input type="text" name="org_bank" value="{{request.COOKIES.org_bank|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
-						<span>Область:</span>
-						<span><input type="text" name="region"></span>
+						<span>Кор/счет банка:</span>
+						<span><input type="text" name="org_kor_account" value="{{request.COOKIES.org_kor_account|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
-						<span>Город:</span>
-						<span><input type="text" name="city"></span>
-					</div>
-					<div class="seminar-apply-block-row">
-						<span>Улица:</span>
-						<span><input type="text" name="street"></span>
-					</div>
-					<div class="seminar-apply-block-row">
-						<span>Дом:</span>
-						<span><input class="min-input" type="text" name="home"></span>
+						<span>БИК:</span>
+						<span><input type="text" name="org_bik" value="{{request.COOKIES.org_bik|unescape}}"></span>
 					</div>
 				</div>
 			</div>
+
+
+			<div class="seminar-apply-block">
+				<div class="seminar-apply-block-title">Почтовый адрес:</div>
+				<div class="seminar-apply-block-body">
+
+					<div class="seminar-apply-block-desc">
+						<span>Указываются индекс и фактический адрес организации. Необходимо указать тот адрес, который указывался при регистрации в ИФНС.</span>
+					</div>
+
+					<div class="seminar-apply-block-row">
+						<span>Индекс:</span>
+						<span><input class="min-input" type="text" name="p_addr_zip_code" value="{{request.COOKIES.p_addr_zip_code|unescape}}"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Область:</span>
+						<span><input type="text" name="p_addr_region" value="{{request.COOKIES.p_addr_region|unescape}}"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Город:</span>
+						<span><input type="text" name="p_addr_city" value="{{request.COOKIES.p_addr_city|unescape}}"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Улица, дом, кв./оф.:</span>
+						<span><input type="text" name="p_addr_addr" value="{{request.COOKIES.p_addr_addr|unescape}}"></span>
+					</div>
+
+					<div class="seminar-apply-block-row">
+						<span>Юридический адрес совпадает с почтовым</span>
+						<span><input type="checkbox" name="ur_addr_matches" value="yes" checked></span>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="seminar-apply-block sem-block-ur-addr">
+				<div class="seminar-apply-block-title">Юридический адрес:</div>
+				<div class="seminar-apply-block-body">
+
+					<div class="seminar-apply-block-row">
+						<span>Индекс:</span>
+						<span><input class="min-input" type="text" name="ur_addr_zip_code" value="{{request.COOKIES.ur_addr_zip_code|unescape}}"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Область:</span>
+						<span><input type="text" name="ur_addr_region" value="{{request.COOKIES.ur_addr_region|unescape}}"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Город:</span>
+						<span><input type="text" name="ur_addr_city" value="{{request.COOKIES.ur_addr_city|unescape}}"></span>
+					</div>
+					<div class="seminar-apply-block-row">
+						<span>Улица, дом, кв./оф.:</span>
+						<span><input type="text" name="ur_addr_addr" value="{{request.COOKIES.ur_addr_addr|unescape}}"></span>
+					</div>
+
+				</div>
+			</div>
+
 
 			<div class="seminar-apply-block">
 				<div class="seminar-apply-block-title">Руководитель:</div>
 				<div class="seminar-apply-block-body">
 					<div class="seminar-apply-block-row">
-						<span>ФИО:</span>
-						<span><input type="text" name="fio"></span>
+						<span>Ф.И.О.:</span>
+						<span><input type="text" name="head_fio" value="{{request.COOKIES.head_fio|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Должность:</span>
-						<span><input type="text" name="post"></span>
-					</div>
-					<div class="seminar-apply-block-h2">
-						Руководитель действует на основании
-					</div>
-					<div class="seminar-apply-block-row">
-						<span class="checkbox-title">Устава:</span>
-						<span><input type="checkbox" name="act" value="ustav"></span>
-						<span class="checkbox-title">Положения:</span>
-						<span><input type="checkbox" name="act" value="polozhenie"></span>
+						<span><input type="text" name="head_post" value="{{request.COOKIES.head_post|unescape}}"></span>
 					</div>
 				</div>
 			</div>
+
 
 			<div class="seminar-apply-block">
 				<div class="seminar-apply-block-title">Список участников семинара:</div>
 				<div class="seminar-apply-block-body">
 					<div class="seminar-apply-block-row">
 						<span>Количество участников:</span>
-						<span><input type="text" name="amount"></span>
+						<span><input type="text" name="visitors_amount" class="min-input" value="{{request.COOKIES.visitors_amount|unescape}}"></span>
 					</div>
+					<div class="seminar-apply-block-row">
+						<span><a href="#" class="add-visitors">Добавить данные участников</a></span>
+					</div>
+
+
+					<div class="visitors">
+						<div class="seminar-apply-block-row">
+							<span>Ф.И.О.:</span>
+							<span><input type="text" name="visitors_fio[]"></span>
+						</div>
+						<div class="seminar-apply-block-row">
+							<span>Должность:</span>
+							<span><input type="text" name="visitors_post[]"></span>
+						</div>
+						<div class="seminar-apply-block-row">
+							<span class='visitors-border'>Мобильный телефон:</span>
+							<span class='visitors-border-input'><input type="text" name="visitors_phone[]"></span>
+						</div>
+					</div>
+					<div class="seminar-apply-block-row">
+						<a href="#" class="add-another-visitor">Добавить больше участников</a>
+					</div>
+
+
 				</div>
 			</div>
+
 
 			<div class="seminar-apply-block">
 				<div class="seminar-apply-block-title">Контактное лицо:</div>
 				<div class="seminar-apply-block-body">
 					<div class="seminar-apply-block-row">
-						<span>ФИО:</span>
-						<span><input type="text" name="contact-name"></span>
+						<span>Ф.И.О.:</span>
+						<span><input type="text" name="contact_name" value="{{request.COOKIES.contact_name|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Должность:</span>
-						<span><input type="text" name="contact-post"></span>
+						<span><input type="text" name="contact_post" value="{{request.COOKIES.contact_post|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>E-mail:</span>
-						<span><input type="email" name="contact-email" required></span>
+						<span><input type="email" name="contact_email" value="{{request.COOKIES.contact_email|unescape}}" required></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Телефон:</span>
-						<span><input type="text" name="contact-phone"></span>
+						<span><input type="text" name="contact_phone" value="{{request.COOKIES.contact_phone|unescape}}"></span>
 					</div>
 				</div>
 			</div>
+
 
 			<div class="seminar-apply-block">
 				<div class="seminar-apply-block-title">Комментарий:</div>
 				<div class="seminar-apply-block-body">
 					<div class="seminar-apply-block-row">
-						<span><textarea name="comment"></textarea></span>
+						<textarea name="comment">{{request.COOKIES.comment|unescape}}</textarea>
 					</div>
 					<div class="seminar-apply-block-row">
-						<span><input type="checkbox" name="send-copy-email" value="yes" checked> Отправить копию заявки на E-Mail контактного лица</span>
+						<span><input type="checkbox" name="send_copy_email" value="yes" checked> Отправить копию заявки на E-Mail контактного лица</span>
 					</div>
 				</div>
 			</div>
@@ -162,6 +233,66 @@
 		});
 
 	});
+
+
+	$(document).ready(function() {
+
+		var ur_addr_height = $('.sem-block-ur-addr').height();
+		$('.sem-block-ur-addr').css('height', '0px');
+
+		$("input[name=ur_addr_matches]").click(function() {
+
+			if ($(this).prop('checked'))
+			{
+				$('.sem-block-ur-addr').animate({ height: '0px' }, 5);
+				$('.sem-block-ur-addr').animate({ opacity: '0' }, 'slow');
+				$('.sem-block-ur-addr').css('margin-bottom', '0px');
+			}
+			else
+			{
+				$('.sem-block-ur-addr').animate({ height: ur_addr_height }, 5);
+				$('.sem-block-ur-addr').animate({ opacity: '1' }, 'slow');
+				$('.sem-block-ur-addr').css('margin-bottom', '20px');
+			}
+
+		});
+	});
+
+	$(document).ready(function(){
+
+		var visitors_height = $('.visitors').height();
+		var visitors_content = $('.visitors').html();
+
+		$('.visitors').css('height', '0px');
+
+		$('.add-visitors').click(function(){
+			$('.visitors').animate({ height: visitors_height }, 5);
+			$('.visitors').animate({ opacity: '1' }, 'slow');
+			$('.add-visitors').hide();
+			$('.add-another-visitor').css('display', 'block');
+			return false;
+		});
+
+		$('.add-another-visitor').click(function(){
+			$('.visitors').css('height', 'auto');
+			$('.visitors').append(visitors_content);
+			return false;
+		});
+
+	});
+
+	$(document).ready(function(){
+		$('input[type=text]').focusout(function(){
+			Cookies.set(this.name, $(this).val(), { expires: 1, path: '/' });
+		});
+		$('input[type=email]').focusout(function(){
+			Cookies.set(this.name, $(this).val(), { expires: 1, path: '/' });
+		});
+		$('textarea').focusout(function(){
+			Cookies.set(this.name, $(this).val(), { expires: 1, path: '/' });
+		});
+	});
+
 
 </script>
 
@@ -195,5 +326,5 @@
 		} else { f(); }
 	})(document, window, "yandex_metrika_callbacks");
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/33786709" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img src="https://mc.yandex.ru/watch/33786709" style="position:absolute; left:-9999px;" alt="metrika" /></div></noscript>
 <!-- /Yandex.Metrika counter -->

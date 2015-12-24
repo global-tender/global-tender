@@ -35,6 +35,8 @@
 		<link href='/static/js/plugins/highslide/highslide.css' rel='stylesheet'>
 	{% endif %}
 
+	<script type='text/javascript' src='/static/js/plugins/js.cookie-2.0.4.min.js'></script>
+
 	{% if request.path == '/feedback/' and request.user_agent.is_mobile == True %}
 		<script type='text/javascript' src='/static/js/configs/feedback.js'></script>
 	{% endif %}

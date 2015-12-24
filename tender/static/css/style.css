@@ -1119,7 +1119,6 @@ nav {
 
 
 .seminar-apply {
-	text-align: center;
 	color: #222;
 	padding-left: 5px;
 	padding-right: 5px;
@@ -1180,6 +1179,11 @@ nav {
 	margin-bottom: 20px;
 }
 
+.seminar-apply .seminar-apply-block.sem-block-ur-addr {
+	overflow: hidden;
+	margin-bottom: 0px;
+	opacity: 0;
+}
 
 .seminar-apply .seminar-apply-block .seminar-apply-block-title {
 	font-size: 18px;
@@ -1190,67 +1194,116 @@ nav {
 }
 .seminar-apply .seminar-apply-block .seminar-apply-block-row {
 	font-size: 12px;
-	min-height: 40px;
-	line-height: 40px;
-	margin-bottom: 5px;
-	margin-top: 5px;
 }
 .seminar-apply .seminar-apply-block .seminar-apply-block-row span {
-	display: inline-block;
+	display: table-cell;
+	vertical-align: middle;
 	line-height: normal;
+	padding-bottom: 10px;
+	padding-right: 10px;
 }
 .seminar-apply .seminar-apply-block .seminar-apply-block-row span:first-child {
-	display: inline-block;
+	display: table-cell;
+	vertical-align: middle;
+
 	width: 200px;
 	text-align: right;
 }
+
 .seminar-apply .seminar-apply-block .seminar-apply-block-row input[type=text] {
 	padding: 0;
 	height: 20px;
-	width: 200px;
+	width: 270px;
 	border: 1px solid #aaa;
 	border-radius: 3px;
+	padding-left: 2px;
+	padding-right: 2px;
 }
 .seminar-apply .seminar-apply-block .seminar-apply-block-row input[type=email] {
 	padding: 0;
 	height: 20px;
-	width: 200px;
+	width: 270px;
 	border: 1px solid #aaa;
 	border-radius: 3px;
+	padding-left: 2px;
+	padding-right: 2px;
 }
 .seminar-apply .seminar-apply-block .seminar-apply-block-row input {
-	margin-right: 20px;
+	margin-right: 5px;
 	margin-left: 5px;
+	vertical-align: middle;
+	margin-bottom: 2px;
 }
+
+.seminar-apply .seminar-apply-block .seminar-apply-block-row input[type=checkbox] {
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+}
+
+
 .seminar-apply .seminar-apply-block .seminar-apply-block-row input.min-input {
 	width: 70px;
 }
-.seminar-apply .seminar-apply-block .seminar-apply-block-h2 {
+
+.seminar-apply .seminar-apply-block .seminar-apply-block-desc {
 	font-size: 12px;
-}
-.seminar-apply .seminar-apply-block .seminar-apply-block-h2 .desc {
 	color: #aaa;
-	padding-left: 10px;
+	padding-bottom: 10px;
 }
+
+.seminar-apply .seminar-apply-block .seminar-apply-block-row a.add-visitors:hover {
+	text-decoration: none;
+}
+.seminar-apply .seminar-apply-block .seminar-apply-block-row a.add-another-visitor {
+	display: none;
+	padding-top: 10px;
+}
+.seminar-apply .seminar-apply-block .seminar-apply-block-row a.add-another-visitor:hover {
+	text-decoration: none;
+}
+
+.seminar-apply .seminar-apply-block .visitors {
+	overflow: hidden;
+	opacity: 0;
+}
+
+.seminar-apply .seminar-apply-block .seminar-apply-block-row .visitors-border {
+	border-bottom: 1px solid #ccc;
+}
+
+.seminar-apply .seminar-apply-block .seminar-apply-block-row .visitors-border-input {
+	border-bottom: none;
+}
+
 .seminar-apply .seminar-apply-block .seminar-apply-block-row textarea {
-	width: 350px;
+	width: 61%;
+	margin-bottom: 10px;
 }
 
-@media screen and (max-width: 500px) {
-	.seminar-apply .seminar-apply-block .seminar-apply-block-row textarea {
-		width: 300px;
+
+@media screen and (max-width: 598px) {
+	.seminar-apply .seminar-apply-block .seminar-apply-block-row span {
+		display: block;
+		text-align: left;
+	}
+
+	.seminar-apply .seminar-apply-block .seminar-apply-block-row span:first-child {
+		display: block;
+		text-align: left;
+		padding-bottom: 2px;
+	}
+
+	.seminar-apply .seminar-apply-block .seminar-apply-block-row .visitors-border {
+		border-bottom: none;
+	}
+
+	.seminar-apply .seminar-apply-block .seminar-apply-block-row .visitors-border-input {
+		margin-bottom: 10px;
+		border-bottom: 1px solid #ccc;
 	}
 }
 
-@media screen and (max-width: 400px) {
-	.seminar-apply .seminar-apply-block .seminar-apply-block-row textarea {
-		width: 200px;
-	}
-
-	.seminar-apply .seminar-apply-block .seminar-apply-block-row .checkbox-title {
-		width: inherit !important;
-	}
-}
 
 .modal-wrap {
 	border: rgba(2, 0, 35, 0.6) solid 3px;
