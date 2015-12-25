@@ -1,4 +1,4 @@
-Sitemap: http://global-tender.ru/sitemap.xml
+Sitemap: https://global-tender.ru/sitemap.xml
 User-agent: *
 Disallow: /lektors
 Disallow: /services
