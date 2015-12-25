@@ -94,6 +94,33 @@ def seminar_detail(request, arg):
 	return StreamingHttpResponse(template.render(context))
 
 @xframe_options_exempt
+def seminar_detail_print(request, arg):
+
+	seminar = Seminars.objects.filter(id=arg)
+
+	if seminar:
+		seminar = seminar[0]
+
+	status = 'active'
+	if seminar.event_date <= (timezone.now() + timezone.timedelta(days=-1)):
+		status = 'completed'
+	if seminar.event_is_active == False:
+		status = 'canceled'
+
+	template = loader.get_template('router_print.html')
+	template_args = {
+		'content': 'pages/seminar_print.html',
+		'request': request,
+		'title': '%s %s.%s.%s - %s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year, seminar.event_fz.name),
+
+		'seminar': seminar,
+		'seminar_program_template': "seminar_programs/" + seminar.event_program.program_short_name + ".html",
+		'status': status,
+	}
+	context = RequestContext(request, template_args)
+	return StreamingHttpResponse(template.render(context))
+
+@xframe_options_exempt
 @csrf_exempt
 def ajax_seminar(request, arg):
 	send_copy_email = ''
