@@ -19,11 +19,18 @@
 
 		<link rel="canonical" href="https://global-tender.ru/">
 		
-		<meta property="og:title" content="Глобал Тендер CЕМИНАРЫ ПО ГОСУДАРСТВЕННЫМ ЗАКУПКАМ">
+		{% if seminar %}
+			<meta property="og:title" content="{{title}} - Учебный центр «Глобал-Тендер»">
+			<meta property="og:site_name" content="{{title}} - Учебный центр «Глобал-Тендер»">
+			<meta property="og:url" content="https://global-tender.ru/seminars/{{seminar.id}}/">
+		{% else %}
+			<meta property="og:title" content="Учебный центр «Глобал-Тендер»">
+			<meta property="og:site_name" content="Учебный центр «Глобал-Тендер»">
+			<meta property="og:url" content="https://global-tender.ru/">
+		{% endif %}
+		
 		<meta property="og:type" content="website">
-		<meta property="og:url" content="https://global-tender.ru/">
 		<meta property="og:image" content="https://global-tender.ru/static/images/banners/seminars_banner_min.png">
-		<meta property="og:site_name" content="Учебный центр «Глобал-Тендер»">
 		<meta property="og:description" content="Cеминары по государственным закупкам (44-ФЗ, 223-ФЗ)">
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:description" content="Cеминары по государственным закупкам (44-ФЗ, 223-ФЗ)">
