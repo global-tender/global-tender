@@ -417,15 +417,43 @@ nav {
 	width: 100%;
 }
 .footer .footer-text {
-	font: 14px 'Open Sans', sans-serif;
+	font: 14px 'Exo 2', 'Open Sans', sans-serif;
 	font-weight: 300;
 	height: 50px;
 	line-height: 50px;
 	padding-left: 15px;
+	padding-right: 15px;
 }
-@media screen and (max-width: 400px) {
+
+.footer .footer-text img {
+	width: 32px;
+	padding-right: 7px;
+}
+
+.footer .footer-text a {
+	text-decoration: none;
+	color: #222;
+	-webkit-transition: all .9s ease;
+	-ms-transition: all .9s ease;
+	-moz-transition: all .9s ease;
+	-o-transition: all .9s ease;
+	transition: all .9s ease;
+}
+.footer .footer-text a:hover {
+	color: #83395f;
+}
+
+@media screen and (max-width: 660px) {
 	.footer .footer-text {
-		font-size: 11px;
+		font-size: 9px;
+	}
+	.footer .footer-text img {
+		width: 22px;
+	}
+}
+@media screen and (max-width: 455px) {
+	.footer .footer-text.fl-r {
+		display: none;
 	}
 }
 
@@ -1228,6 +1256,16 @@ nav {
 	padding-left: 2px;
 	padding-right: 2px;
 }
+
+@media screen and (max-width: 400px) {
+	.seminar-apply .seminar-apply-block .seminar-apply-block-row input[type=text] {
+		width: 220px;
+	}
+	.seminar-apply .seminar-apply-block .seminar-apply-block-row input[type=email] {
+		width: 220px;
+	}
+}
+
 .seminar-apply .seminar-apply-block .seminar-apply-block-row input {
 	margin-right: 5px;
 	margin-left: 5px;
