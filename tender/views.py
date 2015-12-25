@@ -208,8 +208,8 @@ def ajax_seminar(request, arg):
 		connection.open()
 		
 		email = mail.EmailMessage(subject, body_head + body + body_foot, settings.ADMIN_EMAIL_FROM,
-			['ihptru@gmail.com'], headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
-		#settings.ADMIN_EMAIL_TO
+			settings.ADMIN_EMAIL_TO, headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
+		
 		email.send()
 
 

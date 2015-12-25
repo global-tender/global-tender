@@ -31,40 +31,40 @@
 				<div class="seminar-apply-block-body">
 					<div class="seminar-apply-block-row">
 						<span>Полное название организации (включая форму собственности):</span>
-						<span><input type="text" name="org_name" value="{{request.COOKIES.org_name|unescape}}"></span>
+						<span><input type="text" name="org_name" value="{{request.COOKIES.apply__org_name|unescape}}"></span>
 					</div>
 
 					<div class="seminar-apply-block-row">
 						<span>Действующая на основании:</span>
 						<span>
-							<input type="radio" name="org_acting" value="ustav"> Устава<br />
-							<input type="radio" name="org_acting" value="polozhenie"> Положения
+							<input type="radio" name="org_acting" value="ustav" {% if request.COOKIES.apply__org_acting == 'ustav' %}checked{% endif %}> Устава<br />
+							<input type="radio" name="org_acting" value="polozhenie" {% if request.COOKIES.apply__org_acting == 'polozhenie' %}checked{% endif %}> Положения
 						</span>
 					</div>
 
 					<div class="seminar-apply-block-row">
 						<span>ИНН:</span>
-						<span><input type="text" name="org_inn" value="{{request.COOKIES.org_inn|unescape}}"></span>
+						<span><input type="text" name="org_inn" value="{{request.COOKIES.apply__org_inn|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>КПП:</span>
-						<span><input type="text" name="org_kpp" value="{{request.COOKIES.org_kpp|unescape}}"></span>
+						<span><input type="text" name="org_kpp" value="{{request.COOKIES.apply__org_kpp|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Расчетный счет:</span>
-						<span><input type="text" name="org_account" value="{{request.COOKIES.org_account|unescape}}"></span>
+						<span><input type="text" name="org_account" value="{{request.COOKIES.apply__org_account|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Название и адрес банка:</span>
-						<span><input type="text" name="org_bank" value="{{request.COOKIES.org_bank|unescape}}"></span>
+						<span><input type="text" name="org_bank" value="{{request.COOKIES.apply__org_bank|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Кор/счет банка:</span>
-						<span><input type="text" name="org_kor_account" value="{{request.COOKIES.org_kor_account|unescape}}"></span>
+						<span><input type="text" name="org_kor_account" value="{{request.COOKIES.apply__org_kor_account|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>БИК:</span>
-						<span><input type="text" name="org_bik" value="{{request.COOKIES.org_bik|unescape}}"></span>
+						<span><input type="text" name="org_bik" value="{{request.COOKIES.apply__org_bik|unescape}}"></span>
 					</div>
 				</div>
 			</div>
@@ -80,24 +80,24 @@
 
 					<div class="seminar-apply-block-row">
 						<span>Индекс:</span>
-						<span><input class="min-input" type="text" name="p_addr_zip_code" value="{{request.COOKIES.p_addr_zip_code|unescape}}"></span>
+						<span><input class="min-input" type="text" name="p_addr_zip_code" value="{{request.COOKIES.apply__p_addr_zip_code|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Область:</span>
-						<span><input type="text" name="p_addr_region" value="{{request.COOKIES.p_addr_region|unescape}}"></span>
+						<span><input type="text" name="p_addr_region" value="{{request.COOKIES.apply__p_addr_region|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Город:</span>
-						<span><input type="text" name="p_addr_city" value="{{request.COOKIES.p_addr_city|unescape}}"></span>
+						<span><input type="text" name="p_addr_city" value="{{request.COOKIES.apply__p_addr_city|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Улица, дом, кв./оф.:</span>
-						<span><input type="text" name="p_addr_addr" value="{{request.COOKIES.p_addr_addr|unescape}}"></span>
+						<span><input type="text" name="p_addr_addr" value="{{request.COOKIES.apply__p_addr_addr|unescape}}"></span>
 					</div>
 
 					<div class="seminar-apply-block-row">
 						<span>Юридический адрес совпадает с почтовым</span>
-						<span><input type="checkbox" name="ur_addr_matches" value="yes" checked></span>
+						<span><input type="checkbox" name="ur_addr_matches" value="yes" {% if request.COOKIES.apply__ur_addr_matches == 'no' %} {% else %}checked{% endif %}></span>
 					</div>
 				</div>
 			</div>
@@ -109,19 +109,19 @@
 
 					<div class="seminar-apply-block-row">
 						<span>Индекс:</span>
-						<span><input class="min-input" type="text" name="ur_addr_zip_code" value="{{request.COOKIES.ur_addr_zip_code|unescape}}"></span>
+						<span><input class="min-input" type="text" name="ur_addr_zip_code" value="{{request.COOKIES.apply__ur_addr_zip_code|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Область:</span>
-						<span><input type="text" name="ur_addr_region" value="{{request.COOKIES.ur_addr_region|unescape}}"></span>
+						<span><input type="text" name="ur_addr_region" value="{{request.COOKIES.apply__ur_addr_region|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Город:</span>
-						<span><input type="text" name="ur_addr_city" value="{{request.COOKIES.ur_addr_city|unescape}}"></span>
+						<span><input type="text" name="ur_addr_city" value="{{request.COOKIES.apply__ur_addr_city|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Улица, дом, кв./оф.:</span>
-						<span><input type="text" name="ur_addr_addr" value="{{request.COOKIES.ur_addr_addr|unescape}}"></span>
+						<span><input type="text" name="ur_addr_addr" value="{{request.COOKIES.apply__ur_addr_addr|unescape}}"></span>
 					</div>
 
 				</div>
@@ -133,11 +133,11 @@
 				<div class="seminar-apply-block-body">
 					<div class="seminar-apply-block-row">
 						<span>Ф.И.О.:</span>
-						<span><input type="text" name="head_fio" value="{{request.COOKIES.head_fio|unescape}}"></span>
+						<span><input type="text" name="head_fio" value="{{request.COOKIES.apply__head_fio|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Должность:</span>
-						<span><input type="text" name="head_post" value="{{request.COOKIES.head_post|unescape}}"></span>
+						<span><input type="text" name="head_post" value="{{request.COOKIES.apply__head_post|unescape}}"></span>
 					</div>
 				</div>
 			</div>
@@ -148,7 +148,7 @@
 				<div class="seminar-apply-block-body">
 					<div class="seminar-apply-block-row">
 						<span>Количество участников:</span>
-						<span><input type="text" name="visitors_amount" class="min-input" value="{{request.COOKIES.visitors_amount|unescape}}"></span>
+						<span><input type="text" name="visitors_amount" class="min-input" value="{{request.COOKIES.apply__visitors_amount|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span><a href="#" class="add-visitors">Добавить данные участников</a></span>
@@ -183,19 +183,19 @@
 				<div class="seminar-apply-block-body">
 					<div class="seminar-apply-block-row">
 						<span>Ф.И.О.:</span>
-						<span><input type="text" name="contact_name" value="{{request.COOKIES.contact_name|unescape}}"></span>
+						<span><input type="text" name="contact_name" value="{{request.COOKIES.apply__contact_name|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Должность:</span>
-						<span><input type="text" name="contact_post" value="{{request.COOKIES.contact_post|unescape}}"></span>
+						<span><input type="text" name="contact_post" value="{{request.COOKIES.apply__contact_post|unescape}}"></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>E-mail:</span>
-						<span><input type="email" name="contact_email" value="{{request.COOKIES.contact_email|unescape}}" required></span>
+						<span><input type="email" name="contact_email" value="{{request.COOKIES.apply__contact_email|unescape}}" required></span>
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Телефон:</span>
-						<span><input type="text" name="contact_phone" value="{{request.COOKIES.contact_phone|unescape}}"></span>
+						<span><input type="text" name="contact_phone" value="{{request.COOKIES.apply__contact_phone|unescape}}"></span>
 					</div>
 				</div>
 			</div>
@@ -205,10 +205,10 @@
 				<div class="seminar-apply-block-title">Комментарий:</div>
 				<div class="seminar-apply-block-body">
 					<div class="seminar-apply-block-row">
-						<textarea name="comment">{{request.COOKIES.comment|unescape}}</textarea>
+						<textarea name="comment">{{request.COOKIES.apply__comment|unescape}}</textarea>
 					</div>
 					<div class="seminar-apply-block-row">
-						<span><input type="checkbox" name="send_copy_email" value="yes" checked> Отправить копию заявки на E-Mail контактного лица</span>
+						<span><input type="checkbox" name="send_copy_email" value="yes" {% if request.COOKIES.apply__send_copy_email == 'no' %} {% else %}checked{% endif %}> Отправить копию заявки на E-Mail контактного лица</span>
 					</div>
 				</div>
 			</div>
@@ -240,6 +240,12 @@
 		var ur_addr_height = $('.sem-block-ur-addr').height();
 		$('.sem-block-ur-addr').css('height', '0px');
 
+		if ( ! $("input[name=ur_addr_matches]").prop('checked') )
+		{
+			$('.sem-block-ur-addr').css('height', ur_addr_height);
+			$('.sem-block-ur-addr').css('opacity', '1');
+		}
+
 		$("input[name=ur_addr_matches]").click(function() {
 
 			if ($(this).prop('checked'))
@@ -247,14 +253,26 @@
 				$('.sem-block-ur-addr').animate({ height: '0px' }, 5);
 				$('.sem-block-ur-addr').animate({ opacity: '0' }, 'slow');
 				$('.sem-block-ur-addr').css('margin-bottom', '0px');
+				$(this).val('yes');
 			}
 			else
 			{
 				$('.sem-block-ur-addr').animate({ height: ur_addr_height }, 5);
 				$('.sem-block-ur-addr').animate({ opacity: '1' }, 'slow');
 				$('.sem-block-ur-addr').css('margin-bottom', '20px');
+				$(this).val('no');
 			}
 
+		});
+
+		$("input[name=send_copy_email]").click(function(){
+			if ($(this).prop('checked'))
+			{
+				$(this).val('yes');
+			}
+			else {
+				$(this).val('no');
+			}
 		});
 	});
 
@@ -282,14 +300,13 @@
 	});
 
 	$(document).ready(function(){
-		$('input[type=text]').focusout(function(){
-			Cookies.set(this.name, $(this).val(), { expires: 1, path: '/' });
+
+		$(document).on('focusout', 'input', function(){
+			Cookies.set('apply__'+this.name, $(this).val(), { expires: 1, path: '/' });
 		});
-		$('input[type=email]').focusout(function(){
-			Cookies.set(this.name, $(this).val(), { expires: 1, path: '/' });
-		});
+
 		$('textarea').focusout(function(){
-			Cookies.set(this.name, $(this).val(), { expires: 1, path: '/' });
+			Cookies.set('apply__'+this.name, $(this).val(), { expires: 1, path: '/' });
 		});
 	});
 
