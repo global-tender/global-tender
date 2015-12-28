@@ -984,10 +984,12 @@ nav {
 
 .sem-city-print {
 	font-size: 30px;
-	padding: 15px 15px 15px;
 }
 .sem-city-print .city-date {
 	padding-right: 25px;
+}
+.sem-city-print .sem-city-date-name {
+	padding: 15px 15px 15px;
 }
 
 .city-info {
