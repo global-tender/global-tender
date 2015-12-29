@@ -90,6 +90,10 @@ server {
                 expires 30d;
         }
 
+        location = /favicon.ico {
+                alias /path/to/app/tender/static/favicon.png;
+        }
+
         location / {
                 proxy_pass_header Server;
                 proxy_set_header Host $http_host;
