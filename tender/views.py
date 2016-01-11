@@ -5,7 +5,7 @@ import operator
 import datetime
 
 from django.conf import settings
-from django.http import StreamingHttpResponse, HttpResponseNotFound
+from django.http import StreamingHttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.http import HttpResponseRedirect, Http404
 
@@ -74,6 +74,8 @@ def seminar_detail(request, arg):
 
 	if seminar:
 		seminar = seminar[0]
+	else:
+		return HttpResponseRedirect('/seminars/')
 
 	status = 'active'
 	if seminar.event_date <= (timezone.now() + timezone.timedelta(days=-1)):
@@ -103,6 +105,8 @@ def seminar_detail_print(request, arg):
 
 	if seminar:
 		seminar = seminar[0]
+	else:
+		return HttpResponseRedirect('/seminars/')
 
 	status = 'active'
 	if seminar.event_date <= (timezone.now() + timezone.timedelta(days=-1)):
