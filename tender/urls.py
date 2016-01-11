@@ -17,6 +17,7 @@ urlpatterns = patterns('',
 	url(r'^seminars/?$', views.seminars, name='seminars'),
 	url(r'^seminars/(?P<arg>\d+)/?$', views.seminar_detail, name='seminar_detail'),
 	url(r'^seminars/(?P<arg>\d+)/print/?$', views.seminar_detail_print, name='seminar_detail_print'),
+	url(r'^seminars_completed/?$', views.seminars, name='seminars_completed'),
 
 	url(r'^feedback/?$', views.feedback, name='feedback'),
 	url(r'^contacts/?$', views.contacts, name='contacts'),

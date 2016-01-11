@@ -38,7 +38,10 @@ def index(request):
 @xframe_options_exempt
 def seminars(request):
 
-	seminars = Seminars.objects.filter(event_is_active=True).filter(event_date__gte=(timezone.now() + timezone.timedelta(days=-1))).order_by('event_date')
+	if 'seminars_completed' not in request.path:
+		seminars = Seminars.objects.filter(event_is_active=True).filter(event_date__gte=(timezone.now() + timezone.timedelta(days=-1))).order_by('event_date')
+	else:
+		seminars = Seminars.objects.filter(event_is_active=True).filter(event_date__lt=(timezone.now() + timezone.timedelta(days=-1))).order_by('-event_date')
 
 	seminars_all = {}
 
@@ -119,6 +122,7 @@ def seminar_detail_print(request, arg):
 	}
 	context = RequestContext(request, template_args)
 	return StreamingHttpResponse(template.render(context))
+
 
 @xframe_options_exempt
 @csrf_exempt

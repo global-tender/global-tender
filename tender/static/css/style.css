@@ -940,9 +940,20 @@ nav {
 	padding-right: 25px;
 }
 
+.seminars-swap-url {
+	padding: 15px 15px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+.seminars-swap-url a:hover {
+	text-decoration: none;
+}
+
 @media screen and (max-width: 640px) {
 	.seminars-list h2.title {
 		font-size: 22px;
+		text-align: center;
 	}
 
 	.seminar-title {
@@ -959,6 +970,7 @@ nav {
 		font-size: 15px;
 	}
 }
+
 
 /* ******************************************** */
 /* ******************************************** */

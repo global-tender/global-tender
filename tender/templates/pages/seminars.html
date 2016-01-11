@@ -1,7 +1,7 @@
 {% load customTags %}
 
 <main class="wrapper clearfix padding-t60 seminars-list">
-	<h2 class="title padding-t25">Расписание семинаров</h2>
+	<h2 class="title padding-t25">{% if 'seminars_completed' in request.path %}Список недавно проведенных семинаров{% else %}Расписание семинаров{% endif %}</h2>
 
 	{% for item in seminars %}
 		
@@ -24,4 +24,15 @@
 		</ul>
 
 	{% endfor %}
+
+	{% if not 'seminars_completed' in request.path %}
+		<div class="seminars-swap-url">
+			<a href="/seminars_completed/" title="Список недавно проведенных семинаров">Список недавно проведенных семинаров</a>
+		</div>
+	{% else %}
+		<div class="seminars-swap-url">
+			<a href="/seminars/" title="Расписание предстоящих семинаров">Расписание предстоящих семинаров</a>
+		</div>
+	{% endif %}
+
 </main>
