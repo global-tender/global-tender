@@ -2,3 +2,4 @@ Sitemap: https://global-tender.ru/sitemap.xml
 User-agent: *
 Disallow: /lektors
 Disallow: /services
+Host: https://global-tender.ru
