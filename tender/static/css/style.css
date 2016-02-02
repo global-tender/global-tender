@@ -523,7 +523,7 @@ nav {
 .contacts-basic {
 	padding-left: 25px;
 	padding-right: 25px;
-	max-width: 310px;
+	max-width: 315px;
 }
 
 .contacts-basic .title {
@@ -967,7 +967,7 @@ nav {
 	}
 
 	.seminars .seminar a {
-		font-size: 15px;
+		font-size: 13px;
 	}
 }
 
