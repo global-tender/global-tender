@@ -40,8 +40,10 @@ def seminars(request):
 
 	if 'seminars_completed' not in request.path:
 		seminars = Seminars.objects.filter(event_is_active=True).filter(event_date__gte=(timezone.now() + timezone.timedelta(days=-1))).order_by('event_date')
+		page_title = u'Расписание семинаров'
 	else:
 		seminars = Seminars.objects.filter(event_is_active=True).filter(event_date__lt=(timezone.now() + timezone.timedelta(days=-1))).order_by('-event_date')
+		page_title = u'Список недавно проведенных семинаров'
 
 	seminars_all = {}
 
@@ -58,7 +60,7 @@ def seminars(request):
 	template_args = {
 		'content': 'pages/seminars.html',
 		'request': request,
-		'title': 'Расписание семинаров',
+		'title': page_title,
 		'menu_color_class': 'menu-black',
 		'menu_inner': 'menu-inner-seminars',
 
