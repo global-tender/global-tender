@@ -41,7 +41,9 @@
 
 		<div class="row pd-bot-sml sem-program-title">
 			{% if seminar.event_program.program_top_title %}
+				{% autoescape off %}
 				{{seminar.event_program.program_top_title}}
+				{% endautoescape %}
 			{% endif %}
 		</div>
 

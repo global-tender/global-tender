@@ -30,5 +30,7 @@ urlpatterns = patterns('',
 
 	url(r'^ajax/seminar/(?P<arg>\d+)/?$', views.ajax_seminar, name='ajax_seminar'),
 
+	url(r'^ajax/banner/(?P<arg>\d+)/?$', views.ajax_banner, name='ajax_banner'),
+
 	url(r'^.*$', views.handle404, name='handle404'),
 )

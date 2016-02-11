@@ -17,7 +17,7 @@ from django.core import mail
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 
-from tender.models import FZs, Seminars, Seminar_Programs, Cities
+from tender.models import FZs, Seminars, Seminar_Programs, Cities, Banners
 
 
 
@@ -272,6 +272,21 @@ def ajax_seminar(request, arg):
 	}
 	context = RequestContext(request, template_args)
 	return StreamingHttpResponse(template.render(context))
+
+
+
+@xframe_options_exempt
+@csrf_exempt
+def ajax_banner(request, arg):
+
+	banner = Banners.objects.filter(id=arg).first()
+	if banner:
+		click_count = int(banner.click_count) + 1
+		Banners.objects.filter(id=arg).update(click_count=click_count)
+		Banners.objects.filter(id=arg).update(last_click=timezone.now())
+
+	return StreamingHttpResponse("", content_type="application/vnd.api+json", status=200)
+
 
 
 @xframe_options_exempt

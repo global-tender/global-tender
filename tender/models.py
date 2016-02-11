@@ -66,3 +66,17 @@ class Seminars(models.Model):
 	event_contact_name  = models.CharField(max_length=1000)
 	event_contact_email = models.CharField(max_length=1000)
 	event_is_active     = models.BooleanField(default=True)
+
+
+
+class Banners(models.Model):
+
+	class Meta:
+		verbose_name_plural = "Banners"
+
+	def __unicode__(self):
+		return u'' + str(self.id)
+
+	banner_name         = models.CharField(max_length=1000)
+	click_count         = models.IntegerField(default=0)
+	last_click          = models.DateTimeField('last click date/time', blank=True, null=True)

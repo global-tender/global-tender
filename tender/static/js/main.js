@@ -60,3 +60,18 @@ function ajaxFormTry(ajaxForm){
 	});
 	return false;
 }
+
+$(document).ready(function(){
+
+	$('.gos_banner_url').on('click', function(){
+
+		$.ajax({
+			url: "/ajax/banner/1/",
+			dataType: "text",
+			success: function (data) {
+
+			}
+		});
+
+	});
+})
