@@ -1398,6 +1398,8 @@ nav {
 /* BANNERS */
 .gos_banner_index {
 	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 .gos_banner_contacts {
@@ -1409,6 +1411,8 @@ nav {
 .gos_banner_seminar_detail {
 	position: absolute;
 	right: 20px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 .gos_banner_seminars {
@@ -1422,8 +1426,6 @@ nav {
 .gos_banner_url img {
 	max-width: 320px;
 	width: 100%;
-	padding-left: 5px;
-	padding-right: 5px;
 }
 
 @media screen and (max-width: 700px) {
