@@ -1455,3 +1455,19 @@ nav {
 	}
 
 }
+
+
+.google-adsense-block {
+	position: absolute;
+	right: 0;
+	margin-top: -220px;
+}
+
+@media screen and (max-width: 730px) {
+	.google-adsense-block {
+		position: inherit;
+		right: inherit;
+		margin-top: 0px;
+		text-align: center;
+	}
+}
