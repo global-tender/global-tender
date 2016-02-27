@@ -5,7 +5,7 @@
 
 	<footer class="footer">
 
-
+		{% if request.path == '/' %}
 		<div class="google-adsense-block">
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<!-- global-tender.ru -->
@@ -17,6 +17,7 @@
 			(adsbygoogle = window.adsbygoogle || []).push({});
 			</script>
 		</div>
+		{% endif %}
 
 
 		<span class="fl-l footer-text">Учебный центр «Глобал-Тендер», «Global-Tender» &copy; 2010 - {% now "Y" %}</span>
