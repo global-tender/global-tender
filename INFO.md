@@ -117,3 +117,13 @@ for img in *; do convert "$img" -resize "512" "sml_${img}"; done
 convert -density 300 -trim test.pdf -quality 100 test.jpg
 
 ```
+
+####Way to run gunicorn in screen session on system reboot:
+
+Add to /etc/rc.local something similar:
+```
+screen -dm -S global-tender   su - global_tender -c 'cd /path/to/repository/root/; \
+source /usr/local/bin/virtualenvwrapper.sh && workon global-tender.ru; \
+echo "gunicorn system.wsgi -w 5 -t 30 --log-file=/path/to/gunicorn.log -b 127.0.0.1:9090"; \
+gunicorn system.wsgi -w 5 -t 30 --log-file=/path/to/gunicorn.log -b 127.0.0.1:9090;'
+```
