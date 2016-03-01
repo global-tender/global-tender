@@ -412,7 +412,7 @@ nav {
 /* ******************************************** */
 
 .footer {
-	background: #c0c0c0;
+	background: rgba(130,153,195, 0.2);
 	overflow: hidden;
 	width: 100%;
 }
@@ -443,19 +443,6 @@ nav {
 	color: #83395f;
 }
 
-@media screen and (max-width: 660px) {
-	.footer .footer-text {
-		font-size: 9px;
-	}
-	.footer .footer-text img {
-		width: 22px;
-	}
-}
-@media screen and (max-width: 455px) {
-	.footer .footer-text.fl-r {
-		display: none;
-	}
-}
 
 /* ******************************************** */
 /* ******************************************** */
@@ -1396,11 +1383,6 @@ nav {
 
 
 /* BANNERS */
-.gos_banner_index {
-	text-align: center;
-	padding-left: 5px;
-	padding-right: 5px;
-}
 
 .gos_banner_contacts {
 	position: absolute;
@@ -1458,9 +1440,7 @@ nav {
 
 
 .google-adsense-block {
-	position: absolute;
-	right: 0;
-	margin-top: -220px;
+
 }
 
 @media screen and (max-width: 730px) {
@@ -1469,5 +1449,53 @@ nav {
 		right: inherit;
 		margin-top: 0px;
 		text-align: center;
+	}
+}
+
+
+.ads {
+	background: rgba(130,153,195, 0.2);
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	padding: 20px;
+
+	text-align: center;
+	margin: 0 auto;
+	margin-bottom: -50px;
+	margin-top: 50px;
+	display: table;
+	width: 90%;
+}
+
+.ads img {
+	max-width: 180px;
+	width: 100%;
+}
+
+.ads .index_banner {
+	display: table-cell;
+	vertical-align: middle;
+	width: 30%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 599px) {
+	.ads {
+		width: auto;
+	}
+
+	.ads .index_banner {
+		display: inherit;
+		width: inherit;
+		padding-top: 15px;
+	}
+
+	.ads .index_banner:first-child {
+		padding-top: 0px;
+	}
+
+	.footer .footer-text {
+		font-size: 9px;
 	}
 }
