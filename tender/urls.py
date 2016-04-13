@@ -1,5 +1,4 @@
-from django.conf.urls import patterns, url, include
-from django.http import StreamingHttpResponse
+from django.conf.urls import url, include
 
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import StaticViewSitemap, SeminarsViewSitemap
@@ -11,7 +10,7 @@ sitemaps = {
 	'seminars': SeminarsViewSitemap,
 }
 
-urlpatterns = patterns('',
+urlpatterns = [
 	url(r'^$', views.index, name='index'),
 
 	url(r'^seminars/?$', views.seminars, name='seminars'),
@@ -33,4 +32,4 @@ urlpatterns = patterns('',
 	url(r'^ajax/banner/(?P<arg>\d+)/?$', views.ajax_banner, name='ajax_banner'),
 
 	url(r'^.*$', views.handle404, name='handle404'),
-)
+]

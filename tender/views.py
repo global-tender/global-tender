@@ -5,9 +5,9 @@ import operator
 import datetime
 
 from django.conf import settings
-from django.http import StreamingHttpResponse, HttpResponseNotFound, HttpResponseRedirect
-from django.template import RequestContext, loader
+from django.http import StreamingHttpResponse, HttpResponseNotFound
 from django.http import HttpResponseRedirect, Http404
+from django.template import loader
 
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.views.decorators.csrf import csrf_exempt
@@ -31,8 +31,7 @@ def index(request):
 		'menu_color_class': 'menu-white',
 		'menu_inner': '',
 	}
-	context = RequestContext(request, template_args)
-	return StreamingHttpResponse(template.render(context))
+	return StreamingHttpResponse(template.render(template_args, request))
 
 
 @xframe_options_exempt
@@ -66,8 +65,7 @@ def seminars(request):
 
 		'seminars': seminars_all_sorted,
 	}
-	context = RequestContext(request, template_args)
-	return StreamingHttpResponse(template.render(context))
+	return StreamingHttpResponse(template.render(template_args, request))
 
 @xframe_options_exempt
 def seminar_detail(request, arg):
@@ -97,8 +95,7 @@ def seminar_detail(request, arg):
 		'seminar_program_template': "seminar_programs/" + seminar.event_program.program_short_name + ".html",
 		'status': status,
 	}
-	context = RequestContext(request, template_args)
-	return StreamingHttpResponse(template.render(context))
+	return StreamingHttpResponse(template.render(template_args, request))
 
 @xframe_options_exempt
 def seminar_detail_print(request, arg):
@@ -126,8 +123,7 @@ def seminar_detail_print(request, arg):
 		'seminar_program_template': "seminar_programs/" + seminar.event_program.program_short_name + ".html",
 		'status': status,
 	}
-	context = RequestContext(request, template_args)
-	return StreamingHttpResponse(template.render(context))
+	return StreamingHttpResponse(template.render(template_args, request))
 
 
 @xframe_options_exempt
@@ -270,8 +266,7 @@ def ajax_seminar(request, arg):
 		'submitted': submitted,
 		'send_copy_email': send_copy_email,
 	}
-	context = RequestContext(request, template_args)
-	return StreamingHttpResponse(template.render(context))
+	return StreamingHttpResponse(template.render(template_args, request))
 
 
 
@@ -299,8 +294,7 @@ def feedback(request):
 		'menu_color_class': 'menu-white',
 		'menu_inner': 'menu-inner',
 	}
-	context = RequestContext(request, template_args)
-	return StreamingHttpResponse(template.render(context))
+	return StreamingHttpResponse(template.render(template_args, request))
 
 
 @xframe_options_exempt
@@ -313,8 +307,7 @@ def contacts(request):
 		'menu_color_class': 'menu-white',
 		'menu_inner': 'menu-inner',
 	}
-	context = RequestContext(request, template_args)
-	return StreamingHttpResponse(template.render(context))
+	return StreamingHttpResponse(template.render(template_args, request))
 
 @xframe_options_exempt
 def lektors(request):
@@ -326,8 +319,7 @@ def lektors(request):
 		'menu_color_class': 'menu-white',
 		'menu_inner': 'menu-inner',
 	}
-	context = RequestContext(request, template_args)
-	return StreamingHttpResponse(template.render(context))
+	return StreamingHttpResponse(template.render(template_args, request))
 
 @xframe_options_exempt
 def services(request):
@@ -339,8 +331,7 @@ def services(request):
 		'menu_color_class': 'menu-white',
 		'menu_inner': 'menu-inner',
 	}
-	context = RequestContext(request, template_args)
-	return StreamingHttpResponse(template.render(context))
+	return StreamingHttpResponse(template.render(template_args, request))
 
 
 
@@ -355,16 +346,14 @@ def robots(request):
 	template_args = {
 		'request': request,
 	}
-	context = RequestContext(request, template_args)
-	return StreamingHttpResponse(template.render(context), content_type='text/plain')
+	return StreamingHttpResponse(template.render(template_args, request), content_type='text/plain')
 
 def humans(request):
 	template = loader.get_template('static/humans.txt')
 	template_args = {
 		'request': request,
 	}
-	context = RequestContext(request, template_args)
-	return StreamingHttpResponse(template.render(context), content_type='text/plain')
+	return StreamingHttpResponse(template.render(template_args, request), content_type='text/plain')
 
 def handle404(request):
 	template = loader.get_template('router.html')
@@ -375,5 +364,4 @@ def handle404(request):
 		'menu_color_class': 'menu-white',
 		'menu_inner': 'menu-inner',
 	}
-	context = RequestContext(request, template_args)
-	return HttpResponseNotFound(template.render(context))
+	return HttpResponseNotFound(template.render(template_args, request))

@@ -1,6 +1,6 @@
 
 ```
-Developed using Python 2.7.3
+Developed using Python 2.7.3, Django 1.9.4
 Database is PostgreSQL 9.1
 ```
 
