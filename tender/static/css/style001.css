@@ -839,6 +839,9 @@ nav {
 	padding: 10px 15px;
 	margin-left: 25px;
 	margin-right: 25px;
+	font-family: "Exo 2";
+	font-size: 16px;
+	height: 130px;
 }
 
 .seminars {
@@ -931,6 +934,7 @@ nav {
 	padding: 15px 15px;
 	margin-left: 25px;
 	margin-right: 25px;
+	font-family: "Exo 2";
 }
 
 .seminars-swap-url a:hover {
@@ -940,6 +944,16 @@ nav {
 .seminars_cell {
 	display: table-cell;
 	width: 50%;
+}
+
+@media screen and (max-width: 930px) {
+	.seminars_cell {
+		display: inherit;
+		width: inherit;
+	}
+	.seminar-title {
+		height: inherit;
+	}
 }
 
 @media screen and (max-width: 640px) {

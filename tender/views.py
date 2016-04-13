@@ -67,6 +67,7 @@ def seminars(request):
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
 
+
 @xframe_options_exempt
 def seminar_detail(request, arg):
 
@@ -96,6 +97,7 @@ def seminar_detail(request, arg):
 		'status': status,
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
+
 
 @xframe_options_exempt
 def seminar_detail_print(request, arg):

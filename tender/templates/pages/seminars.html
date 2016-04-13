@@ -12,23 +12,25 @@
 
 	{% for item in seminars %}
 
-		{% autoescape off %}
-		<h3 class="seminar-title">{{item.1.description}}</h3>
-		{% endautoescape %}
+		<div class="seminars_cell">
+			{% autoescape off %}
+			<h3 class="seminar-title">{{item.1.description}}</h3>
+			{% endautoescape %}
 
-		<ul class="seminars">
-		{% for seminar in item.1.seminars %}
+			<ul class="seminars">
+			{% for seminar in item.1.seminars %}
 
-			<li class="seminar">
-				<div class="seminar-back" style="background-image: url(/uploads/{{seminar.event_city.picture.name}});"></div>
-				<a href="/seminars/{{seminar.id}}/">
-					<span class="sem-date">{{seminar.event_date.day}} {{seminar.event_date.month|rus_month}} <span class="year">{{seminar.event_date.year|year_short}}</span></span>
-					<span class="place">{{seminar.event_city.name}}</span>
-				</a>
-			</li>
+				<li class="seminar">
+					<div class="seminar-back" style="background-image: url(/uploads/{{seminar.event_city.picture.name}});"></div>
+					<a href="/seminars/{{seminar.id}}/">
+						<span class="sem-date">{{seminar.event_date.day}} {{seminar.event_date.month|rus_month}} <span class="year">{{seminar.event_date.year|year_short}}</span></span>
+						<span class="place">{{seminar.event_city.name}}</span>
+					</a>
+				</li>
 
-		{% endfor %}
-		</ul>
+			{% endfor %}
+			</ul>
+		</div>
 
 	{% endfor %}
 
