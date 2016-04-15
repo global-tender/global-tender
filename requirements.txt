@@ -1,7 +1,10 @@
 Django==1.9.4
+argparse==1.2.1
+distribute==0.6.24
 django-sites==0.9
 django-user-agents==0.3.0
 gunicorn==19.4.5
 psycopg2==2.6.1
 ua-parser==0.7.0
 user-agents==1.0.1
+wsgiref==0.1.2
