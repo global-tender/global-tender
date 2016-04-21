@@ -2,4 +2,7 @@ Sitemap: https://global-tender.ru/sitemap.xml
 User-agent: *
 Disallow: /lektors
 Disallow: /services
+Disallow: /seminar$
+Disallow: /*?
+Disallow: /*print
 Host: https://global-tender.ru
