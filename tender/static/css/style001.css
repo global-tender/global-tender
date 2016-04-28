@@ -1403,52 +1403,6 @@ nav {
 
 /* BANNERS */
 
-.gos_banner_contacts {
-	position: absolute;
-	right: 0;
-	top: 27px;
-}
-
-.gos_banner_seminar_detail {
-	position: absolute;
-	right: 20px;
-	padding-left: 5px;
-	padding-right: 5px;
-}
-
-.gos_banner_seminars {
-	position: absolute;
-	width: 240px;
-	right: 20px;
-	margin-top: 7px;
-
-}
-
-.gos_banner_url img {
-	max-width: 320px;
-	width: 100%;
-}
-
-@media screen and (max-width: 700px) {
-
-	.gos_banner_contacts {
-		position: relative;
-		top: inherit;
-		right: inherit;
-		padding-top: 20px;
-	}
-
-}
-
-@media screen and (max-width: 780px) {
-
-	.gos_banner_seminar_detail {
-		right: inherit;
-		top: -200px;
-	}
-
-}
-
 @media screen and (max-width: 640px) {
 
 	.gos_banner_seminars {
