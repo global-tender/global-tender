@@ -22,6 +22,12 @@
 			<span class="sem-name">Время:</span><span class="sem-val">{{seminar.event_program.program_time_limit}}</span>
 		</div>
 
+		{% if seminar.event_price_person %}
+			<div class="row">
+			<span class="sem-name">Стоимость:</span><span class="sem-val">{{seminar.event_price_person}}</span>
+			</div>
+		{% endif %}
+
 		{% if status == 'active' %}
 			<div class="row">
 				<a class="apply-seminar-btn" href="#" onclick="return showSeminarForm({{seminar.id}});">Подать заявку</a></span>
