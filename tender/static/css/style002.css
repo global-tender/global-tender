@@ -235,6 +235,19 @@ nav {
 	-o-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
+
+.index-h1-0 {
+	font-size: 0.8em;
+}
+
+.index-h1-1 {
+
+}
+
+.index-h1-2 {
+	font-size: 0.7em;
+}
+
 @media screen and (max-width: 950px) {
 	.wrapper-main .main-info .main-info-text {
 		font-size: 50px;
