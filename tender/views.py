@@ -168,6 +168,7 @@ def ajax_seminar(request, arg):
 
 		body_head = u"Семинар: %s %s.%s.%s\n\n" % (unicode(seminar.event_city.name), seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
 		body = u"""
+		Тема: %s\n
 		1. Организация: %s\n
 			Действует на основании: %s\n
 			ИНН: %s\n
@@ -187,7 +188,8 @@ def ajax_seminar(request, arg):
 			Телефон: %s\n\n
 		4. Комментарий: %s\n\n
 		5. Количество участников семинара: %s\n
-		""" % (unicode(request.POST.get('org_name','')),
+		""" % (unicode(seminar.event_fz.description),
+				unicode(request.POST.get('org_name','')),
 				unicode(form_act_type),
 				unicode(request.POST.get('org_inn','')),
 				unicode(request.POST.get('org_kpp','')),
