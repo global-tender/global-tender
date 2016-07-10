@@ -316,9 +316,8 @@ def ajax_question(request):
 			error = u"Не введено сообщение!"
 
 		if not error:
-			phone = gt_phone
-			if phone == '' or phone == '+7':
-				phone = u'не указан'
+			if gt_phone == '' or gt_phone == '+7':
+				gt_phone = u'не указан'
 
 			body_head = u"Вам отправлен вопрос с сайта global-tender.ru.\n"
 			body = u"""
