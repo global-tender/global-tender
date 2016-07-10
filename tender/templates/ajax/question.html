@@ -1,22 +1,22 @@
 {% load customTags %}
 
-{% if submitted %}
+{% if error %}
+
+	<div class="modal-wrap">
+		<br /><br /><br />
+
+		<h2>{{ error }}</h2>
+
+		<br /><br /><br />
+	</div>
+
+{% elif submitted %}
 
 	<div class="modal-wrap">
 		<br /><br /><br />
 
 		<h2>Сообщение успешно отправлено!</h2>
 		<h3>Вам также направлена копия.</h3>
-
-		<br /><br /><br />
-	</div>
-
-{% elif error %}
-
-	<div class="modal-wrap">
-		<br /><br /><br />
-
-		<h2>{{ error }}</h2>
 
 		<br /><br /><br />
 	</div>
