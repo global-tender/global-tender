@@ -1412,6 +1412,114 @@ nav {
 	text-align: center;
 }
 
+.question_form {
+	padding: 20px;
+	font-weight: 400;
+	text-align: center;
+	padding-top: 10px;
+}
+
+.question_form input[type="text"]{
+	width: 300px;
+	
+	color: #222;
+	margin-bottom: 23px;
+	padding: 12px 10px;
+	outline: none;
+	border: 1px solid #e8e8e8;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+	-ms-border-radius:5px;
+}
+.question_form textarea {
+	width: 300px;
+	
+	color: #222;
+	resize: none;
+	height: 100px;
+	padding: 15px;
+	margin-bottom: 10px;
+	outline: none;
+	border: 1px solid #e8e8e8;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+	-ms-border-radius:5px;
+}
+.question_form input[type=submit] {
+	color: #222;
+	padding: 13px 43px;
+	font-size: 16px;
+	cursor: pointer;
+	font-weight: 500;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+	-ms-border-radius:5px;
+	border: 1px solid #99cc33;
+	background:none;
+}
+.question_form input[type=submit]:hover {
+	background: #99cc33;
+	border: 1px solid #fff;
+	color:#fff;
+	transition: .5s all;
+	-webkit-transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;
+	-moz-transition: .5s all;	
+}
+.question_form input[type="email"] {
+	width: 300px;
+
+	color: #222;
+	margin-bottom: 23px;
+	padding: 12px 10px;
+	outline: none;
+	border: 1px solid #e8e8e8;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+}
+
+.question_form label {
+	color: #ff0000;
+	margin-left: -12px;
+	padding-right: 7px;
+	vertical-align: top;
+	display: inline-block;
+	margin-top: 12px;
+	width: 7px;
+}
+
+@media only screen and (max-width: 480px) {
+
+	.question_form input[type="text"]{
+		width: 180px;
+	}
+
+	.question_form input[type="email"] {
+		width: 180px;
+	}
+	.question_form textarea {
+		width: 180px;
+	}
+
+	.question_form label{
+		float: left;
+		margin-top: -23px;
+		top: 35px;
+		position: relative;
+	}
+
+}
+
 
 /* BANNERS */
 

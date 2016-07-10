@@ -289,6 +289,80 @@ def ajax_banner(request, arg):
 
 
 @xframe_options_exempt
+@csrf_exempt
+def ajax_question(request):
+
+	submitted = False
+	error = False
+	if request.method == 'POST':
+		submitted = True
+
+		############################################################
+		############################################################
+		gt_name = request.POST.get('gt_name', '')
+		gt_phone = request.POST.get('gt_phone', '')
+		gt_email = request.POST.get('gt_email', '')
+		gt_message = request.POST.get('gt_message', '')
+
+		if gt_name == '':
+			error = u"Не введено имя!"
+		if gt_email == '':
+			error = u"Неверный E-Mail адрес!"
+		if gt_message == '':
+			error = u"Не введено сообщение!"
+
+		phone = gt_phone
+		if phone == '' or phone == '+7':
+			phone = u'не указан'
+
+		body_head = u"Вам отправлен вопрос с сайта global-tender.ru.\n"
+		body = u"""
+Имя: %s
+Телефон: %s
+E-Mail: %s\n
+Сообщение:
+%s\n\n\nСообщение сформировано автоматически.
+		""" % (unicode(gt_name),
+				unicode(gt_phone),
+				unicode(gt_email),
+				unicode(gt_message),
+		)
+		############################################################
+		############################################################
+		subject = u"Задан вопрос на сайте global-tender.ru"
+
+		connection = mail.get_connection()
+		connection.open()
+
+		email = mail.EmailMessage(subject, body_head + body, settings.ADMIN_EMAIL_FROM,
+			settings.ADMIN_EMAIL_TO, headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
+
+		email.send()
+
+
+		# Send copy:
+		subject = u"Копия: Задан вопрос на сайте global-tender.ru"
+		body_head = u"Копия вашего вопроса с сайта global-tender.ru.\n\nСообщение доставлено, ожидайте ответа.\n"
+
+		email = mail.EmailMessage(subject, body_head + body, settings.ADMIN_EMAIL_FROM,
+			[send_copy_email_to], headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
+
+		email.send()
+
+		connection.close()
+
+
+	template = loader.get_template('ajax/question.html')
+	template_args = {
+		'request': request,
+		'submitted': submitted,
+		'error': error,
+	}
+	return StreamingHttpResponse(template.render(template_args, request))
+
+
+
+@xframe_options_exempt
 def feedback(request):
 	template = loader.get_template('router.html')
 	template_args = {

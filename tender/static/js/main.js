@@ -51,6 +51,12 @@ function showSeminarForm(seminar_id)
 	return false;
 }
 
+function showAskQuestion()
+{
+	$.fancybox('/ajax/question/',{type:'ajax',helpers:{overlay:{locked:true}}});
+	return false;
+}
+
 function ajaxFormTry(ajaxForm){
 	$.post(
 		ajaxForm.attr('action'),
