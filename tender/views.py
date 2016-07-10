@@ -297,12 +297,16 @@ def ajax_question(request):
 	if request.method == 'POST':
 		submitted = True
 
-		############################################################
-		############################################################
+
 		gt_name = request.POST.get('gt_name', '')
 		gt_phone = request.POST.get('gt_phone', '')
 		gt_email = request.POST.get('gt_email', '')
 		gt_message = request.POST.get('gt_message', '')
+
+		try:
+			validate_email(gt_email)
+		except ValidationError as e:
+			gt_email = ''
 
 		if gt_name == '':
 			error = u"Не введено имя!"
@@ -311,45 +315,46 @@ def ajax_question(request):
 		if gt_message == '':
 			error = u"Не введено сообщение!"
 
-		phone = gt_phone
-		if phone == '' or phone == '+7':
-			phone = u'не указан'
+		if not error:
+			phone = gt_phone
+			if phone == '' or phone == '+7':
+				phone = u'не указан'
 
-		body_head = u"Вам отправлен вопрос с сайта global-tender.ru.\n"
-		body = u"""
+			body_head = u"Вам отправлен вопрос с сайта global-tender.ru.\n"
+			body = u"""
 Имя: %s
 Телефон: %s
 E-Mail: %s\n
 Сообщение:
 %s\n\n\nСообщение сформировано автоматически.
-		""" % (unicode(gt_name),
-				unicode(gt_phone),
-				unicode(gt_email),
-				unicode(gt_message),
-		)
-		############################################################
-		############################################################
-		subject = u"Задан вопрос на сайте global-tender.ru"
-
-		connection = mail.get_connection()
-		connection.open()
-
-		email = mail.EmailMessage(subject, body_head + body, settings.ADMIN_EMAIL_FROM,
-			settings.ADMIN_EMAIL_TO, headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
-
-		email.send()
+			""" % (unicode(gt_name),
+					unicode(gt_phone),
+					unicode(gt_email),
+					unicode(gt_message),
+			)
 
 
-		# Send copy:
-		subject = u"Копия: Задан вопрос на сайте global-tender.ru"
-		body_head = u"Копия вашего вопроса с сайта global-tender.ru.\n\nСообщение доставлено, ожидайте ответа.\n"
+			subject = u"Задан вопрос на сайте global-tender.ru"
 
-		email = mail.EmailMessage(subject, body_head + body, settings.ADMIN_EMAIL_FROM,
-			[gt_email], headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
+			connection = mail.get_connection()
+			connection.open()
 
-		email.send()
+			email = mail.EmailMessage(subject, body_head + body, settings.ADMIN_EMAIL_FROM,
+				settings.ADMIN_EMAIL_TO, headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
 
-		connection.close()
+			email.send()
+
+
+			# Send copy:
+			subject = u"Копия: Задан вопрос на сайте global-tender.ru"
+			body_head = u"Копия вашего вопроса с сайта global-tender.ru.\n\nСообщение доставлено, ожидайте ответа.\n"
+
+			email = mail.EmailMessage(subject, body_head + body, settings.ADMIN_EMAIL_FROM,
+				[gt_email], headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
+
+			email.send()
+
+			connection.close()
 
 
 	template = loader.get_template('ajax/question.html')
