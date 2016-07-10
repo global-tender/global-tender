@@ -345,7 +345,7 @@ E-Mail: %s\n
 		body_head = u"Копия вашего вопроса с сайта global-tender.ru.\n\nСообщение доставлено, ожидайте ответа.\n"
 
 		email = mail.EmailMessage(subject, body_head + body, settings.ADMIN_EMAIL_FROM,
-			[send_copy_email_to], headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
+			[gt_email], headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
 
 		email.send()
 
