@@ -12,6 +12,7 @@ from django.template import loader
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
+from django.utils.html import strip_tags
 from django.core import mail
 
 from django.core.exceptions import ValidationError
@@ -188,7 +189,7 @@ def ajax_seminar(request, arg):
 			Телефон: %s\n\n
 		4. Комментарий: %s\n\n
 		5. Количество участников семинара: %s\n
-		""" % (unicode(seminar.event_fz.description),
+		""" % (unicode(strip_tags(seminar.event_fz.description)),
 				unicode(request.POST.get('org_name','')),
 				unicode(form_act_type),
 				unicode(request.POST.get('org_inn','')),
