@@ -43,15 +43,31 @@
 		<div class="row">
 			<span class="sem-name">Электронная почта:</span><span class="sem-val"><a href="mailto:{{seminar.event_contact_email}}" title="Написать на почту">{{seminar.event_contact_email}}</a></span>
 		</div>
-		<hr>
 
-		<div class="row pd-bot-sml sem-program-title">
-			{% if seminar.event_program.program_top_title %}
+		<hr>
+		<div class="row">
+			{% autoescape off %}
+			{{seminar.event_fz.description}}
+			{% endautoescape %}
+		</div>
+
+		{% if seminar.event_title %}
+			<hr />
+			<div class="row pd-bot-sml sem-program-title">
+				{% autoescape off %}
+				{{seminar.event_title}}
+				{% endautoescape %}
+			</div>
+		{% endif %}
+
+		{% if seminar.event_program.program_top_title %}
+			<hr />
+			<div class="row pd-bot-sml sem-program-title">
 				{% autoescape off %}
 				{{seminar.event_program.program_top_title}}
 				{% endautoescape %}
-			{% endif %}
-		</div>
+			</div>
+		{% endif %}
 
 		{% include seminar_program_template %}
 

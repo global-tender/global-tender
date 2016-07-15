@@ -12,12 +12,6 @@
 
 	<div class="sem-info">
 
-		<div class="row">
-			{% autoescape off %}
-			{{seminar.event_fz.description}}<br /><br />
-			{% endautoescape %}
-		</div>
-
 		{% if status != 'active' %}
 			<div class="row">
 				<span class="sem-name">Статус:</span><span class="sem-val sem-status">{% if status == 'completed' %}Проведен{% elif status == 'canceled' %}Отменен{% endif %}</span>
@@ -37,15 +31,22 @@
 		<div class="row">
 			<span class="sem-name">Электронная почта:</span><span class="sem-val">{{seminar.event_contact_email}}</span>
 		</div>
-		<hr>
 
-		<div class="row pd-bot-sml sem-program-title">
-			{% if seminar.event_program.program_top_title %}
+		<hr>
+		<div class="row">
+			{% autoescape off %}
+			{{seminar.event_fz.description}}
+			{% endautoescape %}
+		</div>
+
+		{% if seminar.event_program.program_top_title %}
+			<hr />
+			<div class="row pd-bot-sml sem-program-title">
 				{% autoescape off %}
 				{{seminar.event_program.program_top_title}}
 				{% endautoescape %}
-			{% endif %}
-		</div>
+			</div>
+		{% endif %}
 
 		{% include seminar_program_template %}
 
