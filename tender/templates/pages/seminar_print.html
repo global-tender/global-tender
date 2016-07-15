@@ -33,11 +33,20 @@
 		</div>
 
 		<hr>
-		<div class="row">
+		<div class="row pd-bot-sml">
 			{% autoescape off %}
 			{{seminar.event_fz.description}}
 			{% endautoescape %}
 		</div>
+
+		{% if seminar.event_title %}
+			<hr />
+			<div class="row pd-bot-sml sem-program-title">
+				{% autoescape off %}
+				{{seminar.event_title}}
+				{% endautoescape %}
+			</div>
+		{% endif %}
 
 		{% if seminar.event_program.program_top_title %}
 			<hr />
