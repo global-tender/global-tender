@@ -12,6 +12,12 @@
 
 	<div class="sem-info">
 
+		{% if seminar.event_urgent_info %}
+			<div class="row">
+				<span class="sem-name sem-urgent">Информация:</span><span class="sem-val sem-urgent">{{seminar.event_urgent_info}}</span>
+			</div>
+		{% endif %}
+
 		{% if status != 'active' %}
 			<div class="row">
 				<span class="sem-name">Статус:</span><span class="sem-val sem-status">{% if status == 'completed' %}Проведен{% elif status == 'canceled' %}Отменен{% endif %}</span>

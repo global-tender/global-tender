@@ -1073,6 +1073,16 @@ nav {
 	color: #CE1313;
 }
 
+.sem-info .sem-val.sem-urgent {
+	color: #ff0000;
+	font-weight: bold;
+}
+
+.sem-info .sem-name.sem-urgent {
+	color: #ff0000;
+	font-weight: bold;
+}
+
 .sem-info .row {
 	line-height: 30px;
 }
