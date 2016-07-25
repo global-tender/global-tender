@@ -1598,3 +1598,10 @@ nav {
 	border-top: 2px dashed #999;
 	border-bottom: 2px dashed #999;
 }
+
+.event_urgent_info {
+	font-size: 0.8em;
+	color: #F00;
+	font-weight: bold;
+	padding-left: 15px;
+}

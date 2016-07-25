@@ -65,9 +65,10 @@ class Seminars(models.Model):
 	event_contact_phone = models.CharField(max_length=1000)
 	event_contact_name  = models.CharField(max_length=1000)
 	event_contact_email = models.CharField(max_length=1000)
-	event_price_person  = models.CharField(max_length=1000, default="",blank=True, null=True)
+	event_price_person  = models.CharField(max_length=1000, default="", blank=True, null=True)
 	event_title         = models.CharField(max_length=1000, default="", blank=True, null=True)
 	event_is_active     = models.BooleanField(default=True)
+	event_urgent_info   = models.CharField(max_length=1000, default="", blank=True, null=True)
 
 
 

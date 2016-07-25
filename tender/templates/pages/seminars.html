@@ -22,6 +22,9 @@
 					<a href="/seminars/{{seminar.id}}/">
 						<span class="sem-date">{{seminar.event_date.day}} {{seminar.event_date.month|rus_month}} <span class="year">{{seminar.event_date.year|year_short}}</span></span>
 						<span class="place">{{seminar.event_city.name}}</span>
+						{% if seminar.event_urgent_info %}
+							<span class="event_urgent_info">{{seminar.event_urgent_info}}</span>
+						{% endif %}
 					</a>
 				</li>
 
