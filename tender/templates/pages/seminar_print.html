@@ -12,6 +12,12 @@
 
 	<div class="sem-info">
 
+		{% if seminar.event_urgent_info %}
+			<div class="row">
+				<span class="sem-name sem-urgent">Информация:</span><span class="sem-val sem-urgent">{{seminar.event_urgent_info}}</span>
+			</div>
+		{% endif %}
+
 		{% if status != 'active' %}
 			<div class="row">
 				<span class="sem-name">Статус:</span><span class="sem-val sem-status">{% if status == 'completed' %}Проведен{% elif status == 'canceled' %}Отменен{% endif %}</span>
@@ -21,6 +27,14 @@
 		<div class="row">
 			<span class="sem-name">Время:</span><span class="sem-val">{{seminar.event_program.program_time_limit}}</span>
 		</div>
+
+		{% if seminar.event_price_person %}
+			{% autoescape off %}
+			<div class="row">
+			<span class="sem-name">Стоимость:</span><span class="sem-val"><b>{{seminar.event_price_person}}</b></span>
+			</div>
+			{% endautoescape %}
+		{% endif %}
 
 		<div class="row">
 			<span class="sem-name">Контактное лицо:</span><span class="sem-val">{{seminar.event_contact_name}}</span>
