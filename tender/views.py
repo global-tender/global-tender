@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 import os
 import re
 import operator
 import datetime
+from collections import OrderedDict
 
 from django.conf import settings
 from django.http import StreamingHttpResponse, HttpResponseNotFound
@@ -40,10 +40,10 @@ def seminars(request):
 
 	if 'seminars_completed' not in request.path:
 		seminars = Seminars.objects.filter(event_is_active=True).filter(event_date__gte=(timezone.now() + timezone.timedelta(days=-1))).order_by('event_date')
-		page_title = u'Расписание семинаров'
+		page_title = 'Расписание семинаров'
 	else:
 		seminars = Seminars.objects.filter(event_is_active=True).filter(event_date__lt=(timezone.now() + timezone.timedelta(days=-1))).order_by('-event_date')
-		page_title = u'Список недавно проведенных семинаров'
+		page_title = 'Список недавно проведенных семинаров'
 
 	seminars_all = {}
 
@@ -54,7 +54,8 @@ def seminars(request):
 		else:
 			seminars_all[seminar.event_fz.name] = {'seminars': [seminar], 'description': seminar.event_fz.description, 'sort': seminar.event_fz.sort}
 
-	seminars_all_sorted = sorted(seminars_all.iteritems(), key=lambda (k, v): v['sort'], reverse=False)
+	seminars_all_sorted = OrderedDict(sorted(seminars_all.items(), key=lambda v: v[1]['sort'], reverse=False))
+	seminars_all_sorted = list(seminars_all_sorted.items())
 
 	template = loader.get_template('router.html')
 	template_args = {
@@ -146,7 +147,7 @@ def ajax_seminar(request, arg):
 		############################################################
 		send_copy_email = request.POST.get('send_copy_email', '')
 		if send_copy_email == "yes":
-			send_copy_email_to = unicode(request.POST.get('contact_email',''))
+			send_copy_email_to = request.POST.get('contact_email','')
 			try:
 				validate_email(send_copy_email_to)
 			except ValidationError as e:
@@ -157,18 +158,18 @@ def ajax_seminar(request, arg):
 		form_act_type = ''
 		if ( form_act != '' ):
 			if ( form_act == 'ustav' ):
-				form_act_type = u"устава"
+				form_act_type = "устава"
 			if ( form_act == 'polozhenie' ):
-				form_act_type = u"положения"
+				form_act_type = "положения"
 
 		ur_addr_matches = request.POST.get('ur_addr_matches')
-		ur_addr_matches_val = u'нет'
+		ur_addr_matches_val = 'нет'
 		if ( ur_addr_matches == 'yes' ):
-			ur_addr_matches_val = u'да'
+			ur_addr_matches_val = 'да'
 
 
-		body_head = u"Семинар: %s %s.%s.%s\n\n" % (unicode(seminar.event_city.name), seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
-		body = u"""
+		body_head = "Семинар: %s %s.%s.%s\n\n" % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
+		body = """
 		Тема: %s\n
 		1. Организация: %s\n
 			Действует на основании: %s\n
@@ -189,32 +190,32 @@ def ajax_seminar(request, arg):
 			Телефон: %s\n\n
 		4. Комментарий: %s\n\n
 		5. Количество участников семинара: %s\n
-		""" % (unicode(strip_tags(seminar.event_fz.description)),
-				unicode(request.POST.get('org_name','')),
-				unicode(form_act_type),
-				unicode(request.POST.get('org_inn','')),
-				unicode(request.POST.get('org_kpp','')),
-				unicode(request.POST.get('org_account','')),
-				unicode(request.POST.get('org_bank','')),
-				unicode(request.POST.get('org_kor_account','')),
-				unicode(request.POST.get('org_bik','')),
-				unicode(request.POST.get('p_addr_zip_code','')),
-				unicode(request.POST.get('p_addr_region','')),
-				unicode(request.POST.get('p_addr_city','')),
-				unicode(request.POST.get('p_addr_addr','')),
-				unicode(ur_addr_matches_val),
-				unicode(request.POST.get('ur_addr_zip_code','')),
-				unicode(request.POST.get('ur_addr_region','')),
-				unicode(request.POST.get('ur_addr_city','')),
-				unicode(request.POST.get('ur_addr_addr','')),
-				unicode(request.POST.get('head_fio','')),
-				unicode(request.POST.get('head_post','')),
-				unicode(request.POST.get('contact_name','')),
-				unicode(request.POST.get('contact_post','')),
-				unicode(request.POST.get('contact_email','')),
-				unicode(request.POST.get('contact_phone','')),
-				unicode(request.POST['comment']),
-				unicode(request.POST.get('visitors_amount','')),
+		""" % (strip_tags(seminar.event_fz.description),
+				request.POST.get('org_name',''),
+				form_act_type,
+				request.POST.get('org_inn',''),
+				request.POST.get('org_kpp',''),
+				request.POST.get('org_account',''),
+				request.POST.get('org_bank',''),
+				request.POST.get('org_kor_account',''),
+				request.POST.get('org_bik',''),
+				request.POST.get('p_addr_zip_code',''),
+				request.POST.get('p_addr_region',''),
+				request.POST.get('p_addr_city',''),
+				request.POST.get('p_addr_addr',''),
+				ur_addr_matches_val,
+				request.POST.get('ur_addr_zip_code',''),
+				request.POST.get('ur_addr_region',''),
+				request.POST.get('ur_addr_city',''),
+				request.POST.get('ur_addr_addr',''),
+				request.POST.get('head_fio',''),
+				request.POST.get('head_post',''),
+				request.POST.get('contact_name',''),
+				request.POST.get('contact_post',''),
+				request.POST.get('contact_email',''),
+				request.POST.get('contact_phone',''),
+				request.POST['comment'],
+				request.POST.get('visitors_amount',''),
 		)
 		
 		visitors_fio = request.POST.getlist('visitors_fio[]', [])
@@ -222,25 +223,25 @@ def ajax_seminar(request, arg):
 		visitors_phone = request.POST.getlist('visitors_phone[]', [])
 
 		if visitors_fio[0]:
-			body += u"""
+			body += """
 		6. Список участников семинара:\n
 			"""
 			for i in range(len(visitors_fio)):
-				body += u"""
+				body += """
 			Ф.И.О.: %s\n
 			Должность: %s\n
 			Телефон: %s\n
 			======================\n
-				""" % (unicode(visitors_fio[i]),
-						unicode(visitors_post[i]),
-						unicode(visitors_phone[i])
+				""" % (visitors_fio[i],
+						visitors_post[i],
+						visitors_phone[i]
 				)
 		############################################################
 		############################################################
-		subject = u'Заявка на семинар: %s %s.%s.%s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
+		subject = 'Заявка на семинар: %s %s.%s.%s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
 		body_foot = ''
 		if send_copy_email == "yes":
-			body_foot = u"\nКопия заявки отправлена на E-Mail адрес контактного лица.\n"
+			body_foot = "\nКопия заявки отправлена на E-Mail адрес контактного лица.\n"
 
 		connection = mail.get_connection()
 		connection.open()
@@ -252,8 +253,8 @@ def ajax_seminar(request, arg):
 
 
 		if send_copy_email == "yes":
-			subject = u'Вами отправлена заявка на семинар: %s %s.%s.%s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
-			body = u'Заявка на семинар отправлена, ожидайте обработки.\n\nСодержимое заявки:\n' + body
+			subject = 'Вами отправлена заявка на семинар: %s %s.%s.%s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
+			body = 'Заявка на семинар отправлена, ожидайте обработки.\n\nСодержимое заявки:\n' + body
 
 			email = mail.EmailMessage(subject, body_head + body, settings.ADMIN_EMAIL_FROM,
 				[send_copy_email_to], headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
@@ -310,31 +311,31 @@ def ajax_question(request):
 			gt_email = ''
 
 		if gt_name == '':
-			error = u"Не введено имя!"
+			error = "Не введено имя!"
 		if gt_email == '':
-			error = u"Неверный E-Mail адрес!"
+			error = "Неверный E-Mail адрес!"
 		if gt_message == '':
-			error = u"Не введено сообщение!"
+			error = "Не введено сообщение!"
 
 		if not error:
 			if gt_phone == '' or gt_phone == '+7':
-				gt_phone = u'не указан'
+				gt_phone = 'не указан'
 
-			body_head = u"Вам отправлен вопрос с сайта global-tender.ru.\n"
-			body = u"""
+			body_head = "Вам отправлен вопрос с сайта global-tender.ru.\n"
+			body = """
 Имя: %s
 Телефон: %s
 E-Mail: %s\n
 Сообщение:
 %s\n\n\nСообщение сформировано автоматически.
-			""" % (unicode(gt_name),
-					unicode(gt_phone),
-					unicode(gt_email),
-					unicode(gt_message),
+			""" % (gt_name,
+					gt_phone,
+					gt_email,
+					gt_message,
 			)
 
 
-			subject = u"Задан вопрос на сайте global-tender.ru"
+			subject = "Задан вопрос на сайте global-tender.ru"
 
 			connection = mail.get_connection()
 			connection.open()
@@ -346,8 +347,8 @@ E-Mail: %s\n
 
 
 			# Send copy:
-			subject = u"Копия: Задан вопрос на сайте global-tender.ru"
-			body_head = u"Копия вашего вопроса с сайта global-tender.ru.\n\nСообщение доставлено, ожидайте ответа.\n"
+			subject = "Копия: Задан вопрос на сайте global-tender.ru"
+			body_head = "Копия вашего вопроса с сайта global-tender.ru.\n\nСообщение доставлено, ожидайте ответа.\n"
 
 			email = mail.EmailMessage(subject, body_head + body, settings.ADMIN_EMAIL_FROM,
 				[gt_email], headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)

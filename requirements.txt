@@ -1,7 +1,7 @@
-Django==1.9.4
+Django==1.10
 django-sites==0.9
 django-user-agents==0.3.0
-gunicorn==19.4.5
-psycopg2==2.6.1
-ua-parser==0.7.0
+gunicorn==19.6.0
+psycopg2==2.6.2
+ua-parser==0.7.1
 user-agents==1.0.1

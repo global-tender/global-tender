@@ -15,7 +15,7 @@ $ pip install virtualenvwrapper
 $ export WORKON_HOME=~/Envs
 $ mkdir -p $WORKON_HOME
 $ source /usr/local/bin/virtualenvwrapper.sh
-$ mkvirtualenv global-tender.ru
+$ mkvirtualenv --python=/usr/bin/python3 global-tender.ru
 $ workon global-tender.ru
 
 # enter repository root directory and install python packages:

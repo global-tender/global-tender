@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -7,10 +6,10 @@ from django.contrib.auth.models import User
 class FZs(models.Model):
 
 	class Meta:
-		verbose_name = "FZ"
+		verbose_name_plural = "Тендер: Федеральные законы"
 
-	def __unicode__(self):
-		return u'' + self.name
+	def __str__(self):
+		return self.name
 
 	name                = models.CharField(max_length=50)
 	description         = models.CharField(max_length=1000)
@@ -21,10 +20,10 @@ class FZs(models.Model):
 class Cities(models.Model):
 
 	class Meta:
-		verbose_name = 'Citie'
+		verbose_name_plural = 'Тендер: Города'
 
-	def __unicode__(self):
-		return u'Город: ' + self.name
+	def __str__(self):
+		return 'Город: ' + self.name
 
 	name                = models.CharField(max_length=1000)
 	picture             = models.FileField(upload_to='city_pictures/')
@@ -35,10 +34,10 @@ class Cities(models.Model):
 class Seminar_Programs(models.Model):
 
 	class Meta:
-		verbose_name = "Seminar_Program"
+		verbose_name_plural = "Тендер: Программы семинаров"
 
-	def __unicode__(self):
-		return u'' + self.program_short_name
+	def __str__(self):
+		return self.program_short_name
 
 	program_short_name  = models.CharField(max_length=50) # matches name of html file on disk
 	program_time_limit  = models.CharField(max_length=1000)
@@ -50,10 +49,10 @@ class Seminar_Programs(models.Model):
 class Seminars(models.Model):
 
 	class Meta:
-		verbose_name = "Seminar"
+		verbose_name_plural = "Тендер: Семинары"
 
-	def __unicode__(self):
-		return u'' + self.event_city.name + ': ' + str(self.event_date.year) + '-' + str(self.event_date.month) + '-' + str(self.event_date.day)
+	def __str__(self):
+		return self.event_city.name + ': ' + str(self.event_date.year) + '-' + str(self.event_date.month) + '-' + str(self.event_date.day)
 
 	def get_absolute_url(self):
 		return '/seminars/' + str(self.id) + '/'
@@ -75,10 +74,10 @@ class Seminars(models.Model):
 class Banners(models.Model):
 
 	class Meta:
-		verbose_name_plural = "Banners"
+		verbose_name_plural = "Тендер: Баннеры"
 
-	def __unicode__(self):
-		return u'' + str(self.id)
+	def __str__(self):
+		return str(self.id)
 
 	banner_name         = models.CharField(max_length=1000)
 	click_count         = models.IntegerField(default=0)
