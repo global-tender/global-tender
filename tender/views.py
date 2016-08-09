@@ -4,6 +4,7 @@ import operator
 import datetime
 import binascii
 import json
+import random
 from collections import OrderedDict
 
 from django.conf import settings
@@ -16,6 +17,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from django.utils.html import strip_tags
 from django.core import mail
+from django.contrib.auth.models import User
 
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
