@@ -82,3 +82,18 @@ class Banners(models.Model):
 	banner_name         = models.CharField(max_length=1000)
 	click_count         = models.IntegerField(default=0)
 	last_click          = models.DateTimeField('last click date/time', blank=True, null=True)
+
+
+
+class Clients(models.Model):
+
+	class Meta:
+		verbose_name_plural = 'Клиенты: Клиент'
+
+	def __str__(self):
+		return 'ID: ' + str(self.id) + ' | Пользователь: ' + self.user.email
+
+	user                = models.ForeignKey(User)
+
+	email_confirmed     = models.BooleanField(default=False)  # Был ли подтвержден E-Mail
+	email_confirm_code  = models.CharField(max_length=255, blank=True, null=True)  # Код потверждения E-Mail адреса

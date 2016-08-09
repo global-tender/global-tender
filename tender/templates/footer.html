@@ -21,6 +21,59 @@
 		{% endif %}
 	</footer>
 
+	<div class="overlay js-overlay">
+		<div class="overlay__table">
+			<div class="overlay__cell">
+				<div data-popup-name="signin" class="overlay__popup overlay__popup--login">
+					<form id="form-signin" action="/signin/" method="POST" class="popup__form">{% csrf_token %}
+						<div class="form__social">
+							<div class="social__item social__item--vk"><a href="#" class="item__btn">Войти с помощью<i class="icon icon-vk"></i></a></div>
+						</div>
+						<div class="form__line"><span class="line__span">или</span></div>
+						<div class="form__input">
+							<input name="email" placeholder="E-mail" class="input__item">
+						</div>
+						<div class="form__input">
+							<input name="password" type="password" placeholder="Пароль" class="input__item">
+						</div>
+						<div class="form__submit">
+							<button type="submit" class="us_btn submit__item">Войти</button>
+						</div>
+						<div class="form__response js-response-text"></div>
+						<div class="form__disc">Вас нет на сайте? <a href="#" data-open-popup="signup" class="us_link">Зарегистрироваться</a></div>
+					</form>
+				</div>
+				<div data-popup-name="signup" class="overlay__popup overlay__popup--login">
+					<form id="form-signup" action="/signup/" method="POST" class="popup__form">{% csrf_token %}
+						<div class="form__social">
+							<div class="social__item social__item--vk"><a href="#" class="item__btn">Зарегистрироваться с помощью<i class="icon icon-vk"></i></a></div>
+						</div>
+						<div class="form__line"><span class="line__span">или</span></div>
+						<div class="form__input">
+							<input name="email" placeholder="E-mail" class="input__item">
+						</div>
+						<div class="form__input">
+							<input name="password" id="reg-password" type="password" placeholder="Пароль" class="input__item">
+						</div>
+						<div class="form__input">
+							<input name="password_verify" type="password" placeholder="Пароль еще раз" class="input__item">
+						</div>
+						<div class="form__submit">
+							<button type="submit" class="us_btn submit__item">Зарегистрироваться</button>
+						</div>
+						<div class="form__response js-response-text"></div>
+						<div class="form__disc">Вы уже есть на сайте? <a href="#" data-open-popup="signin" class="us_link">Войти</a>
+							<a href="#" data-open-popup="complete_registration" class="complete_registration"></a>
+						</div>
+					</form>
+				</div>
+				<div data-popup-name="complete_registration" class="overlay__popup overlay__popup--login">
+					<h3>Чтобы завершить регистрацию, Вам необходимо подтвердить свой адрес электронной почты. Код подтверждения был отправлен на Ваш почтовый ящик.</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="/static/js/plugins/vendor/jquery-1.11.3.min.js"><\/script>')</script>
@@ -45,7 +98,7 @@
 		<script type='text/javascript' src='/static/js/configs/feedback.js'></script>
 	{% endif %}
 
-
+	<script type='text/javascript' src="/static/js/app.js"></script>
 	<script type='text/javascript' src="/static/js/main.js"></script>
 
 	<script src="/static/js/plugins/vendor/modernizr-2.8.3.min.js"></script>

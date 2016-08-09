@@ -1615,3 +1615,127 @@ nav {
 	font-weight: bold;
 	padding-left: 15px;
 }
+
+.overlay {
+  position: fixed;
+  display: none;
+  opacity: 0;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.85);
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(0.4, 0.99, 0.67, 0.97); }
+  .overlay.active {
+    opacity: 1;
+    pointer-events: all; }
+  .overlay .overlay__table {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%; }
+  .overlay .overlay__cell {
+    display: table-cell;
+    height: 100%;
+    width: 100%;
+    vertical-align: middle;
+    padding: 50px; }
+  .overlay .overlay__popup {
+    display: none;
+    margin: 0 auto;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    opacity: 0; }
+    .overlay .overlay__popup.active {
+      opacity: 1;
+      -webkit-transform: translateY(0);
+          -ms-transform: translateY(0);
+              transform: translateY(0);
+      transition: all 0.5s cubic-bezier(0.4, 0.99, 0.67, 0.97); }
+    .overlay .overlay__popup.faded {
+      opacity: 0;
+      -webkit-transform: translateY(50%);
+          -ms-transform: translateY(50%);
+              transform: translateY(50%);
+      transition: all 0.5s cubic-bezier(0.4, 0.99, 0.67, 0.97); }
+    .overlay .overlay__popup .popup__title {
+      font-size: 24px;
+      font-weight: 300;
+      margin-bottom: 15px; }
+    .overlay .overlay__popup .popup__form .form__social .social__item .item__btn {
+      display: inline-block;
+      vertical-align: middle;
+      text-decoration: none;
+      line-height: 40px;
+      height: 40px;
+      padding: 0 15px; }
+      .overlay .overlay__popup .popup__form .form__social .social__item .item__btn .icon {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 5px;
+        font-size: 20px; }
+    .overlay .overlay__popup .popup__form .form__social .social__item.social__item--vk .item__btn {
+      color: #fff;
+      background: #4c75a3;
+      transition: background 0.2s ease; }
+      .overlay .overlay__popup .popup__form .form__social .social__item.social__item--vk .item__btn:hover {
+        background: #005c8d; }
+      .overlay .overlay__popup .popup__form .form__social .social__item.social__item--vk .item__btn .icon {
+        top: -2px; }
+    .overlay .overlay__popup .popup__form .form__line {
+      margin: 15px 0;
+      overflow: hidden; }
+      .overlay .overlay__popup .popup__form .form__line .line__span {
+        position: relative;
+        padding: 0 5px; }
+        .overlay .overlay__popup .popup__form .form__line .line__span:before, .overlay .overlay__popup .popup__form .form__line .line__span:after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          width: 300px;
+          height: 1px;
+          background: rgba(0, 0, 0, 0.25); }
+        .overlay .overlay__popup .popup__form .form__line .line__span:before {
+          right: 100%; }
+        .overlay .overlay__popup .popup__form .form__line .line__span:after {
+          left: 100%; }
+    .overlay .overlay__popup .popup__form .form__input {
+      margin-bottom: 10px; }
+      .overlay .overlay__popup .popup__form .form__input label.error {
+        display: block;
+        margin-top: 5px;
+        font-size: 12px; }
+      .overlay .overlay__popup .popup__form .form__input .input__item {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 10px;
+        height: 40px;
+        outline: none;
+        border: 1px solid transparent;
+        border-radius: 2px; }
+        .overlay .overlay__popup .popup__form .form__input .input__item:focus {
+          border: 1px solid rgba(0, 0, 0, 0.25); }
+        .overlay .overlay__popup .popup__form .form__input .input__item.error {
+          border-color: red; }
+    .overlay .overlay__popup .popup__form .form__submit {
+      margin-top: 15px; }
+      .overlay .overlay__popup .popup__form .form__submit .submit__item {
+        width: 100%; }
+    .overlay .overlay__popup .popup__form .form__disc {
+      margin-top: 15px;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.8); }
+    .overlay .overlay__popup .popup__form .form__response {
+      display: none;
+      font-size: 14px;
+      margin-top: 15px; }
+    .overlay .overlay__popup.overlay__popup--login {
+      max-width: 320px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      text-align: center; }

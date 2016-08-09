@@ -33,5 +33,10 @@ urlpatterns = [
 
 	url(r'^ajax/question/?$', views.ajax_question, name='ajax_question'),
 
+	url(r'^signin/?$', views.signin, name='signin'),
+	url(r'^signup/?$', views.signup, name='signup'),
+	url(r'^signout/?$', views.signout, name='signout'),
+	url(r'^confirm_email/?$', views.confirm_email, name='confirm_email'),
+
 	url(r'^.*$', views.handle404, name='handle404'),
 ]

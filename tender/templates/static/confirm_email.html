@@ -1,0 +1,16 @@
+
+<div class="spec-title lektors-title">
+	<div class="wrapper">
+		<h2></h2>
+	</div>
+</div>
+
+<main class="wrapper clearfix">
+	<div class="not_found_page">
+		{% if email_confirmed %}
+			<h3>Ваш E-Mail адрес успешно подтвержден</h3>
+		{% else %}
+			<h3>Ошибка подтверждения E-Mail адреса</h3>
+		{% endif %}
+	</div>
+</main>
