@@ -29,7 +29,6 @@ from tender.models import FZs, Seminars, Seminar_Programs, Cities, Banners, Clie
 
 @xframe_options_exempt
 def index(request):
-	print(str(request.is_secure()))
 	template = loader.get_template('router.html')
 	template_args = {
 		'content': 'pages/index.html',
@@ -468,7 +467,8 @@ def get_referer(request):
 
 	referer = request.META.get('HTTP_REFERER', '/')
 
-	host = (request.is_secure() and 'https://' or 'http://') + request.META['HTTP_HOST']
+	#host = (request.is_secure() and 'https://' or 'http://') + request.META['HTTP_HOST']
+	host = 'https://' + request.META['HTTP_HOST']
 
 	if not referer.startswith(host):
 		referer = '/'
@@ -508,7 +508,7 @@ def signin(request):
 
 @xframe_options_exempt
 def signup(request):
-	print(str(request.is_secure()))
+
 	if request.method == 'GET':
 		return HttpResponseRedirect('/')
 
