@@ -474,9 +474,6 @@ def get_referer(request):
 
 	return referer
 
-def get_host(request):
-	return (request.is_secure() and 'https://' or 'http://') + request.META['HTTP_HOST']
-
 @xframe_options_exempt
 def signin(request):
 
@@ -510,7 +507,7 @@ def signin(request):
 
 @xframe_options_exempt
 def signup(request):
-
+	print(str(request.is_secure()))
 	if request.method == 'GET':
 		return HttpResponseRedirect('/')
 
@@ -552,7 +549,7 @@ def signup(request):
 			body = """Добро пожаловать на global-tender.ru.\nЧтобы завершить регистрацию, вам необходимо подтвердить свой адрес электронной почты.\n
 Подтвердить по ссылке: {0}/confirm_email/?confirm_code={1}\n
 Спасибо,
-Команда global-tender\n""".format(get_host(request), client.email_confirm_code)
+Команда global-tender\n""".format('https://'+request.META['HTTP_HOST'], client.email_confirm_code)
 
 			email = mail.EmailMessage(subject, body, settings.ADMIN_EMAIL_FROM,
 								  [email], connection=connection)
