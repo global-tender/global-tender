@@ -1739,3 +1739,23 @@ nav {
       padding: 20px;
       background: rgba(255, 255, 255, 0.8);
       text-align: center; }
+
+.us_btn {
+  display: inline-block;
+  line-height: 50px;
+  height: 50px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  border: none;
+  font-size: 18px;
+  font-weight: 300; }
+
+.us_link {
+  color: rgba(1, 87, 155, 0.8); }
+
+.pr_btn, .us_btn, .index_search .index_search__content .content__search .search__form .form__btn {
+  color: #fff;
+  background: #FF5252;
+  transition: all 0.2s ease; }
+  .pr_btn:hover, .us_btn:hover, .index_search .index_search__content .content__search .search__form .form__btn:hover {
+    background: #FF1744; }

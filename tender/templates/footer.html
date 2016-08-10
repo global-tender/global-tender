@@ -26,10 +26,7 @@
 			<div class="overlay__cell">
 				<div data-popup-name="signin" class="overlay__popup overlay__popup--login">
 					<form id="form-signin" action="/signin/" method="POST" class="popup__form">{% csrf_token %}
-						<div class="form__social">
-							<div class="social__item social__item--vk"><a href="#" class="item__btn">Войти с помощью<i class="icon icon-vk"></i></a></div>
-						</div>
-						<div class="form__line"><span class="line__span">или</span></div>
+						<div class="form__line"><span class="line__span">Авторизация</span></div>
 						<div class="form__input">
 							<input name="email" placeholder="E-mail" class="input__item">
 						</div>
@@ -45,15 +42,15 @@
 				</div>
 				<div data-popup-name="signup" class="overlay__popup overlay__popup--login">
 					<form id="form-signup" action="/signup/" method="POST" class="popup__form">{% csrf_token %}
-						<div class="form__line"><span class="line__span"></span></div>
+						<div class="form__line"><span class="line__span">Создание пользователя</span></div>
 						<div class="form__input">
-							<input name="email" placeholder="E-mail" class="input__item">
+							<input name="email" placeholder="E-mail" class="input__item" title="E-mail">
 						</div>
 						<div class="form__input">
-							<input name="password" id="reg-password" type="password" placeholder="Пароль" class="input__item">
+							<input name="password" id="reg-password" type="password" placeholder="Пароль" class="input__item" title="Пароль">
 						</div>
 						<div class="form__input">
-							<input name="password_verify" type="password" placeholder="Пароль еще раз" class="input__item">
+							<input name="password_verify" type="password" placeholder="Пароль еще раз" class="input__item" title="Пароль еще раз">
 						</div>
 						<div class="form__submit">
 							<button type="submit" class="us_btn submit__item">Зарегистрироваться</button>
@@ -65,7 +62,7 @@
 					</form>
 				</div>
 				<div data-popup-name="complete_registration" class="overlay__popup overlay__popup--login">
-					<h3>Чтобы завершить регистрацию, Вам необходимо подтвердить свой адрес электронной почты. Код подтверждения был отправлен на Ваш почтовый ящик.</h3>
+					<h4>Чтобы завершить регистрацию, Вам необходимо подтвердить свой адрес электронной почты.<br /><br />Код подтверждения был отправлен на Ваш почтовый ящик.</h4>
 				</div>
 			</div>
 		</div>
