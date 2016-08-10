@@ -1753,7 +1753,7 @@ nav {
 .us_link {
   color: rgba(1, 87, 155, 0.8); }
 
-.pr_btn, .us_btn, .index_search .index_search__content .content__search .search__form .form__btn {
+.us_btn {
   color: #fff;
   background: #FF5252;
   transition: all 0.2s ease; }
