@@ -18,6 +18,7 @@ from django.utils import timezone
 from django.utils.html import strip_tags
 from django.core import mail
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
