@@ -29,6 +29,7 @@ from tender.models import FZs, Seminars, Seminar_Programs, Cities, Banners, Clie
 
 @xframe_options_exempt
 def index(request):
+	print(str(request.is_secure()))
 	template = loader.get_template('router.html')
 	template_args = {
 		'content': 'pages/index.html',
