@@ -947,6 +947,7 @@ nav {
 	margin-left: 25px;
 	margin-right: 25px;
 	font-family: "Exo 2";
+	clear: both;
 }
 
 .seminars-swap-url a:hover {
@@ -956,12 +957,16 @@ nav {
 .seminars_cell {
 	display: table-cell;
 	width: 50%;
+	float: left;
+	margin-bottom: 22px;
 }
 
 @media screen and (max-width: 930px) {
 	.seminars_cell {
 		display: inherit;
 		width: inherit;
+		float: none;
+		margin-bottom: inherit;
 	}
 	.seminar-title {
 		height: inherit;
@@ -980,7 +985,7 @@ nav {
 
 	.seminars .sem-date {
 		font-size: 20px;
-		width: 104px;
+		width: 106px;
 		padding-left: 0px;
 	}
 
