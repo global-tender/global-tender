@@ -7,7 +7,9 @@
 	{% for item in seminars %}
 
 		{% if forloop.counter == 3 or forloop.counter == 5 %}
-			<br />
+			{% if not request.user_agent.is_mobile %}
+				<br />
+			{% endif %}
 		{% endif %}
 		<div class="seminars_cell">
 			{% autoescape off %}
