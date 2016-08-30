@@ -11,7 +11,7 @@ class FZs(models.Model):
 	def __str__(self):
 		return self.name
 
-	name                = models.CharField(max_length=50)
+	name                = models.CharField(max_length=1000)
 	description         = models.CharField(max_length=1000)
 	sort                = models.IntegerField(default=0)
 
