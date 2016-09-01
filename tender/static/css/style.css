@@ -211,13 +211,20 @@ nav {
 .zakupki_mos_seminars:hover {
 	border: 2px solid #8fb700;
 	border-radius:3px;
+	top:69px;
+	right:44px;
 }
 
 @media screen and (max-width: 930px) {
 	.zakupki_mos_seminars {
 		right: inherit;
 		left: 22px;
-		top: 3px;
+		top: 4px;
+	}
+	.zakupki_mos_seminars:hover {
+		right: inherit;
+		left: 20px;
+		top: 2px;
 	}
 }
 
