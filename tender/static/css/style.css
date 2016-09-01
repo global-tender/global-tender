@@ -549,6 +549,9 @@ nav {
 		line-height: inherit;
 		margin-bottom: 55px;
 	}
+	.spec-title.service-title {
+		margin-bottom: 0px;
+	}
 	.spec-title h2 {
 		color: #222;
 		top: 115px;
