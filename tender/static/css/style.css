@@ -243,6 +243,19 @@ nav {
 	}
 }
 
+.zakupki_mos_index {
+	position:relative;
+	display: table;
+	margin: 0 auto;
+	top: 0px;
+}
+.zakupki_mos_index:hover {
+	border: 1px solid #8fb700;
+	border-radius: 2px;
+	margin-bottom: -2px;
+	top: -1px;
+}
+
 /* ******************************************** */
 /* ******************************************** */
 /* ******************************************** */
