@@ -238,6 +238,8 @@ nav {
 	}
 	.zakupki_mos_seminars:hover {
 		top: 94px;
+		left: inherit;
+		margin-bottom: -2px;
 	}
 }
 
