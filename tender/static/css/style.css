@@ -208,6 +208,15 @@ nav {
 	top: 82px;
 }
 
+.zakupki_mos_ru_code img {
+	padding: 2px;
+}
+
+.zakupki_mos_ru_code img:hover {
+	border: 2px solid #8fb700;
+	border-radius:3px;
+}
+
 @media screen and (max-width: 640px) {
 	.zakupki_mos_ru_code {
 		right: 15px;
