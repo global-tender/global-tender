@@ -556,7 +556,7 @@ nav {
 		padding-left: 0px;
 	}
 }
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 670px) {
 	.spec-title {
 		height: 85px;
 	}
