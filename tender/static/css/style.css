@@ -880,6 +880,27 @@ nav {
 	}
 }
 
+/* Доп. услуги start */
+
+.serv {
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+.serv h1 {
+	font-family: "Exo 2";
+	font-size: 20px;
+	text-align: center;
+	background-color: #571F94;
+	color: #fff;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/* Доп. услуги end *.
+
 
 .not_found_page {
 	padding-left: 25px;
