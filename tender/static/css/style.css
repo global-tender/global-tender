@@ -228,7 +228,7 @@ nav {
 	}
 }
 
-@media screen and (max-width: 100p) {
+@media screen and (max-width: 740px) {
 	.zakupki_mos_seminars {
 		position: relative;
 		top: 95px;
