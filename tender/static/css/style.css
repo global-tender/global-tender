@@ -885,18 +885,22 @@ nav {
 .serv {
 	padding-left: 25px;
 	padding-right: 25px;
+	font-family: "Exo 2";
 }
 
 .serv h1 {
-	font-family: "Exo 2";
 	font-size: 20px;
 	text-align: center;
-	background-color: #571F94;
+	background-color: #2D1D80;
 	color: #fff;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
+}
+
+.serv ul li {
+	padding-bottom: 20px;
 }
 
 /* Доп. услуги end *.
