@@ -22,6 +22,7 @@ urlpatterns = [
 	url(r'^contacts/?$', views.contacts, name='contacts'),
 	url(r'^lektors/?$', views.lektors, name='lektors'),
 	url(r'^services/?$', views.services, name='services'),
+	url(r'^service/?$', views.service, name='service'),
 
 	url(r'^robots.txt$', views.robots, name='robots.txt'),
 	url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),

@@ -422,6 +422,18 @@ def services(request):
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
 
+@xframe_options_exempt
+def service(request):
+	template = loader.get_template('router.html')
+	template_args = {
+		'content': 'pages/service.html',
+		'request': request,
+		'title': 'Подготовим гибкое положение в соответствии с законными требованиями.',
+		'menu_color_class': 'menu-white',
+		'menu_inner': 'menu-inner',
+	}
+	return StreamingHttpResponse(template.render(template_args, request))
+
 
 
 
