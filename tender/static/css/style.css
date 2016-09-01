@@ -201,28 +201,32 @@ nav {
 	margin: 0;
 }
 
-.zakupki_mos_ru_code {
+.zakupki_mos_seminars {
 	position: absolute;
 	z-index: 200;
 	right: 48px;
-	top: 80px;
-}
-
-.zakupki_mos_ru_code {
-	padding: 2px;
-}
-
-.zakupki_mos_ru_code:hover {
-	border: 2px solid #8fb700;
-	border-radius:3px;
-	right: 50px;
 	top: 82px;
 }
 
+.zakupki_mos_seminars {
+	padding: 2px;
+}
+
+.zakupki_mos_seminars:hover {
+	border: 2px solid #8fb700;
+	border-radius:3px;
+	right: 46px;
+	top: 80px;
+}
+
 @media screen and (max-width: 640px) {
-	.zakupki_mos_ru_code {
+	.zakupki_mos_seminars {
 		right: 15px;
 		top: 100px;
+	}
+	.zakupki_mos_seminars {
+		right: 13px;
+		top: 98px;
 	}
 }
 
