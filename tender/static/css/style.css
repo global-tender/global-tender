@@ -906,7 +906,33 @@ nav {
 	padding-bottom: 20px;
 }
 
-/* Доп. услуги end *.
+
+.serv .serv-contacts {
+	padding: 20px;
+	background: #2D1D80;
+	color: #fff;
+	text-align: center;
+}
+.serv .serv-contacts .serv-contacts-title {
+	font-size: 18px;
+	font-weight: 600;
+	text-align: center;
+	margin-bottom: 25px;
+	border-bottom: 1px solid rgb(255, 253, 0);
+	padding-bottom: 15px;
+}
+.serv .serv-contacts .serv-contacts-item {
+	margin-bottom: 15px;
+	font-size: 14px;
+}
+.serv .serv-contacts .serv-contacts-item a {
+	color: #fff;
+}
+.serv .serv-contacts .serv-contacts-item a:hover {
+	text-decoration: none;
+}
+
+/* Доп. услуги end */
 
 
 .not_found_page {
