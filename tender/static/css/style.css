@@ -54,7 +54,7 @@ body {
 
 h2.title {
 	font: 25px 'Ubuntu', sans-serif;
-	font-weight: 400;
+	font-weight: 500;
 }
 
 h3.title {
@@ -375,25 +375,20 @@ nav {
 	padding-right: 10px;
 }
 .wrapper-good .ul-good {
-	font: 16px 'Ubuntu', sans-serif;
 	font-weight: 100;
 	line-height: 25px;
 	padding-right: 25px;
+	font-family: "Exo 2";
+	font-size: 18px;
+	font-weight: 600;
 }
 .wrapper-good .ul-good li {
 	margin-bottom: 10px;
 }
-.wrapper-good b {
-	font: 18px 'Ubuntu', sans-serif;
-	font-weight: 400;
-}
+
 @media screen and (max-width: 640px) {
 	.wrapper-good .title {
 		font-size: 20px;
-	}
-	.wrapper-good b {
-		font-size: 16px;
-		font-weight: 500;
 	}
 }
 
@@ -894,7 +889,7 @@ nav {
 .serv h1 {
 	font-size: 20px;
 	text-align: center;
-	background-color: #2D1D80;
+	background-color: #507299;
 	color: #fff;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -909,7 +904,7 @@ nav {
 
 .serv .serv-contacts {
 	padding: 20px;
-	background: #2D1D80;
+	background: #507299;
 	color: #fff;
 	text-align: center;
 }
