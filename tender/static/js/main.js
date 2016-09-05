@@ -68,6 +68,14 @@ function showSubscribe(city, fz)
 }
 
 function ajaxFormTry(ajaxForm){
+
+	/* Относится к подписке */
+	if ($('[name="submit_subscribe"]').length)
+	{
+		$('[name="submit_subscribe"]').val('Ожидайте...');
+	}
+	/* *** */
+
 	$.post(
 		ajaxForm.attr('action'),
 		ajaxForm.serialize(),
