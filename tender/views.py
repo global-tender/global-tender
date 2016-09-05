@@ -329,6 +329,7 @@ def ajax_subscribe(request):
 
 			for sem_type in seminar_types:
 
+
 				# Our DB:
 				subscr_user = Subscribe.objects.filter(email=email_addr,city=city,seminar_type=sem_type)
 				if not subscr_user:
@@ -339,8 +340,8 @@ def ajax_subscribe(request):
 					)
 					subscr_new.save()
 
-				# mailchimp DB:
 
+				# mailchimp DB:
 				seminar_type_name = FZs.objects.get(short_code=sem_type)
 
 				# Проверим существования Списка по указанной подписке, если нету, создадим.
@@ -350,7 +351,6 @@ def ajax_subscribe(request):
 					if lst['name'] == 'global-tender.ru %s %s' % (city, seminar_type_name.name):
 						list_id = lst['id']
 				if not list_id:
-					print('list not found')
 					resp_cli = client.list.create({
 						'name': 'global-tender.ru %s %s' % (city, seminar_type_name.name),
 						'contact': {
@@ -376,8 +376,30 @@ def ajax_subscribe(request):
 						'visibility': 'pub'
 					})
 					list_id = resp_cli['id']
-				print(list_id)
+				# Получили ID Списка. Проверим существует ли подписчик в этом списке. Если нет, добавим
+				member_email_subscribed = False
+				members = client.member.all(list_id, count=100000, offset=0, fields="members.email_address")
+				for member in members['members']:
+					if member['email_address'] == email_addr:
+						member_email_subscribed = email_addr
+						success = "Вы уже ранее были подписаны на указанную рассылку!"
+				if not member_email_subscirbed:
+					resp_cli = client.member.create(list_id, {
+						'email_address': email_addr,
+						'status': 'subscribed'
+					})
+					if resp_cli['id']:
+						success = "Вы успешно подписались на указанную рассылку!"
 
+
+					# Отправить уведомление администратору на почту
+					subject = "Новая подписка на рассылку на сайте global-tender.ru"
+					body = "Пользователь подписался на рассылку на сайте global-tender.ru.\n\nE-Mail: %s\nГород: %s\nСеминар: %s\n" % (email_addr, city, seminar_type_name.name)
+					connection = mail.get_connection()
+					connection.open()
+					email = mail.EmailMessage(subject, body, settings.ADMIN_EMAIL_FROM,
+						settings.ADMIN_EMAIL_TO, headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
+					email.send()
 
 
 	template = loader.get_template('ajax/subscribe.html')
