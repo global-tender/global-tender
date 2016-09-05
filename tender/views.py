@@ -7,6 +7,8 @@ import json
 import random
 from collections import OrderedDict
 
+from mailchimp3 import MailChimp
+
 from django.conf import settings
 from django.http import StreamingHttpResponse, HttpResponseNotFound
 from django.http import HttpResponseRedirect, Http404
@@ -323,8 +325,11 @@ def ajax_subscribe(request):
 
 		if not error:
 
-			# Our DB:
+			client = MailChimp('Globaltender', '1f3930cf58bf6b670f0d4ebda75d6bbd-us13')
+
 			for sem_type in seminar_types:
+
+				# Our DB:
 				subscr_user = Subscribe.objects.filter(email=email_addr,city=city,seminar_type=sem_type)
 				if not subscr_user:
 					subscr_new = Subscribe(
@@ -334,7 +339,41 @@ def ajax_subscribe(request):
 					)
 					subscr_new.save()
 
-			# mailchimp DB:
+				# mailchimp DB:
+
+				seminar_type_name = FZs.objects.get(short_code=sem_type)
+
+				# Проверим существования Списка по указанной подписке, если нету, создадим.
+				list_found = False
+				lists = client.list.all(fields="lists.name,lists.id")
+				for lst in lists['lists']:
+					if lst['name'] == 'global-tender.ru %s %s' % (city, seminar_type_name['name']):
+						list_found = True
+				if not list_found:
+					print('list not found')
+					client.list.create({
+						'name': 'global-tender.ru %s %s' % (city, seminar_type_name['name']),
+						'contact': {
+							'company': 'Глобал-Тендер',
+							'address1': 'г. Ростов-на-Дону, Серафимовича 58а',
+							'city': 'Ростов-на-Дону',
+							'state': '',
+							'zip': '344002',
+							'country': 'RU',
+						},
+						'permission_reminder': '',
+						'use_archive_bar': True,
+						'campaign_defaults' : {
+							'from_name': 'Глобал-Тендер',
+							'from_email': 'zakupki.gov@global-tender.ru',
+							'subject': '',
+							'language': 'ru',
+						},
+						'notify_on_subscribe': '',
+						'notify_on_unsubscribe': '',
+						'email_type_option': False,
+						'visibility': 'pub',
+					})
 
 
 
