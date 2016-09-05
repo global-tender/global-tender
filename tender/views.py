@@ -348,11 +348,11 @@ def ajax_subscribe(request):
 				list_id = False
 				lists = client.list.all(fields="lists.name,lists.id")
 				for lst in lists['lists']:
-					if lst['name'] == 'global-tender.ru %s %s' % (city, seminar_type_name.name):
+					if lst['name'] == 'global-tender.ru: %s, %s' % (city, seminar_type_name.name):
 						list_id = lst['id']
 				if not list_id:
 					resp_cli = client.list.create({
-						'name': 'global-tender.ru %s %s' % (city, seminar_type_name.name),
+						'name': 'global-tender.ru: %s, %s' % (city, seminar_type_name.name),
 						'contact': {
 							'company': 'Глобал-Тендер',
 							'address1': 'г. Ростов-на-Дону, Серафимовича 58а',
@@ -382,14 +382,14 @@ def ajax_subscribe(request):
 				for member in members['members']:
 					if member['email_address'] == email_addr:
 						member_email_subscribed = email_addr
-						success.append('Вы уже подписаны на рассылку: %s - %s' % (city, seminar_type_name.name))
+						success.append('Вы уже подписаны на рассылку:<br /><span>%s, %s</span>' % (city, seminar_type_name.name))
 				if not member_email_subscribed:
 					resp_cli = client.member.create(list_id, {
 						'email_address': email_addr,
 						'status': 'subscribed'
 					})
 					if resp_cli['id']:
-						success.append('Подписка на рассылку создана: %s - %s' % (city, seminar_type_name.name))
+						success.append('Подписка на рассылку создана:<br /><span>%s, %s</span>' % (city, seminar_type_name.name))
 
 
 					# Отправить уведомление администратору на почту

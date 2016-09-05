@@ -13,13 +13,13 @@
 {% elif success %}
 
 	<div class="modal-wrap left">
-		<br /><br /><br />
 
+		{% autoescape off %}
 		{% for success_res in success %}
-			<h4>{{success_res}}</h4>
+			<p class="subscr_success_msg">{{success_res}}</p>
 		{% endfor %}
+		{% endautoescape %}
 
-		<br /><br /><br />
 	</div>
 
 {% else %}

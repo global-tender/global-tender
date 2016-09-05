@@ -1679,6 +1679,14 @@ nav {
 	margin-bottom: 10px;
 }
 
+.subscr_success_msg span {
+	padding-left: 50px;
+}
+
+.subscr_success_msg {
+	font-weight: bold;
+}
+
 
 /* BANNERS */
 
