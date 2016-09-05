@@ -303,6 +303,13 @@ def ajax_subscribe(request):
 
 	fz_list = FZs.objects.filter(allow_subscribe=True)
 
+
+	seminar_type = request.POST.get('seminar_type', None)
+	if seminar_type:
+		print(seminar_type)
+	else:
+		error = "Не выбрано ни одного семинара!"
+
 	template = loader.get_template('ajax/subscribe.html')
 	template_args = {
 		'request': request,
