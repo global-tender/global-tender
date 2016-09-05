@@ -1681,10 +1681,12 @@ nav {
 
 .subscr_success_msg span {
 	padding-left: 50px;
+	text-decoration: underline;
 }
 
 .subscr_success_msg {
 	font-weight: bold;
+	min-width: 300px;
 }
 
 
