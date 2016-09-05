@@ -344,14 +344,14 @@ def ajax_subscribe(request):
 				seminar_type_name = FZs.objects.get(short_code=sem_type)
 
 				# Проверим существования Списка по указанной подписке, если нету, создадим.
-				list_found = False
+				list_id = False
 				lists = client.list.all(fields="lists.name,lists.id")
 				for lst in lists['lists']:
 					if lst['name'] == 'global-tender.ru %s %s' % (city, seminar_type_name.name):
-						list_found = True
-				if not list_found:
+						list_id = lst['id']
+				if not list_id:
 					print('list not found')
-					client.list.create({
+					resp_cli = client.list.create({
 						'name': 'global-tender.ru %s %s' % (city, seminar_type_name.name),
 						'contact': {
 							'company': 'Глобал-Тендер',
@@ -360,20 +360,23 @@ def ajax_subscribe(request):
 							'state': '',
 							'zip': '344002',
 							'country': 'RU',
+							'phone': ''
 						},
-						'permission_reminder': '',
+						'permission_reminder': 'Вы получили письмо так как подписались на рассылку на сайте https://global-tender.ru',
 						'use_archive_bar': True,
 						'campaign_defaults' : {
 							'from_name': 'Глобал-Тендер',
 							'from_email': 'zakupki.gov@global-tender.ru',
 							'subject': '',
-							'language': 'ru',
+							'language': 'ru'
 						},
 						'notify_on_subscribe': '',
 						'notify_on_unsubscribe': '',
 						'email_type_option': False,
-						'visibility': 'pub',
+						'visibility': 'pub'
 					})
+					list_id = resp_cli['id']
+				print(list_id)
 
 
 
