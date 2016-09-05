@@ -13,6 +13,7 @@ class FZs(models.Model):
 
 	name                = models.CharField(max_length=1000)
 	description         = models.CharField(max_length=1000)
+	allow_subscribe     = models.BooleanField(default=False)
 	sort                = models.IntegerField(default=0)
 
 
@@ -97,3 +98,17 @@ class Clients(models.Model):
 
 	email_confirmed     = models.BooleanField(default=False)  # Был ли подтвержден E-Mail
 	email_confirm_code  = models.CharField(max_length=255, blank=True, null=True)  # Код потверждения E-Mail адреса
+
+
+
+class Subscribe(models.Model):
+
+	class Meta:
+		verbose_name_plural = 'Сайт: Подписки на рассылки'
+
+	def __str__(self):
+		return 'ID: ' + str(self.id) + ' | Email: ' + self.email
+
+	email               = models.CharField(max_length=255, blank=False, null=False)
+	city                = models.CharField(max_length=255, blank=False, null=False)
+	seminar_types       = models.CharField(max_length=255, blank=False, null=False)

@@ -33,6 +33,7 @@ urlpatterns = [
 	url(r'^ajax/banner/(?P<arg>\d+)/?$', views.ajax_banner, name='ajax_banner'),
 
 	url(r'^ajax/question/?$', views.ajax_question, name='ajax_question'),
+	url(r'^ajax/subscribe/?$', views.ajax_subscribe, name='ajax_subscribe'),
 
 	url(r'^signin/?$', views.signin, name='signin'),
 	url(r'^signup/?$', views.signup, name='signup'),

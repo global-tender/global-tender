@@ -297,6 +297,22 @@ def ajax_banner(request, arg):
 
 @xframe_options_exempt
 @csrf_exempt
+def ajax_subscribe(request):
+	error = False
+	success = False
+
+	template = loader.get_template('ajax/subscribe.html')
+	template_args = {
+		'request': request,
+		'success': success,
+		'error': error,
+	}
+	return StreamingHttpResponse(template.render(template_args, request))
+
+
+
+@xframe_options_exempt
+@csrf_exempt
 def ajax_question(request):
 
 	submitted = False

@@ -1544,14 +1544,14 @@ nav {
 	text-align: center;
 }
 
-.question_form {
+.ajax_default_form {
 	padding: 20px;
 	font-weight: 400;
 	text-align: center;
 	padding-top: 10px;
 }
 
-.question_form input[type="text"]{
+.ajax_default_form input[type="text"]{
 	width: 300px;
 	
 	color: #222;
@@ -1565,7 +1565,7 @@ nav {
 	-o-border-radius:5px;
 	-ms-border-radius:5px;
 }
-.question_form textarea {
+.ajax_default_form textarea {
 	width: 300px;
 	
 	color: #222;
@@ -1581,7 +1581,7 @@ nav {
 	-o-border-radius:5px;
 	-ms-border-radius:5px;
 }
-.question_form input[type=submit] {
+.ajax_default_form input[type=submit] {
 	color: #222;
 	padding: 13px 43px;
 	font-size: 16px;
@@ -1595,7 +1595,7 @@ nav {
 	border: 1px solid #99cc33;
 	background:none;
 }
-.question_form input[type=submit]:hover {
+.ajax_default_form input[type=submit]:hover {
 	background: #99cc33;
 	border: 1px solid #fff;
 	color:#fff;
@@ -1605,7 +1605,7 @@ nav {
 	-ms-transition: .5s all;
 	-moz-transition: .5s all;	
 }
-.question_form input[type="email"] {
+.ajax_default_form input[type="email"] {
 	width: 300px;
 
 	color: #222;
@@ -1620,7 +1620,7 @@ nav {
 	-ms-border-radius: 5px;
 }
 
-.question_form label {
+.ajax_default_form label {
 	color: #ff0000;
 	margin-left: -12px;
 	padding-right: 7px;
@@ -1632,24 +1632,39 @@ nav {
 
 @media only screen and (max-width: 480px) {
 
-	.question_form input[type="text"]{
+	.ajax_default_form input[type="text"]{
 		width: 180px;
 	}
 
-	.question_form input[type="email"] {
+	.ajax_default_form input[type="email"] {
 		width: 180px;
 	}
-	.question_form textarea {
+	.ajax_default_form textarea {
 		width: 180px;
 	}
 
-	.question_form label{
+	.ajax_default_form label{
 		float: left;
 		margin-top: -23px;
 		top: 35px;
 		position: relative;
 	}
 
+}
+
+.subscr_type {
+	text-align: left;
+}
+
+.subscr_type span {
+	display: block;
+	padding-bottom: 7px;
+	padding-top: 7px;
+}
+
+.subscr_type input[type=checkbox] {
+	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
 

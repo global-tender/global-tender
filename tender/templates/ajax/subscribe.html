@@ -10,13 +10,13 @@
 		<br /><br /><br />
 	</div>
 
-{% elif submitted %}
+{% elif success %}
 
 	<div class="modal-wrap">
 		<br /><br /><br />
 
-		<h2>Сообщение успешно отправлено!</h2>
-		<h3>Вам также направлена копия.</h3>
+		<h2>Вы успешно подписались на рассылки!</h2>
+		<h3></h3>
 
 		<br /><br /><br />
 	</div>
@@ -25,29 +25,24 @@
 
 	<div class="modal-wrap">
 		
-		<h2>Задать вопрос</h2>
+		<h2>Подписка на рассылки о семинарах</h2>
 
-		<form class="ajax_default_form" name="ajax_default_form" id="ajax_default_form" action="/ajax/question/" method="POST" onsubmit="return ajaxFormTry($(this));">
-			<label>*</label><input name="gt_name" type="text" placeholder="Ваше имя" title="Ваше имя" required="">
-			<br /><label>*</label><input name="gt_email" type="email" placeholder="Ваш E-Mail" title="Ваш E-Mail" required="">
-			<br /><label>&nbsp;</label><input name="gt_phone" type="text" placeholder="Номер телефона" class="gt_phone" title="Номер телефона" maxlength="18" autocomplete="off">
-			<br /><label>*</label><textarea name="gt_message" placeholder="Ваш вопрос/сообщение" title="Ваш вопрос/сообщение" required=""></textarea>
-			<br /><input type="submit" name="submit_message" value="Отправить">
+		<form class="ajax_default_form" name="ajax_default_form" id="ajax_default_form" action="/ajax/subscribe/" method="POST" onsubmit="return ajaxFormTry($(this));">
+			<div class="subscr_type">
+				<span>Семинары:</span>
+				<input type="checkbox" name="seminar_type" value="223" checked="checked">223-ФЗ<br />
+				<input type="checkbox" name="seminar_type" value="44">44-ФЗ<br />
+			</div>
+			<br />
+			<input name="gt_city" type="text" placeholder="Город" title="Город" required="">
+			<br /><input name="gt_email" type="email" placeholder="Ваш E-Mail" title="Ваш E-Mail" required="">
+			<br /><input type="submit" name="submit_subscribe" value="Подписаться">
 		</form>
 
 	</div>
 
 {% endif %}
 
-<script>
-	$(document).ready(function(){
-		$('.gt_phone').mask('+0 (000) 000-00-00');
-		$('.gt_phone').on('click', function() {
-			if ( $('.gt_phone').val() == "" )
-				$('.gt_phone').val('+7 ');
-		});
-	});
-</script>
 
 <!-- Yandex.Metrika counter --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter22043605 = new Ya.Metrika({ id:22043605, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/22043605" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
 

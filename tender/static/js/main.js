@@ -57,6 +57,16 @@ function showAskQuestion()
 	return false;
 }
 
+function showSubscribe(city, fz)
+{
+	if(city === undefined)
+		city = "";
+	if (fz === undefined)
+		fz = "";
+	$.fancybox('/ajax/subscribe/',{type:'ajax',helpers:{overlay:{locked:true}}});
+	return false;
+}
+
 function ajaxFormTry(ajaxForm){
 	$.post(
 		ajaxForm.attr('action'),
