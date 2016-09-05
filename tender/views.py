@@ -347,12 +347,12 @@ def ajax_subscribe(request):
 				list_found = False
 				lists = client.list.all(fields="lists.name,lists.id")
 				for lst in lists['lists']:
-					if lst['name'] == 'global-tender.ru %s %s' % (city, seminar_type_name['name']):
+					if lst['name'] == 'global-tender.ru %s %s' % (city, seminar_type_name.name):
 						list_found = True
 				if not list_found:
 					print('list not found')
 					client.list.create({
-						'name': 'global-tender.ru %s %s' % (city, seminar_type_name['name']),
+						'name': 'global-tender.ru %s %s' % (city, seminar_type_name.name),
 						'contact': {
 							'company': 'Глобал-Тендер',
 							'address1': 'г. Ростов-на-Дону, Серафимовича 58а',
