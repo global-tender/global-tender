@@ -12,10 +12,12 @@
 
 {% elif success %}
 
-	<div class="modal-wrap">
+	<div class="modal-wrap left">
 		<br /><br /><br />
 
-		<h2>{{success}}</h2>
+		{% for success_res in success %}
+			<h4>{{success_res}}</h4>
+		{% endfor %}
 
 		<br /><br /><br />
 	</div>

@@ -78,6 +78,18 @@ h3.title {
 	float: left;
 }
 
+.left {
+	text-align: left;
+}
+
+.center {
+	text-align: center;
+}
+
+.right {
+	text-align: right;
+}
+
 .container {
 	min-height: 100%;
 }

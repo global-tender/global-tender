@@ -301,7 +301,7 @@ def ajax_banner(request, arg):
 @csrf_exempt
 def ajax_subscribe(request):
 	error = False
-	success = False
+	success = []
 
 	fz_list = FZs.objects.filter(allow_subscribe=True)
 
@@ -382,14 +382,14 @@ def ajax_subscribe(request):
 				for member in members['members']:
 					if member['email_address'] == email_addr:
 						member_email_subscribed = email_addr
-						success = "Вы уже ранее были подписаны на указанную рассылку!"
-				if not member_email_subscirbed:
+						success.append('Вы уже подписаны на рассылку: %s - %s' % (city, seminar_type_name.name))
+				if not member_email_subscribed:
 					resp_cli = client.member.create(list_id, {
 						'email_address': email_addr,
 						'status': 'subscribed'
 					})
 					if resp_cli['id']:
-						success = "Вы успешно подписались на указанную рассылку!"
+						success.append('Подписка на рассылку создана: %s - %s' % (city, seminar_type_name.name))
 
 
 					# Отправить уведомление администратору на почту
