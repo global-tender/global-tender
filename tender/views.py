@@ -305,7 +305,7 @@ def ajax_subscribe(request):
 
 	if request.method == 'POST':
 
-		seminar_type = request.POST.get('seminar_type', None)
+		seminar_type = request.POST.getlist('seminar_type', None)
 		city = request.POST.get('gt_city', None)
 		email_addr = request.POST.get('gt_email', None)
 
