@@ -301,11 +301,14 @@ def ajax_subscribe(request):
 	error = False
 	success = False
 
+	fz_list = FZs.objects.filter(allow_subscribe=True)
+
 	template = loader.get_template('ajax/subscribe.html')
 	template_args = {
 		'request': request,
 		'success': success,
 		'error': error,
+		'fz_list': fz_list,
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
 

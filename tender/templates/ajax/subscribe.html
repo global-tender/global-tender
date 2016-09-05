@@ -30,8 +30,9 @@
 		<form class="ajax_default_form" name="ajax_default_form" id="ajax_default_form" action="/ajax/subscribe/" method="POST" onsubmit="return ajaxFormTry($(this));">
 			<div class="subscr_type">
 				<span>Семинары:</span>
-				<input type="checkbox" name="seminar_type" value="223" checked="checked">223-ФЗ<br />
-				<input type="checkbox" name="seminar_type" value="44">44-ФЗ<br />
+				{% for fz in fz_list %}
+					<input type="checkbox" name="seminar_type" value="{{fz.short_code}}" checked="checked">{{fz.name}}<br />
+				{% endfor %}
 			</div>
 			<br />
 			<input name="gt_city" type="text" placeholder="Город" title="Город" required="">

@@ -13,6 +13,7 @@ class FZs(models.Model):
 
 	name                = models.CharField(max_length=1000)
 	description         = models.CharField(max_length=1000)
+	short_code          = models.CharField(max_lenth=255, default="", blank=False, null=False)
 	allow_subscribe     = models.BooleanField(default=False)
 	sort                = models.IntegerField(default=0)
 
