@@ -112,4 +112,4 @@ class Subscribe(models.Model):
 
 	email               = models.CharField(max_length=255, blank=False, null=False)
 	city                = models.CharField(max_length=255, blank=False, null=False)
-	seminar_types       = models.CharField(max_length=255, blank=False, null=False)
+	seminar_type       = models.CharField(max_length=255, blank=False, null=False)

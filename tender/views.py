@@ -23,7 +23,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 
-from tender.models import FZs, Seminars, Seminar_Programs, Cities, Banners, Clients
+from tender.models import FZs, Seminars, Seminar_Programs, Cities, Banners, Clients, Subscribe
 
 
 
@@ -305,27 +305,38 @@ def ajax_subscribe(request):
 
 	if request.method == 'POST':
 
-		seminar_type = request.POST.getlist('seminar_type', None)
+		seminar_types = request.POST.getlist('seminar_type', None)
 		city = request.POST.get('gt_city', None)
 		email_addr = request.POST.get('gt_email', None)
 
-		if seminar_type:
-			print(seminar_type)
-		else:
+		if not seminar_types:
 			error = "Не выбрано ни одного семинара!"
-
-		if city:
-			print(city)
-		else:
+		elif not city:
 			error = "Не указан город!"
-
-		if email_addr:
-			print(email_addr)
-		else:
+		elif not email_addr:
 			error = "Не указан E-Mail адрес!"
+		else:
+			try:
+				validate_email(email_addr)
+			except ValidationError as e:
+				error = "Неверный формат E-Mail адреса!"
 
 		if not error:
-			pass
+
+			# Our DB:
+			for sem_type in seminar_types:
+				subscr_user = Subscribe.objects.filter(email=email_addr,city=city,seminar_type=sem_type)
+				if not subscr_user:
+					subscr_new = Subscribe(
+						email=email_addr,
+						city=city,
+						seminar_type=sem_type,
+					)
+					subscr_new.save()
+
+			# mailchimp DB:
+
+
 
 	template = loader.get_template('ajax/subscribe.html')
 	template_args = {
