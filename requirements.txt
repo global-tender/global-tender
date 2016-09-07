@@ -2,6 +2,8 @@ Django==1.10
 django-sites==0.9
 django-user-agents==0.3.0
 gunicorn==19.6.0
+mailchimp3==1.0.26
 psycopg2==2.6.2
+requests==2.11.1
 ua-parser==0.7.1
 user-agents==1.0.1
