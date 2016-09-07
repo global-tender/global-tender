@@ -330,7 +330,7 @@ def ajax_subscribe(request):
 
 		if not error:
 
-			client = MailChimp('Globaltender', settings.MailChimpKey)
+			client = MailChimp('Globaltender', settings.MAILCHIMP_API_KEY)
 
 			for sem_type in seminar_types:
 
@@ -417,6 +417,7 @@ def ajax_subscribe(request):
 					subject = "Ошибка подписки на рассылку global-tender.ru"
 					body = "Возник инциденте при попытке подписать пользователя на рассылку.\nВведенные данные:\n\nE-Mail: %s\nГород: %s\nСеминар: %s\n\nДетальная информация об исключении:\n\n%s\n\n%s" % (email_addr, city, seminar_type_name.name, str(e), err_lst)
 					send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
+					print(body)
 
 
 	template = loader.get_template('ajax/subscribe.html')
