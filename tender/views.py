@@ -1,4 +1,5 @@
 import os
+import sys
 import re
 import operator
 import datetime
@@ -415,7 +416,7 @@ def ajax_subscribe(request):
 						err_lst += str(members)
 
 					subject = "Ошибка подписки на рассылку global-tender.ru"
-					body = "Возник инциденте при попытке подписать пользователя на рассылку.\nВведенные данные:\n\nE-Mail: %s\nГород: %s\nСеминар: %s\n\nДетальная информация об исключении:\n\n%s\n\n%s" % (email_addr, city, seminar_type_name.name, str(e), err_lst)
+					body = "Возник инцидент при попытке подписать пользователя на рассылку.\nВведенные данные:\n\nE-Mail: %s\nГород: %s\nСеминар: %s\n\nДетальная информация об исключении:\n\n%s\n\n%s" % (email_addr, city, seminar_type_name.name, str(sys.exc_info()[0]), err_lst)
 					send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
 					print(body)
 
