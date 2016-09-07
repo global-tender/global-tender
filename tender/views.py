@@ -393,13 +393,14 @@ def ajax_subscribe(request):
 
 
 					# Отправить уведомление администратору на почту
-					subject = "Новая подписка на рассылку на сайте global-tender.ru"
-					body = "Пользователь подписался на рассылку на сайте global-tender.ru.\n\nE-Mail: %s\nГород: %s\nСеминар: %s\n" % (email_addr, city, seminar_type_name.name)
-					connection = mail.get_connection()
-					connection.open()
-					email = mail.EmailMessage(subject, body, settings.ADMIN_EMAIL_FROM,
-						settings.ADMIN_EMAIL_TO, headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
-					email.send()
+					# subject = "Новая подписка на рассылку на сайте global-tender.ru"
+					# body = "Пользователь подписался на рассылку на сайте global-tender.ru.\n\nE-Mail: %s\nГород: %s\nСеминар: %s\n" % (email_addr, city, seminar_type_name.name)
+					# connection = mail.get_connection()
+					# connection.open()
+					# email = mail.EmailMessage(subject, body, settings.ADMIN_EMAIL_FROM,
+					# 	settings.ADMIN_EMAIL_TO, headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
+					# email.send()
+					print('user subscribed: %s' % email_addr)
 
 
 	template = loader.get_template('ajax/subscribe.html')
