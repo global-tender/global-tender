@@ -331,27 +331,25 @@ def ajax_subscribe(request):
 
 		if not error:
 
-			client = MailChimp('Globaltender', settings.MAILCHIMP_API_KEY)
+			try:
+				client = MailChimp('Globaltender', settings.MAILCHIMP_API_KEY)
 
-			for sem_type in seminar_types:
+				for sem_type in seminar_types:
 
+					# Our DB:
+					subscr_user = Subscribe.objects.filter(email=email_addr,city=city,seminar_type=sem_type)
+					if not subscr_user:
+						subscr_new = Subscribe(
+							email=email_addr,
+							city=city,
+							seminar_type=sem_type,
+						)
+						subscr_new.save()
 
-				# Our DB:
-				subscr_user = Subscribe.objects.filter(email=email_addr,city=city,seminar_type=sem_type)
-				if not subscr_user:
-					subscr_new = Subscribe(
-						email=email_addr,
-						city=city,
-						seminar_type=sem_type,
-					)
-					subscr_new.save()
+					# mailchimp DB:
+					seminar_type_name = FZs.objects.get(short_code=sem_type)
 
-
-				# mailchimp DB:
-				seminar_type_name = FZs.objects.get(short_code=sem_type)
-
-				# Проверим существования Списка по указанной подписке, если нету, создадим.
-				try:
+					# Проверим существования Списка по указанной подписке, если нету, создадим.
 					list_id = False
 					lists = client.list.all(fields="lists.name,lists.id")
 					for lst in lists['lists']:
@@ -406,19 +404,19 @@ def ajax_subscribe(request):
 						else:
 							# Не удалось подписать пользователя по неизвестной причине
 							raise Exception('Failed to create member for list: %s.' % list_id)
-				except Exception as e:
-					error = "Ошибка, не удалось подписать на рассылку.<br />Мы уже уведомлены о возникшем инциденте!"
-					err_lst = ''
+			except Exception as e:
+				error = "Ошибка, не удалось подписать на рассылку.<br />Мы уже уведомлены о возникшем инциденте!"
+				err_lst = ''
 
-					if 'lists' in vars():
-						err_lst += str(lists)
-					if 'members' in vars():
-						err_lst += str(members)
+				if 'lists' in vars():
+					err_lst += str(lists)
+				if 'members' in vars():
+					err_lst += str(members)
 
-					subject = "Ошибка подписки на рассылку global-tender.ru"
-					body = "Возник инцидент при попытке подписать пользователя на рассылку.\nВведенные данные:\n\nE-Mail: %s\nГород: %s\nСеминар: %s\n\nДетальная информация об исключении:\n\n%s\n\n%s" % (email_addr, city, seminar_type_name.name, str(sys.exc_info()), err_lst)
-					send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
-					print(body)
+				subject = "Ошибка подписки на рассылку global-tender.ru"
+				body = "Возник инцидент при попытке подписать пользователя на рассылку.\nВведенные данные:\n\nE-Mail: %s\nГород: %s\nСеминар: %s\n\nДетальная информация об исключении:\n\n%s\n\n%s" % (email_addr, city, seminar_type_name.name, str(sys.exc_info()), err_lst)
+				send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
+				print(body)
 
 
 	template = loader.get_template('ajax/subscribe.html')
