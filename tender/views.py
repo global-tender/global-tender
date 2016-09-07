@@ -405,7 +405,7 @@ def ajax_subscribe(request):
 						else:
 							# Не удалось подписать пользователя по неизвестной причине
 							raise Exception('Failed to create member for list: %s.' % list_id)
-				except Exception as e:
+				except BaseException as e:
 					error = "Ошибка, не удалось подписать на рассылку. Мы уже уведомлены о возникшем инциденте!"
 					err_lst = ''
 
