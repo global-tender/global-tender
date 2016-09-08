@@ -31,8 +31,11 @@
 			var $region = $('[name="gt_region"]');
 
 			$region.kladr({
-				type: $.kladr.type.region
-				/*typeCode: $.kladr.typeCode.city*/
+				type: $.kladr.type.region;
+				select: function(obj){
+					/*$('label').text(obj.type);*/
+					console.log(obj.type);
+				}
 			});
 		});
 	</script>
