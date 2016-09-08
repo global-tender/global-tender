@@ -399,7 +399,7 @@ def ajax_subscribe(request):
 
 							# Отправить уведомление администратору на почту
 							subject = "Новая подписка на рассылку на сайте global-tender.ru"
-							body = "Пользователь подписался на рассылку на сайте global-tender.ru.\n\nE-Mail: %s\nГород: %s\nСеминар: %s\n" % (email_addr, region, seminar_type_name.name)
+							body = "Пользователь подписался на рассылку на сайте global-tender.ru.\n\nE-Mail: %s\nРегион: %s\nСеминар: %s\n" % (email_addr, region, seminar_type_name.name)
 							send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
 						else:
 							# Не удалось подписать пользователя по неизвестной причине
@@ -414,7 +414,7 @@ def ajax_subscribe(request):
 					err_lst += str(members)
 
 				subject = "Ошибка подписки на рассылку global-tender.ru"
-				body = "Возник инцидент при попытке подписать пользователя на рассылку.\nВведенные данные:\n\nE-Mail: %s\nГород: %s\nСеминар: %s\n\nДетальная информация об исключении:\n\n%s\n\n%s" % (email_addr, region, seminar_type_name.name, str(sys.exc_info()), err_lst)
+				body = "Возник инцидент при попытке подписать пользователя на рассылку.\nВведенные данные:\n\nE-Mail: %s\nРегион: %s\nСеминар: %s\n\nДетальная информация об исключении:\n\n%s\n\n%s" % (email_addr, region, seminar_type_name.name, str(sys.exc_info()), err_lst)
 				send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
 				print(body)
 
