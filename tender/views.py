@@ -314,13 +314,13 @@ def ajax_subscribe(request):
 	if request.method == 'POST':
 
 		seminar_types = request.POST.getlist('seminar_type', None)
-		city = request.POST.get('gt_city', None)
+		region = request.POST.get('gt_region', None)
 		email_addr = request.POST.get('gt_email', None)
 
 		if not seminar_types:
 			error = "Не выбрано ни одного семинара!"
-		elif not city:
-			error = "Не указан город!"
+		elif not region:
+			error = "Не указан регион!"
 		elif not email_addr:
 			error = "Не указан E-Mail адрес!"
 		else:
@@ -337,11 +337,11 @@ def ajax_subscribe(request):
 				for sem_type in seminar_types:
 
 					# Our DB:
-					subscr_user = Subscribe.objects.filter(email=email_addr,city=city,seminar_type=sem_type)
+					subscr_user = Subscribe.objects.filter(email=email_addr,region=region,seminar_type=sem_type)
 					if not subscr_user:
 						subscr_new = Subscribe(
 							email=email_addr,
-							city=city,
+							region=region,
 							seminar_type=sem_type,
 						)
 						subscr_new.save()
@@ -353,11 +353,11 @@ def ajax_subscribe(request):
 					list_id = False
 					lists = client.list.all(fields="lists.name,lists.id")
 					for lst in lists['lists']:
-						if lst['name'] == 'global-tender.ru: %s, %s' % (city, seminar_type_name.name):
+						if lst['name'] == 'global-tender.ru: %s, %s' % (region, seminar_type_name.name):
 							list_id = lst['id']
 					if not list_id:
 						resp_cli = client.list.create({
-							'name': 'global-tender.ru: %s, %s' % (city, seminar_type_name.name),
+							'name': 'global-tender.ru: %s, %s' % (region, seminar_type_name.name),
 							'contact': {
 								'company': 'Глобал-Тендер',
 								'address1': 'г. Ростов-на-Дону, Серафимовича 58а',
@@ -388,18 +388,18 @@ def ajax_subscribe(request):
 					for member in members['members']:
 						if member['email_address'] == email_addr:
 							member_email_subscribed = email_addr
-							success.append('Вы уже подписаны на рассылку:<br /><span>%s, %s</span>' % (city, seminar_type_name.name))
+							success.append('Вы уже подписаны на рассылку:<br /><span>%s, %s</span>' % (region, seminar_type_name.name))
 					if not member_email_subscribed:
 						resp_cli = client.member.create(list_id, {
 							'email_address': email_addr,
 							'status': 'subscribed'
 						})
 						if resp_cli['id']:
-							success.append('Подписка на рассылку создана:<br /><span>%s, %s</span>' % (city, seminar_type_name.name))
+							success.append('Подписка на рассылку создана:<br /><span>%s, %s</span>' % (region, seminar_type_name.name))
 
 							# Отправить уведомление администратору на почту
 							subject = "Новая подписка на рассылку на сайте global-tender.ru"
-							body = "Пользователь подписался на рассылку на сайте global-tender.ru.\n\nE-Mail: %s\nГород: %s\nСеминар: %s\n" % (email_addr, city, seminar_type_name.name)
+							body = "Пользователь подписался на рассылку на сайте global-tender.ru.\n\nE-Mail: %s\nГород: %s\nСеминар: %s\n" % (email_addr, region, seminar_type_name.name)
 							send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
 						else:
 							# Не удалось подписать пользователя по неизвестной причине
@@ -414,7 +414,7 @@ def ajax_subscribe(request):
 					err_lst += str(members)
 
 				subject = "Ошибка подписки на рассылку global-tender.ru"
-				body = "Возник инцидент при попытке подписать пользователя на рассылку.\nВведенные данные:\n\nE-Mail: %s\nГород: %s\nСеминар: %s\n\nДетальная информация об исключении:\n\n%s\n\n%s" % (email_addr, city, seminar_type_name.name, str(sys.exc_info()), err_lst)
+				body = "Возник инцидент при попытке подписать пользователя на рассылку.\nВведенные данные:\n\nE-Mail: %s\nГород: %s\nСеминар: %s\n\nДетальная информация об исключении:\n\n%s\n\n%s" % (email_addr, region, seminar_type_name.name, str(sys.exc_info()), err_lst)
 				send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
 				print(body)
 

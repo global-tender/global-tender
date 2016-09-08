@@ -111,5 +111,5 @@ class Subscribe(models.Model):
 		return 'ID: ' + str(self.id) + ' | Email: ' + self.email
 
 	email               = models.CharField(max_length=255, blank=False, null=False)
-	city                = models.CharField(max_length=255, blank=False, null=False)
-	seminar_type       = models.CharField(max_length=255, blank=False, null=False)
+	region              = models.CharField(max_length=255, blank=False, null=False)
+	seminar_type        = models.CharField(max_length=255, blank=False, null=False)

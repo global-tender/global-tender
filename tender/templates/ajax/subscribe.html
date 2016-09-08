@@ -28,11 +28,11 @@
 
 	<script>
 		$(function () {
-			var $city = $('[name="gt_city"]');
+			var $region = $('[name="gt_region"]');
 
-			$city.kladr({
-				type: $.kladr.type.city,
-				typeCode: $.kladr.typeCode.city
+			$region.kladr({
+				type: $.kladr.type.region
+				/*typeCode: $.kladr.typeCode.city*/
 			});
 		});
 	</script>
@@ -50,7 +50,7 @@
 				{% endfor %}
 			</div>
 			<br />
-			<input name="gt_city" type="text" placeholder="Город" title="Город" required="">
+			<input name="gt_region" type="text" placeholder="Регион" title="Регион" required="">
 			<br /><input name="gt_email" type="email" placeholder="Ваш E-Mail" title="Ваш E-Mail" required="">
 			<br /><input type="submit" name="submit_subscribe" value="Подписаться">
 		</form>
