@@ -33,8 +33,7 @@
 			$region.kladr({
 				type: $.kladr.type.region,
 				select: function(obj){
-					/*$('label').text(obj.type);*/
-					console.log(obj.type);
+					$region.val(obj.typeShort + ". " + obj.name)
 				}
 			});
 		});
@@ -55,7 +54,7 @@
 			<br />
 			<input name="gt_region" type="text" placeholder="Регион" title="Регион" required="">
 			<br /><input name="gt_email" type="email" placeholder="Ваш E-Mail" title="Ваш E-Mail" required="">
-			<br /><input type="submit" name="submit_subscribe" value="Подписаться">
+			<br /><input type="submit" name="submit_subscribe" value="Подписаться" title="Будет направлено подтверждение подписки">
 		</form>
 
 	</div>
