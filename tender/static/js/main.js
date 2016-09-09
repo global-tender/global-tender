@@ -66,9 +66,9 @@ function showSubscribe()
 function ajaxFormTry(ajaxForm){
 
 	/* Относится к подписке */
-	if ($('[name="submit_subscribe"]').length)
+	if ($('input[type="submit"]').length)
 	{
-		$('[name="submit_subscribe"]').val('Ожидайте...');
+		$('input[type="submit"]').val('Ожидайте...');
 	}
 	/* *** */
 
