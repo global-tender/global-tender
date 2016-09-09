@@ -18,6 +18,18 @@ $(document).ready(function() {
 		$('.sem-phone').mask('+0 (000) 000-00-00');
 	}
 
+
+	$('.subscr_popup_hide').on('click', function(){
+		$('.subscr_popup').animate({'left':'-620'},400)
+	});
+
+	$('.main-info-text').hover(function(){
+		if ($('.subscr_popup').css('left') == '-620px')
+		{
+			$('.subscr_popup').animate({'left':'0'},400)
+		}
+	});
+
 });
 
 var down_link = (function(){
