@@ -65,12 +65,14 @@ function showSubscribe()
 
 function ajaxFormTry(ajaxForm){
 
-	/* Относится к подписке */
-	if ($('input[type="submit"]').length)
-	{
-		$('input[type="submit"]').val('Ожидайте...');
-	}
-	/* *** */
+	if ($('input[name="submit_message"]').length)
+		$('input[name="submit_message"]').val('Ожидайте...');
+
+	if ($('.seminar-submit-button').length)
+		$('.seminar-submit-button').text('Ожидайте...');
+
+	if ($('input[name="submit_subscribe"]').length)
+		$('input[name="submit_subscribe"]').val('Ожидайте...');
 
 	$.post(
 		ajaxForm.attr('action'),
