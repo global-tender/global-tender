@@ -159,12 +159,13 @@ def ajax_seminar(request, arg):
 		############################################################
 		############################################################
 		send_copy_email = request.POST.get('send_copy_email', '')
+		send_copy_email_to = request.POST.get('contact_email','')
 		if send_copy_email == "yes":
-			send_copy_email_to = request.POST.get('contact_email','')
 			try:
 				validate_email(send_copy_email_to)
 			except ValidationError as e:
 				send_copy_email = ''
+				send_copy_email_to = ''
 
 
 		form_act = request.POST.get('org_acting', '')
@@ -225,7 +226,7 @@ def ajax_seminar(request, arg):
 				request.POST.get('head_post',''),
 				request.POST.get('contact_name',''),
 				request.POST.get('contact_post',''),
-				request.POST.get('contact_email',''),
+				send_copy_email_to,
 				request.POST.get('contact_phone',''),
 				request.POST['comment'],
 				request.POST.get('visitors_amount',''),
@@ -264,6 +265,7 @@ def ajax_seminar(request, arg):
 
 			send_email_custom(subject, body_head + body, settings.ADMIN_EMAIL_FROM, [send_copy_email_to])
 
+		if send_copy_email_to != "":
 			# Подписать контактный email адрес на рассылку по текущему региону
 			if seminar.event_fz.allow_subscribe:  # разрешена подписка на этот семинар
 				if seminar.event_city.region:  # поле "Регион" у города заполнено
