@@ -1698,20 +1698,28 @@ nav {
 	z-index: 500;
 	padding-left: 10px;
 	padding-right: 10px;
+	padding-top: 2px;
+	padding-bottom: 4px;
 	border-radius: 10px;
 	border-bottom-left-radius: 0px;
 }
 
-.subscr_popup .subscr_popup_href {
+.subscr_popup a {
 	color: #fff;
 	font-family: "Exo 2";
 	font-weight: bold;
 	font-size: 18px;
 	letter-spacing: 0.5px;
 	text-shadow: 1px 1px #000;
+}
+
+.subscr_popup .subscr_popup_href {
 	padding-right: 10px;
-	padding-top: 2px;
-	padding-bottom: 4px;
+	text-decoration: none;
+}
+
+.subscr_popup .subscr_popup_href:hover {
+	text-decoration: underline;
 }
 
 
