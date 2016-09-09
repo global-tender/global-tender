@@ -1689,6 +1689,31 @@ nav {
 	min-width: 300px;
 }
 
+.subscr_popup {
+	background: rgba(0, 72, 169, 0.75);
+	border: 2px solid #fff;
+	position: absolute;
+	top: 100px;
+	left: -620px;
+	z-index: 500;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 10px;
+	border-bottom-left-radius: 0px;
+}
+
+.subscr_popup .subscr_popup_href {
+	color: #fff;
+	font-family: "Exo 2";
+	font-weight: bold;
+	font-size: 18px;
+	letter-spacing: 0.5px;
+	text-shadow: 1px 1px #000;
+	padding-right: 10px;
+	padding-top: 2px;
+	padding-bottom: 4px;
+}
+
 
 /* BANNERS */
 
