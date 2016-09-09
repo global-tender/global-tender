@@ -28,7 +28,7 @@ class Cities(models.Model):
 		return 'Город: ' + self.name
 
 	name                = models.CharField(max_length=1000)
-	region              = models.CharField(max_length=255)
+	region              = models.CharField(max_length=255, default="", blank=True, null=True)
 	picture             = models.FileField(upload_to='city_pictures/')
 	posted              = models.DateTimeField('date published')
 
