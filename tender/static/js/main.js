@@ -57,12 +57,8 @@ function showAskQuestion()
 	return false;
 }
 
-function showSubscribe(city, fz)
+function showSubscribe()
 {
-	if(city === undefined)
-		city = "";
-	if (fz === undefined)
-		fz = "";
 	$.fancybox('/ajax/subscribe/',{type:'ajax',helpers:{overlay:{locked:true}}});
 	return false;
 }
