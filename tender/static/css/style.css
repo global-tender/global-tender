@@ -1148,6 +1148,18 @@ nav {
 	padding: 15px 15px 15px;
 }
 
+.sem-top-description {
+	color: #fff;
+	z-index: 100;
+	position: relative;
+	font-family: "Exo 2";
+	font-size: 36px;
+	top: 45%;
+	border-bottom: 1px solid #fff;
+	display: table;
+	margin: 0 auto;
+}
+
 .city-info {
 	position: absolute;
 	bottom: 0;
