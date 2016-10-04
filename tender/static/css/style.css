@@ -99,7 +99,7 @@ h3.title {
 }
 
 .fancybox-outer, .fancybox-inner, .fancybox-skin {
-	border-radius: 10px !important;
+	border-radius: 8px !important;
 }
 
 .fancybox-wrap {
@@ -557,6 +557,9 @@ nav {
 		margin-bottom: 55px;
 	}
 	.spec-title.service-title {
+		margin-bottom: 0px;
+	}
+	.spec-title.subscribe-title {
 		margin-bottom: 0px;
 	}
 	.spec-title h2 {
@@ -1539,7 +1542,7 @@ nav {
 
 
 .modal-wrap {
-	/*border: rgb(255, 99, 0) solid 3px;*/
+	border: #507299 solid 3px;
 	font-family: "Exo 2", "Play", sans-serif;
 	padding: 10px;
 }
@@ -1570,7 +1573,7 @@ nav {
 	margin-bottom: 23px;
 	padding: 12px 10px;
 	outline: none;
-	border: 1px solid #e8e8e8;
+	border: 1px solid #507299;
 	border-radius:5px;
 	-webkit-border-radius:5px;
 	-moz-border-radius:5px;
@@ -1586,7 +1589,7 @@ nav {
 	padding: 15px;
 	margin-bottom: 10px;
 	outline: none;
-	border: 1px solid #e8e8e8;
+	border: 1px solid #507299;
 	border-radius:5px;
 	-webkit-border-radius:5px;
 	-moz-border-radius:5px;
@@ -1606,16 +1609,21 @@ nav {
 	-ms-border-radius:5px;
 	border: 1px solid rgb(255, 99, 0);
 	background:none;
+  transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -moz-transition: all .5s ease;
 }
 .ajax_default_form input[type=submit]:hover {
 	background: rgb(255, 99, 0);
 	border: 1px solid #fff;
 	color:#fff;
-	transition: .5s all;
-	-webkit-transition: .5s all;
-	-o-transition: .5s all;
-	-ms-transition: .5s all;
-	-moz-transition: .5s all;	
+	transition: all .5s ease;
+	-webkit-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	-moz-transition: all .5s ease;
 }
 .ajax_default_form input[type="email"] {
 	width: 300px;
@@ -1624,7 +1632,7 @@ nav {
 	margin-bottom: 23px;
 	padding: 12px 10px;
 	outline: none;
-	border: 1px solid #e8e8e8;
+	border: 1px solid #507299;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -1642,13 +1650,6 @@ nav {
 	width: 7px;
 }
 
-.subscribe_page .ajax_default_form input[type="text"]{
-  border: 1px solid #507299;
-}
-
-.subscribe_page .ajax_default_form input[type="email"]{
-  border: 1px solid #507299;
-}
 
 @media only screen and (max-width: 480px) {
 
@@ -1830,115 +1831,115 @@ nav {
   pointer-events: none;
   transition: all 0.5s cubic-bezier(0.4, 0.99, 0.67, 0.97); }
   .overlay.active {
-    opacity: 1;
-    pointer-events: all; }
+	opacity: 1;
+	pointer-events: all; }
   .overlay .overlay__table {
-    display: table;
-    table-layout: fixed;
-    height: 100%;
-    width: 100%; }
+	display: table;
+	table-layout: fixed;
+	height: 100%;
+	width: 100%; }
   .overlay .overlay__cell {
-    display: table-cell;
-    height: 100%;
-    width: 100%;
-    vertical-align: middle;
-    padding: 50px; }
+	display: table-cell;
+	height: 100%;
+	width: 100%;
+	vertical-align: middle;
+	padding: 50px; }
   .overlay .overlay__popup {
-    display: none;
-    margin: 0 auto;
-    -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-    opacity: 0; }
-    .overlay .overlay__popup.active {
-      opacity: 1;
-      -webkit-transform: translateY(0);
-          -ms-transform: translateY(0);
-              transform: translateY(0);
-      transition: all 0.5s cubic-bezier(0.4, 0.99, 0.67, 0.97); }
-    .overlay .overlay__popup.faded {
-      opacity: 0;
-      -webkit-transform: translateY(50%);
-          -ms-transform: translateY(50%);
-              transform: translateY(50%);
-      transition: all 0.5s cubic-bezier(0.4, 0.99, 0.67, 0.97); }
-    .overlay .overlay__popup .popup__title {
-      font-size: 24px;
-      font-weight: 300;
-      margin-bottom: 15px; }
-    .overlay .overlay__popup .popup__form .form__social .social__item .item__btn {
-      display: inline-block;
-      vertical-align: middle;
-      text-decoration: none;
-      line-height: 40px;
-      height: 40px;
-      padding: 0 15px; }
-      .overlay .overlay__popup .popup__form .form__social .social__item .item__btn .icon {
-        position: relative;
-        display: inline-block;
-        vertical-align: middle;
-        margin-left: 5px;
-        font-size: 20px; }
-    .overlay .overlay__popup .popup__form .form__social .social__item.social__item--vk .item__btn {
-      color: #fff;
-      background: #4c75a3;
-      transition: background 0.2s ease; }
-      .overlay .overlay__popup .popup__form .form__social .social__item.social__item--vk .item__btn:hover {
-        background: #005c8d; }
-      .overlay .overlay__popup .popup__form .form__social .social__item.social__item--vk .item__btn .icon {
-        top: -2px; }
-    .overlay .overlay__popup .popup__form .form__line {
-      margin: 15px 0;
-      overflow: hidden; }
-      .overlay .overlay__popup .popup__form .form__line .line__span {
-        position: relative;
-        padding: 0 5px; }
-        .overlay .overlay__popup .popup__form .form__line .line__span:before, .overlay .overlay__popup .popup__form .form__line .line__span:after {
-          content: "";
-          position: absolute;
-          top: 50%;
-          width: 300px;
-          height: 1px;
-          background: rgba(0, 0, 0, 0.25); }
-        .overlay .overlay__popup .popup__form .form__line .line__span:before {
-          right: 100%; }
-        .overlay .overlay__popup .popup__form .form__line .line__span:after {
-          left: 100%; }
-    .overlay .overlay__popup .popup__form .form__input {
-      margin-bottom: 10px; }
-      .overlay .overlay__popup .popup__form .form__input label.error {
-        display: block;
-        margin-top: 5px;
-        font-size: 12px; }
-      .overlay .overlay__popup .popup__form .form__input .input__item {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 0 10px;
-        height: 40px;
-        outline: none;
-        border: 1px solid transparent;
-        border-radius: 2px; }
-        .overlay .overlay__popup .popup__form .form__input .input__item:focus {
-          border: 1px solid rgba(0, 0, 0, 0.25); }
-        .overlay .overlay__popup .popup__form .form__input .input__item.error {
-          border-color: red; }
-    .overlay .overlay__popup .popup__form .form__submit {
-      margin-top: 15px; }
-      .overlay .overlay__popup .popup__form .form__submit .submit__item {
-        width: 100%; }
-    .overlay .overlay__popup .popup__form .form__disc {
-      margin-top: 15px;
-      font-size: 13px;
-      color: rgba(0, 0, 0, 0.8); }
-    .overlay .overlay__popup .popup__form .form__response {
-      display: none;
-      font-size: 14px;
-      margin-top: 15px; }
-    .overlay .overlay__popup.overlay__popup--login {
-      max-width: 320px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.8);
-      text-align: center; }
+	display: none;
+	margin: 0 auto;
+	-webkit-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+			transform: translateY(-50%);
+	opacity: 0; }
+	.overlay .overlay__popup.active {
+	  opacity: 1;
+	  -webkit-transform: translateY(0);
+		  -ms-transform: translateY(0);
+			  transform: translateY(0);
+	  transition: all 0.5s cubic-bezier(0.4, 0.99, 0.67, 0.97); }
+	.overlay .overlay__popup.faded {
+	  opacity: 0;
+	  -webkit-transform: translateY(50%);
+		  -ms-transform: translateY(50%);
+			  transform: translateY(50%);
+	  transition: all 0.5s cubic-bezier(0.4, 0.99, 0.67, 0.97); }
+	.overlay .overlay__popup .popup__title {
+	  font-size: 24px;
+	  font-weight: 300;
+	  margin-bottom: 15px; }
+	.overlay .overlay__popup .popup__form .form__social .social__item .item__btn {
+	  display: inline-block;
+	  vertical-align: middle;
+	  text-decoration: none;
+	  line-height: 40px;
+	  height: 40px;
+	  padding: 0 15px; }
+	  .overlay .overlay__popup .popup__form .form__social .social__item .item__btn .icon {
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: 5px;
+		font-size: 20px; }
+	.overlay .overlay__popup .popup__form .form__social .social__item.social__item--vk .item__btn {
+	  color: #fff;
+	  background: #4c75a3;
+	  transition: background 0.2s ease; }
+	  .overlay .overlay__popup .popup__form .form__social .social__item.social__item--vk .item__btn:hover {
+		background: #005c8d; }
+	  .overlay .overlay__popup .popup__form .form__social .social__item.social__item--vk .item__btn .icon {
+		top: -2px; }
+	.overlay .overlay__popup .popup__form .form__line {
+	  margin: 15px 0;
+	  overflow: hidden; }
+	  .overlay .overlay__popup .popup__form .form__line .line__span {
+		position: relative;
+		padding: 0 5px; }
+		.overlay .overlay__popup .popup__form .form__line .line__span:before, .overlay .overlay__popup .popup__form .form__line .line__span:after {
+		  content: "";
+		  position: absolute;
+		  top: 50%;
+		  width: 300px;
+		  height: 1px;
+		  background: rgba(0, 0, 0, 0.25); }
+		.overlay .overlay__popup .popup__form .form__line .line__span:before {
+		  right: 100%; }
+		.overlay .overlay__popup .popup__form .form__line .line__span:after {
+		  left: 100%; }
+	.overlay .overlay__popup .popup__form .form__input {
+	  margin-bottom: 10px; }
+	  .overlay .overlay__popup .popup__form .form__input label.error {
+		display: block;
+		margin-top: 5px;
+		font-size: 12px; }
+	  .overlay .overlay__popup .popup__form .form__input .input__item {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 0 10px;
+		height: 40px;
+		outline: none;
+		border: 1px solid transparent;
+		border-radius: 2px; }
+		.overlay .overlay__popup .popup__form .form__input .input__item:focus {
+		  border: 1px solid rgba(0, 0, 0, 0.25); }
+		.overlay .overlay__popup .popup__form .form__input .input__item.error {
+		  border-color: red; }
+	.overlay .overlay__popup .popup__form .form__submit {
+	  margin-top: 15px; }
+	  .overlay .overlay__popup .popup__form .form__submit .submit__item {
+		width: 100%; }
+	.overlay .overlay__popup .popup__form .form__disc {
+	  margin-top: 15px;
+	  font-size: 13px;
+	  color: rgba(0, 0, 0, 0.8); }
+	.overlay .overlay__popup .popup__form .form__response {
+	  display: none;
+	  font-size: 14px;
+	  margin-top: 15px; }
+	.overlay .overlay__popup.overlay__popup--login {
+	  max-width: 320px;
+	  padding: 20px;
+	  background: rgba(255, 255, 255, 0.8);
+	  text-align: center; }
 
 .us_btn {
   display: inline-block;
@@ -1958,7 +1959,7 @@ nav {
   background: #FF5252;
   transition: all 0.2s ease; }
   .pr_btn:hover, .us_btn:hover, .index_search .index_search__content .content__search .search__form .form__btn:hover {
-    background: #FF1744; }
+	background: #FF1744; }
 
 
 .subscribe-title {
