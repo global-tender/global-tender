@@ -2,7 +2,6 @@
 
 <div class="spec-title subscribe-title">
 	<div class="wrapper">
-		
 	</div>
 </div>
 
@@ -15,11 +14,8 @@
 			</div>
 
 			{% autoescape off %}
-			<h2>{{ error }}</h2>
+			<p class="subscr_msg">{{ error }}</p>
 			{% endautoescape %}
-
-			<div class="subscribe_page_line">
-			</div>
 
 		{% elif success %}
 
@@ -28,34 +24,31 @@
 
 			{% autoescape off %}
 			{% for success_res in success %}
-				<p class="subscr_success_msg">{{success_res}}</p>
+				<p class="subscr_msg">{{success_res}}</p>
 			{% endfor %}
 			{% endautoescape %}
 
-			<div class="subscribe_page_line">
-			</div>
-
-		{% else %}
-
-			<h1>Подписаться на рассылку о новых семинарах.</h1>
-
-			<form class="ajax_default_form" name="ajax_default_form" id="ajax_default_form" action="/subscribe/" method="POST">
-				<div class="subscr_type">
-					<span>Семинары:</span>
-					{% for fz in fz_list %}
-						<input type="checkbox" name="seminar_type" value="{{fz.short_code}}" checked="checked">{{fz.name}}<br />
-					{% endfor %}
-				</div>
-				<br />
-				<input name="gt_region" type="text" placeholder="Регион" title="Регион" required="">
-				<br /><input name="gt_email" type="email" placeholder="Ваш E-Mail" title="Ваш E-Mail" required="">
-				<br /><input type="submit" name="submit_subscribe" value="Подписаться" title="Будет направлено подтверждение подписки">
-			</form>
-
-			<div class="subscribe_page_line">
-			</div>
-
 		{% endif %}
+
+
+		<h1>Подписаться на рассылку о новых семинарах.</h1>
+
+		<form class="ajax_default_form" name="ajax_default_form" id="ajax_default_form" action="/subscribe/" method="POST">
+			<div class="subscr_type">
+				<span>Семинары:</span>
+				{% for fz in fz_list %}
+					<input type="checkbox" name="seminar_type" value="{{fz.short_code}}" checked="checked" title="{{fz.description}}">{{fz.name}}<br />
+				{% endfor %}
+			</div>
+			<br />
+			<input name="gt_region" type="text" placeholder="Регион" title="Регион" required="">
+			<br /><input name="gt_email" type="email" placeholder="Ваш E-Mail" title="Ваш E-Mail" required="">
+			<br /><input type="submit" name="submit_subscribe" value="Подписаться" title="Будет направлено подтверждение подписки">
+		</form>
+
+		<div class="subscribe_page_line">
+		</div>
+
 
 	</div>
 </main>

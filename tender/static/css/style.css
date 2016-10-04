@@ -1539,7 +1539,7 @@ nav {
 
 
 .modal-wrap {
-	border: rgba(2, 0, 35, 0.6) solid 3px;
+	/*border: rgb(255, 99, 0) solid 3px;*/
 	font-family: "Exo 2", "Play", sans-serif;
 	padding: 10px;
 }
@@ -1604,11 +1604,11 @@ nav {
 	-moz-border-radius:5px;
 	-o-border-radius:5px;
 	-ms-border-radius:5px;
-	border: 1px solid #99cc33;
+	border: 1px solid rgb(255, 99, 0);
 	background:none;
 }
 .ajax_default_form input[type=submit]:hover {
-	background: #99cc33;
+	background: rgb(255, 99, 0);
 	border: 1px solid #fff;
 	color:#fff;
 	transition: .5s all;
@@ -1687,12 +1687,12 @@ nav {
 	margin-bottom: 10px;
 }
 
-.subscr_success_msg span {
+.subscr_msg span {
 	padding-left: 50px;
 	text-decoration: underline;
 }
 
-.subscr_success_msg {
+.subscr_msg {
 	font-weight: bold;
 	min-width: 300px;
 }

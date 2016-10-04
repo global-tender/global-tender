@@ -18,7 +18,7 @@
 
 		{% autoescape off %}
 		{% for success_res in success %}
-			<p class="subscr_success_msg">{{success_res}}</p>
+			<p class="subscr_msg">{{success_res}}</p>
 		{% endfor %}
 		{% endautoescape %}
 
@@ -48,7 +48,7 @@
 			<div class="subscr_type">
 				<span>Семинары:</span>
 				{% for fz in fz_list %}
-					<input type="checkbox" name="seminar_type" value="{{fz.short_code}}" checked="checked">{{fz.name}}<br />
+					<input type="checkbox" name="seminar_type" value="{{fz.short_code}}" checked="checked" title="{{fz.description}}">{{fz.name}}<br />
 				{% endfor %}
 			</div>
 			<br />
