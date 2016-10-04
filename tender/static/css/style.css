@@ -1951,3 +1951,32 @@ nav {
   transition: all 0.2s ease; }
   .pr_btn:hover, .us_btn:hover, .index_search .index_search__content .content__search .search__form .form__btn:hover {
     background: #FF1744; }
+
+
+.subscribe-title {
+  background: url(/static/images/lektors.jpg) no-repeat center center / cover;
+}
+
+.subscribe_page {
+  padding-left: 25px;
+  padding-right: 25px;
+  font-family: "Exo 2";
+}
+
+.subscribe_page h1 {
+  font-size: 20px;
+  text-align: center;
+  background-color: #507299;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.subscribe_page .subscribe_page_line {
+  padding: 20px;
+  background: #507299;
+  color: #fff;
+  text-align: center;
+}

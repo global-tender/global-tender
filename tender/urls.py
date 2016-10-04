@@ -35,6 +35,8 @@ urlpatterns = [
 	url(r'^ajax/question/?$', views.ajax_question, name='ajax_question'),
 	url(r'^ajax/subscribe/?$', views.ajax_subscribe, name='ajax_subscribe'),
 
+	url(r'^subscribe/?$', views.subscribe, name='subscribe'),
+
 	url(r'^signin/?$', views.signin, name='signin'),
 	url(r'^signup/?$', views.signup, name='signup'),
 	url(r'^signout/?$', views.signout, name='signout'),
