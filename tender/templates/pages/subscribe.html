@@ -29,6 +29,20 @@
 
 		{% else %}
 
+			<script>
+				$(function () {
+					var $region = $('[name="gt_region"]');
+
+					$region.kladr({
+						type: $.kladr.type.region,
+						select: function(obj){
+							$region.val(obj.typeShort + ". " + obj.name)
+						}
+					});
+				});
+			</script>
+
+
 			<h1>Подписаться на рассылки о новых семинарах.</h1>
 
 			<form class="ajax_default_form" name="ajax_default_form" id="ajax_default_form" action="/subscribe/" method="POST">
@@ -47,19 +61,6 @@
 			<div class="subscribe_page_line">
 				
 			</div>
-
-			<script>
-				$(function () {
-					var $region = $('[name="gt_region"]');
-
-					$region.kladr({
-						type: $.kladr.type.region,
-						select: function(obj){
-							$region.val(obj.typeShort + ". " + obj.name)
-						}
-					});
-				});
-			</script>
 
 		{% endif %}
 

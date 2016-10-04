@@ -475,6 +475,9 @@ def subscribe(request):
 		'success': resp['success'],
 		'error': resp['error'],
 		'fz_list': fz_list,
+		'title': 'Подписка на рассылки о новых семинарах',
+		'menu_color_class': 'menu-white',
+		'menu_inner': 'menu-inner',
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
 
