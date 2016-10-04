@@ -1646,6 +1646,10 @@ nav {
   border: 1px solid #507299;
 }
 
+.subscribe_page .ajax_default_form input[type="email"]{
+  border: 1px solid #507299;
+}
+
 @media only screen and (max-width: 480px) {
 
 	.ajax_default_form input[type="text"]{
