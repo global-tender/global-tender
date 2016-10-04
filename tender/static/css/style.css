@@ -1158,6 +1158,9 @@ nav {
 	border-bottom: 1px solid #fff;
 	display: table;
 	margin: 0 auto;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .city-info {
@@ -1323,6 +1326,10 @@ nav {
 		margin: 0 auto;
 		display: table;
 		margin-bottom: 15px;
+	}
+
+	.sem-top-description {
+		font-size: 16px;
 	}
 }
 
