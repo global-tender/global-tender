@@ -20,7 +20,7 @@ class StaticViewSitemap(sitemaps.Sitemap):
 	protocol = 'https'
 
 	def items(self):
-		return ['index', 'seminars', 'feedback', 'contacts', 'service']
+		return ['index', 'seminars', 'feedback', 'contacts', 'service', 'subscribe']
 
 	def location(self, item):
 		if item == 'index':
