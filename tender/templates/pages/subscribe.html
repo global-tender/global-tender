@@ -11,15 +11,20 @@
 
 		{% if error %}
 
-			<br /><br /><br />
+			<div class="subscribe_page_line">
+			</div>
 
 			{% autoescape off %}
 			<h2>{{ error }}</h2>
 			{% endautoescape %}
 
-			<br /><br /><br />
+			<div class="subscribe_page_line">
+			</div>
 
 		{% elif success %}
+
+			<div class="subscribe_page_line">
+			</div>
 
 			{% autoescape off %}
 			{% for success_res in success %}
@@ -27,23 +32,12 @@
 			{% endfor %}
 			{% endautoescape %}
 
+			<div class="subscribe_page_line">
+			</div>
+
 		{% else %}
 
-			<script>
-				$(document).ready(function () {
-					var $region = $('[name="gt_region"]');
-
-					$region.kladr({
-						type: $.kladr.type.region,
-						select: function(obj){
-							$region.val(obj.typeShort + ". " + obj.name)
-						}
-					});
-				});
-			</script>
-
-
-			<h1>Подписаться на рассылки о новых семинарах.</h1>
+			<h1>Подписаться на рассылку о новых семинарах.</h1>
 
 			<form class="ajax_default_form" name="ajax_default_form" id="ajax_default_form" action="/subscribe/" method="POST">
 				<div class="subscr_type">
@@ -59,7 +53,6 @@
 			</form>
 
 			<div class="subscribe_page_line">
-				
 			</div>
 
 		{% endif %}

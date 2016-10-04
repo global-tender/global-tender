@@ -94,3 +94,16 @@ function ajaxFormTry(ajaxForm){
 	});
 	return false;
 }
+
+$(document).ready(function () {
+	var $region = $('[name="gt_region"]');
+
+	if ($region) {
+		$region.kladr({
+			type: $.kladr.type.region,
+			select: function(obj){
+				$region.val(obj.typeShort + ". " + obj.name)
+			}
+		});
+	}
+});
