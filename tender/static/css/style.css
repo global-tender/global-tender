@@ -559,9 +559,6 @@ nav {
 	.spec-title.service-title {
 		margin-bottom: 0px;
 	}
-	.spec-title.subscribe-title {
-		margin-bottom: 0px;
-	}
 	.spec-title h2 {
 		color: #222;
 		top: 115px;
@@ -1382,21 +1379,30 @@ nav {
 	font: 14px 'Open Sans', sans-serif;
 	font-weight: 400;
 	display: inline-block;
-	background: #1f8dd6;
-	border: 1px solid transparent;
+	background: none;
+	border: 1px solid rgb(255, 99, 0);
 	height: 40px;
 	line-height: 38px;
 	padding: 0px 25px;
-	color: #fff;
+	color: #000;
 	font-size: 18px;
 	border-radius: 5px;
 	outline: 0 none;
 }
 .seminar-apply .seminar-submit .seminar-submit-button:active {
-	background: #319EE6;
+	background: rgb(255, 99, 0);
+	border: 1px solid #fff;
+	color: #fff;
+
+	-webkit-transition: all ease 0.1s;
+	-moz-transition: all ease 0.1s;
+	-o-transition: all ease 0.1s;
+	transition: all ease 0.1s;
 }
 .seminar-apply .seminar-submit .seminar-submit-button:hover {
-	background: #319EE6;
+	background: rgb(255, 99, 0);
+	border: 1px solid #fff;
+	color: #fff;
 }
 
 
@@ -1696,6 +1702,10 @@ nav {
 .subscr_msg {
 	font-weight: bold;
 	min-width: 300px;
+}
+
+.subscr_msg.subscr_msg_error {
+	color: #FF0909;
 }
 
 .subscr_popup {
