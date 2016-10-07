@@ -616,7 +616,7 @@ def service(request):
 	template_args = {
 		'content': 'pages/service.html',
 		'request': request,
-		'title': 'Подготовим гибкое положение в соответствии с законными требованиями.',
+		'title': 'Подготовим гибкое положение по 223-ФЗ в соответствии с законными требованиями.',
 		'menu_color_class': 'menu-white',
 		'menu_inner': 'menu-inner',
 	}
