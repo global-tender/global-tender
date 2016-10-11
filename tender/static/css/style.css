@@ -1734,8 +1734,12 @@ nav {
 
 .subscr_type span {
 	display: block;
-	padding-bottom: 7px;
+	padding-bottom: 10px;
 	padding-top: 7px;
+}
+
+.subscr_type div {
+	padding-bottom: 5px;
 }
 
 .subscr_type input[type=checkbox] {
