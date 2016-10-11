@@ -110,5 +110,3 @@ class Subscribe(models.Model):
 		return 'ID: ' + str(self.id) + ' | Email: ' + self.email
 
 	email               = models.CharField(max_length=255, blank=False, null=False)
-	region              = models.ForeignKey(Regions, blank=True, null=True, default=None)
-	seminar_type        = models.ForeignKey(FZs, blank=True, null=True, default=None)
