@@ -354,7 +354,8 @@ def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_req
 			if not member_email_subscribed:
 				resp_cli = client.member.create(list_id, {
 					'email_address': email_addr,
-					'status': 'pending'
+					'status': 'subscribed',
+					'status_if_new': 'subscribed'
 				})
 				if resp_cli['id']:
 					resp['success'].append('Подписка на рассылку создана:<br /><span>%s, %s</span>' % (region.region_name, sem_type.name))
