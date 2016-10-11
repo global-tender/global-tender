@@ -33,7 +33,7 @@
 
 		<h1>Подписаться на рассылку о новых семинарах.</h1>
 
-		<form class="ajax_default_form" name="ajax_default_form" action="/subscribe/" method="POST">
+		<form class="ajax_default_form subscribe_form" name="ajax_default_form" action="/subscribe/" method="POST">
 			<div class="subscr_type">
 				<span>Семинары:</span>
 				{% for fz in fz_list %}
@@ -55,7 +55,7 @@
 					<span class="subscribe_region_id" data-id="{{region.id}}">{{region.region_name}}</span><br />
 				{% endfor %}
 			</div>
-			<input name="region_id" type="hidden" required="" title="Выберите субъект РФ">
+			<input name="region_id" type="hidden" title="Выберите субъект РФ">
 
 			<br /><input name="gt_email" type="email" placeholder="Ваш E-Mail" title="Ваш E-Mail" required="">
 			<br /><input type="submit" name="submit_subscribe" value="Подписаться" title="Будет направлено подтверждение подписки">

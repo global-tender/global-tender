@@ -104,6 +104,7 @@ function ajaxFormTry(ajaxForm){
 }
 
 
+
 $(document).ready(function() {
 
 	var subscribe_region_border_bottom = $('.subscribe_region').css('border-bottom');
@@ -141,6 +142,7 @@ $(document).ready(function() {
 		$('input[name="region_id"]').val( $(this).data('id') );
 
 		$('.subscribe_region_chose').text($(this).text());
+		$('.subscribe_region_chose').css('color', '#222');
 
 		$('.subscribe_region_list').animate(
 			{ height: '0' },
@@ -151,5 +153,12 @@ $(document).ready(function() {
 				$('.subscribe_region').css('border-radius', subscribe_region_border_radius);
 			});
 		$('.subscribe_region_button').css('background-position', '10px -117px');
+	});
+
+	$('.subscirbe_form').on('submit', function(){
+		if ( $('input[name="region_id"]').val() == '' ) {
+			$('.subscribe_region_chose').css('color', '#c03f31');
+			return false; /* не отправлять форму если регион не выбран */
+		}
 	});
 });
