@@ -1759,6 +1759,7 @@ nav {
 	padding: 12px 10px;
 	position: relative;
 	text-align: left;
+	display: inline-block;
 }
 
 .subscribe_region_button {
@@ -1768,7 +1769,7 @@ nav {
 	height: 26px;
 	position: absolute;
 	right: 0;
-	top: 0;
+	top: 8px;
 	width: 30px;
 }
 
@@ -1780,14 +1781,26 @@ nav {
 	display: none;
 
 	background-color: #fff;
-	border: 2px solid #cecece;
-	border-top: none 0px;
-	border-radius: 0px 0px 5px 5px;
+
+	border: 1px solid #507299;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+	border-top: none;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+
 	color: #666a6f;
 	margin-bottom: 5px;
-	max-height: 115px;
+	max-height: 150px;
 	overflow-x: hidden;
 	overflow-y: auto;
+	width: 320px;
+	margin: 0 auto;
+	position: relative;
+	top: -9px;
 }
 
 .subscribe_region_id {
