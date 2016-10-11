@@ -41,7 +41,7 @@ class Cities(models.Model):
 		return 'Город: ' + self.name
 
 	name                = models.CharField(max_length=1000)
-	region              = models.ForeignKey(Regions, default=1)
+	region              = models.ForeignKey(Regions, blank=True, null=True, default=None)
 	picture             = models.FileField(upload_to='city_pictures/')
 	posted              = models.DateTimeField('date published')
 
@@ -111,5 +111,5 @@ class Subscribe(models.Model):
 		return 'ID: ' + str(self.id) + ' | Email: ' + self.email
 
 	email               = models.CharField(max_length=255, blank=False, null=False)
-	region              = models.ForeignKey(Regions, default=1)
-	seminar_type        = models.ForeignKey(FZs, default=1)
+	region              = models.ForeignKey(Regions, blank=True, null=True, default=None)
+	seminar_type        = models.ForeignKey(FZs, blank=True, null=True, default=None)
