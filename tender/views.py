@@ -26,7 +26,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 
-from tender.models import FZs, Seminars, Seminar_Programs, Cities, Banners, Clients, Subscribe
+from tender.models import FZs, Seminars, Seminar_Programs, Cities, Clients, Subscribe, Regions
 
 
 def send_email_custom(subject, body, email_from, email_to):
@@ -272,7 +272,7 @@ def ajax_seminar(request, arg):
 					resp = {'error':False, 'success':[]}
 					over_seminar_request = True
 
-					resp = subscribe_logic([seminar.event_fz.short_code], seminar.event_city.region, send_copy_email_to, resp, over_seminar_request)
+					resp = subscribe_logic([seminar.event_fz.short_code], seminar.event_city.region.id, send_copy_email_to, resp, over_seminar_request)
 
 
 	template = loader.get_template('ajax/seminar.html')
@@ -286,25 +286,16 @@ def ajax_seminar(request, arg):
 
 
 
-@xframe_options_exempt
-@csrf_exempt
-def ajax_banner(request, arg):
-
-	banner = Banners.objects.filter(id=arg).first()
-	if banner:
-		click_count = int(banner.click_count) + 1
-		Banners.objects.filter(id=arg).update(click_count=click_count)
-		Banners.objects.filter(id=arg).update(last_click=timezone.now())
-
-	return StreamingHttpResponse("", content_type="application/vnd.api+json", status=200)
-
-
 # Function
-def subscribe_logic(seminar_types, region, email_addr, resp, over_seminar_request=False):
+def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_request=False):
 	try:
 		client = MailChimp('Globaltender', settings.MAILCHIMP_API_KEY)
 
-		for sem_type in seminar_types:
+		region = Regions.objects.filter(id=region_id).first()  # Объект региона
+
+		for seminar_short_code in seminar_types:
+
+			sem_type = FZs.objects.filter(short_code=seminar_short_code).first()  # Объект семинара
 
 			# Our DB:
 			subscr_user = Subscribe.objects.filter(email=email_addr,region=region,seminar_type=sem_type)
@@ -317,18 +308,17 @@ def subscribe_logic(seminar_types, region, email_addr, resp, over_seminar_reques
 				subscr_new.save()
 
 			# mailchimp DB:
-			seminar_type_name = FZs.objects.get(short_code=sem_type)
 
 			# Проверим существования Списка по указанной подписке, если нету, создадим.
 			list_id = False
 			lists = client.list.all(fields="lists.name,lists.id")
 			for lst in lists['lists']:
-				if lst['name'] == 'global-tender.ru: %s, %s' % (region, seminar_type_name.name):
+				if lst['name'] == 'global-tender.ru: %s, %s' % (region.region_name, sem_type.name):
 					list_id = lst['id']
 					break
 			if not list_id:
 				resp_cli = client.list.create({
-					'name': 'global-tender.ru: %s, %s' % (region, seminar_type_name.name),
+					'name': 'global-tender.ru: %s, %s' % (region.region_name, sem_type.name),
 					'contact': {
 						'company': 'Глобал-Тендер',
 						'address1': 'г. Ростов-на-Дону, Серафимовича 58а',
@@ -359,7 +349,7 @@ def subscribe_logic(seminar_types, region, email_addr, resp, over_seminar_reques
 			for member in members['members']:
 				if member['email_address'] == email_addr:
 					member_email_subscribed = email_addr
-					resp['success'].append('Вы уже подписаны на рассылку:<br /><span>%s, %s</span>' % (region, seminar_type_name.name))
+					resp['success'].append('Вы уже подписаны на рассылку:<br /><span>%s, %s</span>' % (region.region_name, sem_type.description))
 					break
 			if not member_email_subscribed:
 				resp_cli = client.member.create(list_id, {
@@ -367,11 +357,11 @@ def subscribe_logic(seminar_types, region, email_addr, resp, over_seminar_reques
 					'status': 'subscribed'
 				})
 				if resp_cli['id']:
-					resp['success'].append('Подписка на рассылку создана:<br /><span>%s, %s</span>' % (region, seminar_type_name.name))
+					resp['success'].append('Подписка на рассылку создана:<br /><span>%s, %s</span>' % (region.region_name, sem_type.description))
 
 					# Отправить уведомление администратору на почту
 					subject = "Новая подписка на рассылку на сайте global-tender.ru"
-					body = "Пользователь подписался на рассылку на сайте global-tender.ru.\n\nE-Mail: %s\nРегион: %s\nСеминар: %s\n" % (email_addr, region, seminar_type_name.name)
+					body = "Пользователь подписался на рассылку на сайте global-tender.ru.\n\nE-Mail: %s\nРегион: %s\nСеминар: %s\n" % (email_addr, region.region_name, sem_type.name)
 					if over_seminar_request:
 						subject += ", через заявку на семинар"
 						body += "\nПодписка автоматическая, через подачу заявки на участие в семинаре.\n"
@@ -389,52 +379,13 @@ def subscribe_logic(seminar_types, region, email_addr, resp, over_seminar_reques
 			err_lst += str(members)
 
 		subject = "Ошибка подписки на рассылку global-tender.ru"
-		body = "Возник инцидент при попытке подписать пользователя на рассылку.\nВведенные данные:\n\nE-Mail: %s\nРегион: %s\nСеминар: %s\n\nДетальная информация об исключении:\n\n%s\n\n%s" % (email_addr, region, seminar_type_name.name, str(sys.exc_info()), err_lst)
+		body = "Возник инцидент при попытке подписать пользователя на рассылку.\nВведенные данные:\n\nE-Mail: %s\nРегион: %s\nСеминар: %s\n\nДетальная информация об исключении:\n\n%s\n\n%s" % (email_addr, region.region_name, sem_type.name, str(sys.exc_info()), err_lst)
 		if over_seminar_request:
 			subject += ", через заявку на семинар"
 			body += "\n\nПодписка автоматическая, через подачу заявки на участие в семинаре.\n"
 		send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
 		print(body)
 	return resp
-
-@xframe_options_exempt
-@csrf_exempt
-def ajax_subscribe(request):
-	resp = {'error':False, 'success':[]}
-
-	fz_list = FZs.objects.filter(allow_subscribe=True)
-
-	if request.method == 'POST':
-
-		seminar_types = request.POST.getlist('seminar_type', None)
-		region = request.POST.get('gt_region', None)
-		email_addr = request.POST.get('gt_email', None)
-
-		if not seminar_types:
-			resp['error'] = "Не выбрано ни одного семинара!"
-		elif not region:
-			resp['error'] = "Не указан регион!"
-		elif not email_addr:
-			resp['error'] = "Не указан E-Mail адрес!"
-		else:
-			try:
-				validate_email(email_addr)
-			except ValidationError as e:
-				resp['error'] = "Неверный формат E-Mail адреса!"
-
-		if not resp['error']:
-
-			resp = subscribe_logic(seminar_types, region, email_addr, resp)
-
-
-	template = loader.get_template('ajax/subscribe.html')
-	template_args = {
-		'request': request,
-		'success': resp['success'],
-		'error': resp['error'],
-		'fz_list': fz_list,
-	}
-	return StreamingHttpResponse(template.render(template_args, request))
 
 
 
@@ -444,16 +395,17 @@ def subscribe(request):
 	resp = {'error':False, 'success':[]}
 
 	fz_list = FZs.objects.filter(allow_subscribe=True)
+	regions_list = Regions.objects.all()
 
 	if request.method == 'POST':
 
 		seminar_types = request.POST.getlist('seminar_type', None)
-		region = request.POST.get('gt_region', None)
+		region_id = request.POST.get('region_id', None)
 		email_addr = request.POST.get('gt_email', None)
 
 		if not seminar_types:
 			resp['error'] = "Не выбрано ни одного семинара!"
-		elif not region:
+		elif not region_id:
 			resp['error'] = "Не указан регион!"
 		elif not email_addr:
 			resp['error'] = "Не указан E-Mail адрес!"
@@ -465,7 +417,7 @@ def subscribe(request):
 
 		if not resp['error']:
 
-			resp = subscribe_logic(seminar_types, region, email_addr, resp)
+			resp = subscribe_logic(seminar_types, region_id, email_addr, resp)
 
 
 	template = loader.get_template('router.html')
@@ -475,6 +427,7 @@ def subscribe(request):
 		'success': resp['success'],
 		'error': resp['error'],
 		'fz_list': fz_list,
+		'regions_list': regions_list,
 		'title': 'Подписка на рассылку о новых семинарах',
 		'menu_color_class': 'menu-white',
 		'menu_inner': 'menu-inner',

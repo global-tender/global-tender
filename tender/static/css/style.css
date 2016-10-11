@@ -1632,7 +1632,7 @@ nav {
 	-moz-border-radius:5px;
 	-o-border-radius:5px;
 	-ms-border-radius:5px;
-	border: 1px solid rgb(255, 99, 0);
+	border: 1px solid #c03f31;
 	background:none;
 	transition: all .5s ease;
 	-webkit-transition: all .5s ease;
@@ -1641,7 +1641,7 @@ nav {
 	-moz-transition: all .5s ease;
 }
 .ajax_default_form input[type=submit]:hover {
-	background: rgb(255, 99, 0);
+	background: #c03f31;
 	border: 1px solid #fff;
 	color:#fff;
 	transition: all .5s ease;
@@ -1760,16 +1760,6 @@ nav {
 	text-decoration: underline;
 }
 
-
-/* BANNERS */
-
-@media screen and (max-width: 640px) {
-
-	.gos_banner_seminars {
-		display: none;
-	}
-
-}
 
 
 .google-adsense-block {

@@ -3,6 +3,18 @@ from django.contrib.auth.models import User
 
 
 
+class Regions(models.Model):
+
+	class Meta:
+		verbose_name_plural = 'Сайт: Регионы'
+
+	def __str__(self):
+		return str(self.region_name)
+
+	region_name         = models.CharField(max_length=255, blank=False, null=False)
+
+
+
 class FZs(models.Model):
 
 	class Meta:
@@ -29,7 +41,7 @@ class Cities(models.Model):
 		return 'Город: ' + self.name
 
 	name                = models.CharField(max_length=1000)
-	region              = models.CharField(max_length=255, default="", blank=True, null=True)
+	region              = models.ForeignKey(Regions, default=lambda: Regions.objects.get(id=1))
 	picture             = models.FileField(upload_to='city_pictures/')
 	posted              = models.DateTimeField('date published')
 
@@ -75,20 +87,6 @@ class Seminars(models.Model):
 
 
 
-class Banners(models.Model):
-
-	class Meta:
-		verbose_name_plural = "Тендер: Баннеры"
-
-	def __str__(self):
-		return str(self.id)
-
-	banner_name         = models.CharField(max_length=1000)
-	click_count         = models.IntegerField(default=0)
-	last_click          = models.DateTimeField('last click date/time', blank=True, null=True)
-
-
-
 class Clients(models.Model):
 
 	class Meta:
@@ -113,5 +111,5 @@ class Subscribe(models.Model):
 		return 'ID: ' + str(self.id) + ' | Email: ' + self.email
 
 	email               = models.CharField(max_length=255, blank=False, null=False)
-	region              = models.CharField(max_length=255, blank=False, null=False)
-	seminar_type        = models.CharField(max_length=255, blank=False, null=False)
+	region              = models.ForeignKey(Regions, default=lambda: Regions.objects.get(id=1))
+	seminar_type        = models.ForeignKey(FZs, default=lambda: FZs.objects.get(id=1))

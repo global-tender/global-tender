@@ -69,11 +69,6 @@ function showAskQuestion()
 	return false;
 }
 
-function showSubscribe()
-{
-	$.fancybox('/ajax/subscribe/',{type:'ajax',helpers:{overlay:{locked:true}}});
-	return false;
-}
 
 function ajaxFormTry(ajaxForm){
 
@@ -83,9 +78,6 @@ function ajaxFormTry(ajaxForm){
 	if ($('.seminar-submit-button').length)
 		$('.seminar-submit-button').text('Ожидайте...');
 
-	if ($('input[name="submit_subscribe"]').length)
-		$('input[name="submit_subscribe"]').val('Ожидайте...');
-
 	$.post(
 		ajaxForm.attr('action'),
 		ajaxForm.serialize(),
@@ -94,16 +86,3 @@ function ajaxFormTry(ajaxForm){
 	});
 	return false;
 }
-
-$(document).ready(function () {
-	var $region = $('[name="gt_region"]');
-
-	if ($region) {
-		$region.kladr({
-			type: $.kladr.type.region,
-			select: function(obj){
-				$region.val(obj.typeShort + ". " + obj.name)
-			}
-		});
-	}
-});
