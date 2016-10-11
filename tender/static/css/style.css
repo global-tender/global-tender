@@ -1761,6 +1761,7 @@ nav {
 	text-align: left;
 	display: inline-block;
 	z-index: 2;
+	left: -2px;
 }
 
 .subscribe_region_button {
