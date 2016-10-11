@@ -109,13 +109,13 @@ $(document).ready(function() {
 		if ($('.subscribe_region_list').css('height') == '0px') {
 
 			$('.subscribe_region_list').animate({ height: '150' }, 'slow');
-			$('.subscribe_region_button').css('display', 'none');
+			$('.subscribe_region_button').css('background-position', 'background-position: 10px -183px');
 
 		}
 		else {
 
 			$('.subscribe_region_list').animate({ height: '0' }, 'slow');
-			$('.subscribe_region_button').css('display', 'block');
+			$('.subscribe_region_button').css('background-position', '10px -117px');
 
 		}
 	});
