@@ -1749,10 +1749,7 @@ nav {
 	background-color: #fff;
 	border: 1px solid #507299;
 	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-o-border-radius: 5px;
-	-ms-border-radius: 5px;
+
 	color: #5b5b5b;
 	cursor: pointer;
 	overflow: hidden;
@@ -1785,10 +1782,7 @@ nav {
 
 	border: 1px solid #507299;
 	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-o-border-radius: 5px;
-	-ms-border-radius: 5px;
+
 	border-top: none;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
@@ -1801,6 +1795,8 @@ nav {
 	margin: 0 auto;
 	position: relative;
 	top: -9px;
+	cursor: pointer;
+	left: -2px;
 }
 
 .subscribe_region_id {

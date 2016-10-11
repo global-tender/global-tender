@@ -105,10 +105,17 @@ function ajaxFormTry(ajaxForm){
 
 
 $(document).ready(function() {
+
+	var subscribe_region_button_border = $('.subscribe_region').css('border');
+	var subscribe_region_button_border_radius = $('.subscribe_region').css('border-radius');
+
 	$('.subscribe_region').on('click', function(){
 		if ($('.subscribe_region_list').css('height') == '0px') {
 
-			$('.subscribe_region').css('z-index', '0');
+			$('.subscribe_region').css('border', '0px');
+			$('.subscribe_region').css('border-bottom-left-radius', '0px');
+			$('.subscribe_region').css('border-bottom-right-radius', '0px');
+
 			$('.subscribe_region_list').animate({ height: '150' }, 'slow');
 			$('.subscribe_region_button').css('background-position', '10px -183px');
 
@@ -117,7 +124,9 @@ $(document).ready(function() {
 
 			$('.subscribe_region_list').animate({ height: '0' }, 'slow');
 			$('.subscribe_region_button').css('background-position', '10px -117px');
-			$('.subscribe_region').css('z-index', '2');
+
+			$('.subscribe_region').css('border', subscribe_region_button_border);
+			$('.subscribe_region').css('border-radius', subscribe_region_button_border_radius);
 
 		}
 	});
