@@ -38,7 +38,9 @@
 				<span>Семинары:</span>
 				{% for fz in fz_list %}
 					{% autoescape off %}
-					<input type="checkbox" name="seminar_type" value="{{fz.short_code}}" checked="checked" title="{{fz.description}}">{{fz.name}}<br />
+					<div>
+						<input type="checkbox" name="seminar_type" value="{{fz.short_code}}" checked="checked" title="{{fz.description|strip_tags}}">{{fz.name}}<br />
+					</div>
 					{% endautoescape %}
 				{% endfor %}
 			</div>

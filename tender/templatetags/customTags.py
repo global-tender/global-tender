@@ -1,3 +1,4 @@
+import re
 import urllib.parse
 from django import template
 
@@ -28,3 +29,7 @@ register.filter('year_short', year_short)
 def unescape(value):
 	return urllib.parse.unquote(value)
 register.filter('unescape', unescape)
+
+def strip_tags(value):
+	return re.sub('<[^<]+?>', '', value).replace("''", "'")
+register.filter('strip_tags', strip_tags)

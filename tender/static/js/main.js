@@ -138,6 +138,6 @@ $(document).ready(function() {
 	});
 
 	$('.subscribe_region_id').on('click', function(){
-		$('input[name="region_id"]').val( $('.subscribe_region_id').data('id') );
+		$('input[name="region_id"]').val( $(this).data('id') );
 	});
 });
