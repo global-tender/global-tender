@@ -86,3 +86,15 @@ function ajaxFormTry(ajaxForm){
 	});
 	return false;
 }
+
+
+$(document).ready(function() {
+	$('.subscribe_region').on('click', function(){
+		if ($('.subscribe_region_list').css('display') == 'none') {
+			$('.subscribe_region_list').show('slow');
+		}
+		else {
+			$('.subscribe_region_list').hide('slow');
+		}
+	});
+});

@@ -1698,6 +1698,36 @@ nav {
 
 }
 
+/* Subscribe */
+
+.subscribe-title {
+	background: url(/static/images/lektors.jpg) no-repeat center center / cover;
+}
+
+.subscribe_page {
+	padding-left: 25px;
+	padding-right: 25px;
+	font-family: "Exo 2";
+}
+
+.subscribe_page h1 {
+	font-size: 20px;
+	text-align: center;
+	background-color: #507299;
+	color: #fff;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.subscribe_page .subscribe_page_line {
+	padding: 20px;
+	background: #507299;
+	color: #fff;
+	text-align: center;
+}
+
 .subscr_type {
 	text-align: left;
 }
@@ -1713,6 +1743,54 @@ nav {
 	margin-bottom: 10px;
 }
 
+
+.subscribe_region {
+	background-color: #fff;
+	border: 2px solid #cecece;
+	border-radius: 4px;
+	box-sizing: border-box;
+	color: #5b5b5b;
+	cursor: pointer;
+	overflow: hidden;
+	padding: 0 0 0 6px;
+	position: relative;
+}
+
+.subscribe_region_button {
+	background: #fff url("/static/images/sort_arrow.png") no-repeat 10px -117px;
+	cursor: pointer;
+	display: inline-block;
+	height: 26px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 30px;
+}
+
+.subscribe_region_chose {
+	color: #9c9d9e;
+}
+
+.subscribe_region_list {
+	display: none;
+
+	background-color: #fff;
+	border: 2px solid #cecece;
+	border-top: none 0px;
+	border-radius: 0px 0px 5px 5px;
+	color: #666a6f;
+	margin-bottom: 5px;
+	max-height: 115px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.subscribe_region_id {
+	border-bottom: 1px solid #eff0f1;
+	padding: 5px 0 5px 10px;
+}
+
+
 .subscr_msg span {
 	padding-left: 50px;
 	text-decoration: underline;
@@ -1724,8 +1802,10 @@ nav {
 }
 
 .subscr_msg.subscr_msg_error {
-	color: #FF0909;
+	color: #c03f31;
 }
+
+
 
 .subscr_popup {
 	background: rgba(0, 72, 169, 0.75);
@@ -1760,6 +1840,7 @@ nav {
 	text-decoration: underline;
 }
 
+/* End Subscribe */
 
 
 .google-adsense-block {
@@ -1979,32 +2060,3 @@ nav {
 	transition: all 0.2s ease; }
 	.pr_btn:hover, .us_btn:hover, .index_search .index_search__content .content__search .search__form .form__btn:hover {
 	background: #FF1744; }
-
-
-.subscribe-title {
-	background: url(/static/images/lektors.jpg) no-repeat center center / cover;
-}
-
-.subscribe_page {
-	padding-left: 25px;
-	padding-right: 25px;
-	font-family: "Exo 2";
-}
-
-.subscribe_page h1 {
-	font-size: 20px;
-	text-align: center;
-	background-color: #507299;
-	color: #fff;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-.subscribe_page .subscribe_page_line {
-	padding: 20px;
-	background: #507299;
-	color: #fff;
-	text-align: center;
-}

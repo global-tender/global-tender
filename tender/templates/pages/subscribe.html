@@ -33,17 +33,28 @@
 
 		<h1>Подписаться на рассылку о новых семинарах.</h1>
 
-		<form class="ajax_default_form" name="ajax_default_form" id="ajax_default_form" action="/subscribe/" method="POST">
+		<form class="ajax_default_form" name="ajax_default_form" action="/subscribe/" method="POST">
 			<div class="subscr_type">
 				<span>Семинары:</span>
 				{% for fz in fz_list %}
 					{% autoescape off %}
-					<input type="checkbox" name="seminar_type" value="{{fz.short_code}}" checked="checked" title="{{fz.description}}">{{fz.description}}<br />
+					<input type="checkbox" name="seminar_type" value="{{fz.short_code}}" checked="checked" title="{{fz.description}}">{{fz.name}}<br />
 					{% endautoescape %}
 				{% endfor %}
 			</div>
 			<br />
-			<input name="region_id" type="text" placeholder="Регион" title="Регион" required="">
+
+			<div class="subscribe_region">
+				<span class="subscribe_region_button"></span>
+				<span class="subscribe_region_chose">Выберите субъект РФ</span>
+			</div>
+			<div class="subscribe_region_list">
+				{% for region in regions_list %}
+					<span class="subscribe_region_id" data-id="{{region.id}}">{{region.region_name}}</span>
+				{% endfor %}
+			</div>
+			<input name="region_id" type="hidden" required="" title="Выберите субъект РФ">
+
 			<br /><input name="gt_email" type="email" placeholder="Ваш E-Mail" title="Ваш E-Mail" required="">
 			<br /><input type="submit" name="submit_subscribe" value="Подписаться" title="Будет направлено подтверждение подписки">
 		</form>

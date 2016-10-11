@@ -349,7 +349,7 @@ def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_req
 			for member in members['members']:
 				if member['email_address'] == email_addr:
 					member_email_subscribed = email_addr
-					resp['success'].append('Вы уже подписаны на рассылку:<br /><span>%s, %s</span>' % (region.region_name, sem_type.description))
+					resp['success'].append('Вы уже подписаны на рассылку:<br /><span>%s, %s</span>' % (region.region_name, sem_type.name))
 					break
 			if not member_email_subscribed:
 				resp_cli = client.member.create(list_id, {
@@ -357,7 +357,7 @@ def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_req
 					'status': 'subscribed'
 				})
 				if resp_cli['id']:
-					resp['success'].append('Подписка на рассылку создана:<br /><span>%s, %s</span>' % (region.region_name, sem_type.description))
+					resp['success'].append('Подписка на рассылку создана:<br /><span>%s, %s</span>' % (region.region_name, sem_type.name))
 
 					# Отправить уведомление администратору на почту
 					subject = "Новая подписка на рассылку на сайте global-tender.ru"
