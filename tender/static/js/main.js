@@ -106,8 +106,8 @@ function ajaxFormTry(ajaxForm){
 
 $(document).ready(function() {
 
-	var subscribe_region_button_border_bottom = $('.subscribe_region').css('border-bottom');
-	var subscribe_region_button_border_bottom_radius = $('.subscribe_region').css('border-radius');
+	var subscribe_region_border_bottom = $('.subscribe_region').css('border-bottom');
+	var subscribe_region_border_radius = $('.subscribe_region').css('border-radius');
 
 	$('.subscribe_region').on('click', function(){
 		if ($('.subscribe_region_list').css('height') == '0px') {
@@ -122,11 +122,14 @@ $(document).ready(function() {
 		}
 		else {
 
-			$('.subscribe_region_list').animate({ height: '0' }, 'slow');
+			$('.subscribe_region_list').animate(
+				{ height: '0' },
+				'slow',
+				function(){
+					$('.subscribe_region').css('border-bottom', subscribe_region_border_bottom);
+					$('.subscribe_region').css('border-radius', subscribe_region_border_radius);
+				});
 			$('.subscribe_region_button').css('background-position', '10px -117px');
-
-			$('.subscribe_region').css('border-bottom', subscribe_region_button_border_bottom);
-			$('.subscribe_region').css('border-radius', subscribe_region_button_border_bottom_radius);
 
 		}
 	});
