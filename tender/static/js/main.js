@@ -1,3 +1,19 @@
+/*	code: prevent scrolling inside of block */
+	$(document).ready(function (){
+		noScroll('subscribe_region_list');
+	});
+
+	function noScroll(className) {
+		$( '.'+className ).bind( 'mousewheel DOMMouseScroll', function ( e ) {
+			var e0 = e.originalEvent,
+				delta = e0.wheelDelta || -e0.detail;
+			this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+			e.preventDefault();
+		});
+	}
+/*	code: end */
+
+
 $(document).ready(function() {
 
 	$('.main-info-text').hover(function(){
@@ -91,10 +107,17 @@ function ajaxFormTry(ajaxForm){
 $(document).ready(function() {
 	$('.subscribe_region').on('click', function(){
 		if ($('.subscribe_region_list').css('display') == 'none') {
-			$('.subscribe_region_list').show('slow');
+
+			$('.subscribe_region_list').css('display', 'block');
+			$('.subscribe_region_list').animate({ height: '150' }, 'slow');
+
+			$('.subscribe_region_button').css('display', 'none');
 		}
 		else {
-			$('.subscribe_region_list').hide('slow');
+			$('.subscribe_region_list').animate({ height: '0' }, 'slow');
+			$('.subscribe_region_list').css('display', 'none');
+
+			$('.subscribe_region_button').css('display', 'block');
 		}
 	});
 });

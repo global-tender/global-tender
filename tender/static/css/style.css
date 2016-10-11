@@ -1794,7 +1794,7 @@ nav {
 
 	color: #666a6f;
 	margin-bottom: 5px;
-	max-height: 150px;
+	height: 0px;
 	overflow-x: hidden;
 	overflow-y: auto;
 	width: 320px;
