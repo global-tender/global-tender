@@ -1745,15 +1745,20 @@ nav {
 
 
 .subscribe_region {
+	width: 300px;
 	background-color: #fff;
-	border: 2px solid #cecece;
-	border-radius: 4px;
-	box-sizing: border-box;
+	border: 1px solid #507299;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
 	color: #5b5b5b;
 	cursor: pointer;
 	overflow: hidden;
-	padding: 0 0 0 6px;
+	padding: 12px 10px;
 	position: relative;
+	text-align: left;
 }
 
 .subscribe_region_button {
