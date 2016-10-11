@@ -106,18 +106,17 @@ function ajaxFormTry(ajaxForm){
 
 $(document).ready(function() {
 	$('.subscribe_region').on('click', function(){
-		if ($('.subscribe_region_list').css('display') == 'none') {
+		if ($('.subscribe_region_list').css('height') == '0px') {
 
-			$('.subscribe_region_list').css('display', 'block');
 			$('.subscribe_region_list').animate({ height: '150' }, 'slow');
-
 			$('.subscribe_region_button').css('display', 'none');
+
 		}
 		else {
-			$('.subscribe_region_list').animate({ height: '0' }, 'slow');
-			$('.subscribe_region_list').css('display', 'none');
 
+			$('.subscribe_region_list').animate({ height: '0' }, 'slow');
 			$('.subscribe_region_button').css('display', 'block');
+
 		}
 	});
 });
