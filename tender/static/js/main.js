@@ -116,6 +116,8 @@ $(document).ready(function() {
 			$('.subscribe_region').css('border-bottom-left-radius', '0px');
 			$('.subscribe_region').css('border-bottom-right-radius', '0px');
 
+			$('.subscribe_region_list').css('visibility', 'visible');
+
 			$('.subscribe_region_list').animate({ height: '150' }, 'slow');
 			$('.subscribe_region_button').css('background-position', '10px -183px');
 
@@ -126,11 +128,16 @@ $(document).ready(function() {
 				{ height: '0' },
 				'slow',
 				function(){
+					$('.subscribe_region_list').css('visibility', 'hidden');
 					$('.subscribe_region').css('border-bottom', subscribe_region_border_bottom);
 					$('.subscribe_region').css('border-radius', subscribe_region_border_radius);
 				});
 			$('.subscribe_region_button').css('background-position', '10px -117px');
 
 		}
+	});
+
+	$('.subscribe_region_id').on('click', function(){
+		$('input[name="region_id"]').val( $('.subscribe_region_id').data('id') );
 	});
 });
