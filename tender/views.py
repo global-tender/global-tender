@@ -311,7 +311,7 @@ def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_req
 
 			# Проверим существования Списка по указанной подписке, если нету, создадим.
 			list_id = False
-			lists = client.list.all(fields="lists.name,lists.id")
+			lists = client.list.all(count=100000, fields="lists.name,lists.id")
 			for lst in lists['lists']:
 				if lst['name'] == 'global-tender.ru: %s, %s' % (region.region_name, sem_type.name):
 					list_id = lst['id']
@@ -342,7 +342,6 @@ def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_req
 					'visibility': 'pub'
 				})
 				list_id = resp_cli['id']
-				print(resp_cli)
 
 			# Получили ID Списка. Проверим существует ли подписчик в этом списке. Если нет, добавим
 			member_email_subscribed = False
