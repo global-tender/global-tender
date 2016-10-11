@@ -155,7 +155,7 @@ $(document).ready(function() {
 		$('.subscribe_region_button').css('background-position', '10px -117px');
 	});
 
-	$('.subscirbe_form').on('submit', function(){
+	$('.subscribe_form').submit(function(){
 		if ( $('input[name="region_id"]').val() == '' ) {
 			$('.subscribe_region_chose').css('color', '#c03f31');
 			return false; /* не отправлять форму если регион не выбран */
