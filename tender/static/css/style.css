@@ -1932,8 +1932,8 @@ nav {
 
 .hr-contacts {
 	display: block;
-	border-top: 2px dashed #999;
-	border-bottom: 2px dashed #999;
+	border-top: 2px solid #c03f31;
+	border-bottom: 2px solid #c03f31;
 }
 
 .event_urgent_info {
