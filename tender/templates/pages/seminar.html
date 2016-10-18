@@ -41,6 +41,14 @@
 			{% endautoescape %}
 		{% endif %}
 
+		{% if seminar.event_place %}
+			{% autoescape off %}
+			<div class="row">
+				<span class="sem-name">Место проведения:</span><span class="sem-val"><b>{{seminar.event_place}}</b></span>
+			</div>
+			{% endautoescape %}
+		{% endif %}
+
 		{% if status == 'active' %}
 			<div class="row">
 				<a class="apply-seminar-btn" href="#" onclick="return showSeminarForm({{seminar.id}});">Подать заявку</a></span>
