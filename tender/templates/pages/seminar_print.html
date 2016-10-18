@@ -31,7 +31,15 @@
 		{% if seminar.event_price_person %}
 			{% autoescape off %}
 			<div class="row">
-			<span class="sem-name">Стоимость:</span><span class="sem-val"><b>{{seminar.event_price_person}}</b></span>
+				<span class="sem-name">Стоимость:</span><span class="sem-val"><b>{{seminar.event_price_person}}</b></span>
+			</div>
+			{% endautoescape %}
+		{% endif %}
+
+		{% if seminar.event_place %}
+			{% autoescape off %}
+			<div class="row">
+				<span class="sem-name">Место проведения:</span><span class="sem-val"><b>{{seminar.event_place}}</b></span>
 			</div>
 			{% endautoescape %}
 		{% endif %}
