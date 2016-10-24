@@ -309,7 +309,7 @@
 			Cookies.set('apply__'+this.name, $(this).val(), { expires: 1, path: '/' });
 		});
 
-		$('input[name="org_name"]').focus();
+		setTimeout( function() { $('input[name="org_name"]').focus(); }, 500 );
 	});
 
 

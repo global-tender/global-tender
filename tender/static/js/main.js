@@ -161,4 +161,7 @@ $(document).ready(function() {
 			return false; /* не отправлять форму если регион не выбран */
 		}
 	});
+
+
+	$('.subscribe_region').click();
 });
