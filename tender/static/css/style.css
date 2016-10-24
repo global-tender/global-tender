@@ -1850,21 +1850,21 @@ nav {
 }
 
 
-.subscribe_type {
+.subscribe_seminar_type {
 	text-align: left;
 }
 
-.subscribe_type span {
+.subscribe_seminar_type span {
 	display: block;
 	padding-bottom: 10px;
 	padding-top: 7px;
 }
 
-.subscribe_type div {
+.subscribe_seminar_type div {
 	padding-bottom: 5px;
 }
 
-.subscribe_type input[type=checkbox] {
+.subscribe_seminar_type input[type=checkbox] {
 	margin-right: 10px;
 	margin-bottom: 10px;
 }
