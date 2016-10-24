@@ -34,18 +34,6 @@ $(document).ready(function() {
 		$('.sem-phone').mask('+0 (000) 000-00-00');
 	}
 
-
-	$('.subscr_popup_hide').on('click', function(){
-		$('.subscr_popup').animate({'left':'-620'},400)
-	});
-
-	$('.main-info-text').hover(function(){
-		if ($('.subscr_popup').css('left') == '-620px')
-		{
-			$('.subscr_popup').animate({'left':'0'},400)
-		}
-	});
-
 });
 
 var down_link = (function(){
@@ -107,6 +95,38 @@ function ajaxFormTry(ajaxForm){
 
 $(document).ready(function() {
 
+
+
+	$('.subscribe_popup_hide').on('click', function(){
+		$('.subscribe_popup').animate({'left':'-620'},400)
+	});
+
+	$('.main-info-text').hover(function(){
+		if ($('.subscribe_popup').css('left') == '-620px')
+		{
+			$('.subscribe_popup').animate({'left':'0'},400)
+		}
+	});
+
+
+
+	$(".subscribe_popup_main_href").on("click", function() {
+		if ($('.subscribe_popup_form_content').text() != "" ) {
+			$('.subscribe_popup_form_content').empty();
+		}
+		else {
+			$.ajax({
+				url : "/subscribe/",
+				dataType: "html",
+				success : function (data) {
+					$('.subscribe_popup_form_content').html(data);
+				}
+			});
+		}
+	});
+
+
+
 	var subscribe_region_border_bottom = $('.subscribe_region').css('border-bottom');
 	var subscribe_region_border_radius = $('.subscribe_region').css('border-radius');
 
@@ -162,6 +182,4 @@ $(document).ready(function() {
 		}
 	});
 
-
-	$('.subscribe_region').click();
 });

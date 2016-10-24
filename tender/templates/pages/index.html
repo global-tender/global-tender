@@ -2,10 +2,16 @@
 <section class="wrapper-main">
 	<div class="wrapper-main-overlay"></div>
 
-	<div class="subscr_popup">
-		<a href="/subscribe/" class="subscr_popup_href" title="Подписаться на рассылку о семинарах">Подпишись</a>
-		<a href="#" class="subscr_popup_hide" title="Скрыть"><i class="fa fa-angle-double-left"></i></a>
+	{% if request.user.is_authenticated %}
+
+	<div class="subscribe_popup">
+		<a href="#" class="subscribe_popup_main_href" title="Подписаться на рассылку о семинарах и получить скидку!">Подпишись получи СКИДКУ 10%!</a>
+		<a href="#" class="subscribe_popup_hide" title="Скрыть"><i class="fa fa-angle-double-left"></i></a>
+
+		<div class="subscribe_popup_form_content"></div>
 	</div>
+
+	{% endif %}
 
 	<div class="main-info">
 		<h1 class="main-info-text title">

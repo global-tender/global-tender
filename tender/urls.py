@@ -32,7 +32,7 @@ urlpatterns = [
 
 	url(r'^ajax/question/?$', views.ajax_question, name='ajax_question'),
 
-	url(r'^subscribe/?$', views.subscribe, name='subscribe'),
+	url(r'^subscribe/?$', views.ajax_subscribe, name='subscribe'),
 
 	url(r'^signin/?$', views.signin, name='signin'),
 	url(r'^signup/?$', views.signup, name='signup'),

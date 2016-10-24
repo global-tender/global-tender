@@ -391,7 +391,7 @@ def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_req
 
 @xframe_options_exempt
 @csrf_exempt
-def subscribe(request):
+def ajax_subscribe(request):
 	resp = {'error':False, 'success':[]}
 
 	fz_list = FZs.objects.filter(allow_subscribe=True)
@@ -420,17 +420,13 @@ def subscribe(request):
 			resp = subscribe_logic(seminar_types, region_id, email_addr, resp)
 
 
-	template = loader.get_template('router.html')
+	template = loader.get_template('ajax/subscribe.html')
 	template_args = {
-		'content': 'pages/subscribe.html',
 		'request': request,
 		'success': resp['success'],
 		'error': resp['error'],
 		'fz_list': fz_list,
 		'regions_list': regions_list,
-		'title': 'Подписка на рассылку о новых семинарах',
-		'menu_color_class': 'menu-white',
-		'menu_inner': 'menu-inner',
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
 

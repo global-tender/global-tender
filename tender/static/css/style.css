@@ -1831,9 +1831,9 @@ nav {
 	color: #c03f31;
 }
 
+/* Subscirbe popup */
 
-
-.subscr_popup {
+.subscribe_popup {
 	background: rgba(0, 72, 169, 0.75);
 	border: 2px solid #fff;
 	position: absolute;
@@ -1848,7 +1848,7 @@ nav {
 	border-bottom-left-radius: 0px;
 }
 
-.subscr_popup a {
+.subscribe_popup a {
 	color: #fff;
 	font-family: "Exo 2";
 	font-weight: bold;
@@ -1857,12 +1857,12 @@ nav {
 	text-shadow: 1px 1px #000;
 }
 
-.subscr_popup .subscr_popup_href {
+.subscribe_popup .subscribe_popup_main_href {
 	padding-right: 10px;
 	text-decoration: none;
 }
 
-.subscr_popup .subscr_popup_href:hover {
+.subscribe_popup .subscribe_popup_main_href:hover {
 	text-decoration: underline;
 }
 
