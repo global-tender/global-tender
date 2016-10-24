@@ -1,11 +1,11 @@
 {% load customTags %}
 
-<form class="ajax_default_form subscribe_form" name="ajax_default_form" action="#" method="POST">
-	<div class="subscr_type">
+<form class="subscribe_form" name="subscirbe" action="#" method="POST">
+	<div class="subscirbe_seminar_type">
 		<span>Семинары:</span>
 		{% for fz in fz_list %}
 			{% autoescape off %}
-			<div>
+			<div class="subscribe_seminar_type_checkblock">
 				<input type="checkbox" name="seminar_type" value="{{fz.short_code}}" checked="checked" title="{{fz.description|strip_tags}}">{{fz.name}}<br />
 			</div>
 			{% endautoescape %}
@@ -25,5 +25,5 @@
 	<input name="region_id" type="hidden" title="Выберите субъект РФ">
 
 	<br /><input name="gt_email" type="email" placeholder="Ваш E-Mail" title="Ваш E-Mail" required="">
-	<br /><input type="submit" name="submit_subscribe" value="Подписаться" title="Будет направлено подтверждение подписки">
+	<br /><input type="submit" name="submit_subscribe" value="ПОЛУЧИТЬ СКИДКУ!" title="Будет направлено подтверждение подписки и Промо код">
 </form>
