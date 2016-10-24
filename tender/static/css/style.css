@@ -1850,8 +1850,21 @@ nav {
 }
 
 
+.subscribe_form {
+	padding: 0px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.subscribe_form input[type=submit] {
+	color: #fff;
+	font-weight: bold;
+}
+
+
 .subscribe_seminar_type {
 	text-align: left;
+	color: #fff;
 }
 
 .subscribe_seminar_type span {
@@ -1860,8 +1873,9 @@ nav {
 	padding-top: 7px;
 }
 
-.subscribe_seminar_type div {
-	padding-bottom: 5px;
+.subscribe_seminar_type_checkblock {
+	display: table-cell;
+	width: 105px;
 }
 
 .subscribe_seminar_type input[type=checkbox] {

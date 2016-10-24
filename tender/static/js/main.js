@@ -97,10 +97,10 @@ $(document).ready(function() {
 
 
 
+	/* Animate subscribe block on page: left <> right */
 	$('.subscribe_popup_hide').on('click', function(){
 		$('.subscribe_popup').animate({'left':'-620'},400)
 	});
-
 	$('.main-info-text').hover(function(){
 		if ($('.subscribe_popup').css('left') == '-620px')
 		{
@@ -110,6 +110,7 @@ $(document).ready(function() {
 
 
 
+	/* Show subscribe form over ajax request on click */
 	$(".subscribe_popup_main_href").on("click", function() {
 		if ($('.subscribe_popup_form_content').text() != "" ) {
 			$('.subscribe_popup_form_content').empty();
@@ -125,61 +126,5 @@ $(document).ready(function() {
 		}
 	});
 
-
-
-	var subscribe_region_border_bottom = $('.subscribe_region').css('border-bottom');
-	var subscribe_region_border_radius = $('.subscribe_region').css('border-radius');
-
-	$('.subscribe_region').on('click', function(){
-		if ($('.subscribe_region_list').css('height') == '0px') {
-
-			$('.subscribe_region').css('border-bottom', '0px');
-			$('.subscribe_region').css('border-bottom-left-radius', '0px');
-			$('.subscribe_region').css('border-bottom-right-radius', '0px');
-
-			$('.subscribe_region_list').css('visibility', 'visible');
-
-			$('.subscribe_region_list').animate({ height: '150' }, 'slow');
-			$('.subscribe_region_button').css('background-position', '10px -183px');
-
-		}
-		else {
-
-			$('.subscribe_region_list').animate(
-				{ height: '0' },
-				'slow',
-				function(){
-					$('.subscribe_region_list').css('visibility', 'hidden');
-					$('.subscribe_region').css('border-bottom', subscribe_region_border_bottom);
-					$('.subscribe_region').css('border-radius', subscribe_region_border_radius);
-				});
-			$('.subscribe_region_button').css('background-position', '10px -117px');
-
-		}
-	});
-
-	$('.subscribe_region_id').on('click', function(){
-		$('input[name="region_id"]').val( $(this).data('id') );
-
-		$('.subscribe_region_chose').text($(this).text());
-		$('.subscribe_region_chose').css('color', '#222');
-
-		$('.subscribe_region_list').animate(
-			{ height: '0' },
-			'slow',
-			function(){
-				$('.subscribe_region_list').css('visibility', 'hidden');
-				$('.subscribe_region').css('border-bottom', subscribe_region_border_bottom);
-				$('.subscribe_region').css('border-radius', subscribe_region_border_radius);
-			});
-		$('.subscribe_region_button').css('background-position', '10px -117px');
-	});
-
-	$('.subscribe_form').submit(function(){
-		if ( $('input[name="region_id"]').val() == '' ) {
-			$('.subscribe_region_chose').css('color', '#c03f31');
-			return false; /* не отправлять форму если регион не выбран */
-		}
-	});
 
 });

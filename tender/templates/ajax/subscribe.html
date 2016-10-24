@@ -2,7 +2,7 @@
 
 <form class="ajax_default_form subscribe_form" name="subscirbe" action="#" method="POST">
 	<div class="subscribe_seminar_type">
-		<span>Семинары:</span>
+		<span>Семинар:</span>
 		{% for fz in fz_list %}
 			{% autoescape off %}
 			<div class="subscribe_seminar_type_checkblock">
@@ -27,3 +27,63 @@
 	<br /><input name="gt_email" type="email" placeholder="Ваш E-Mail" title="Ваш E-Mail" required="">
 	<br /><input type="submit" name="submit_subscribe" value="ПОЛУЧИТЬ СКИДКУ!" title="Будет направлено подтверждение подписки и Промо код">
 </form>
+
+<script>
+	$(document).ready(function(){
+
+		var subscribe_region_border_bottom = $('.subscribe_region').css('border-bottom');
+		var subscribe_region_border_radius = $('.subscribe_region').css('border-radius');
+
+		$('.subscribe_region').on('click', function(){
+			if ($('.subscribe_region_list').css('height') == '0px') {
+
+				$('.subscribe_region').css('border-bottom', '0px');
+				$('.subscribe_region').css('border-bottom-left-radius', '0px');
+				$('.subscribe_region').css('border-bottom-right-radius', '0px');
+
+				$('.subscribe_region_list').css('visibility', 'visible');
+
+				$('.subscribe_region_list').animate({ height: '150' }, 'slow');
+				$('.subscribe_region_button').css('background-position', '10px -183px');
+
+			}
+			else {
+
+				$('.subscribe_region_list').animate(
+					{ height: '0' },
+					'slow',
+					function(){
+						$('.subscribe_region_list').css('visibility', 'hidden');
+						$('.subscribe_region').css('border-bottom', subscribe_region_border_bottom);
+						$('.subscribe_region').css('border-radius', subscribe_region_border_radius);
+					});
+				$('.subscribe_region_button').css('background-position', '10px -117px');
+
+			}
+		});
+
+		$('.subscribe_region_id').on('click', function(){
+			$('input[name="region_id"]').val( $(this).data('id') );
+
+			$('.subscribe_region_chose').text($(this).text());
+			$('.subscribe_region_chose').css('color', '#222');
+
+			$('.subscribe_region_list').animate(
+				{ height: '0' },
+				'slow',
+				function(){
+					$('.subscribe_region_list').css('visibility', 'hidden');
+					$('.subscribe_region').css('border-bottom', subscribe_region_border_bottom);
+					$('.subscribe_region').css('border-radius', subscribe_region_border_radius);
+				});
+			$('.subscribe_region_button').css('background-position', '10px -117px');
+		});
+
+		$('.subscribe_form').submit(function(){
+			if ( $('input[name="region_id"]').val() == '' ) {
+				$('.subscribe_region_chose').css('color', '#c03f31');
+				return false; /* не отправлять форму если регион не выбран */
+			}
+		});
+	});
+</script>
