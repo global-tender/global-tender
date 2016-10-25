@@ -118,7 +118,7 @@ $(document).ready(function() {
 	/* Show subscribe form over ajax request on click */
 	$(".subscribe_popup_main_href").on("click", function() {
 		if ($('.subscribe_popup_form_content').text() != "" ) {
-			$('.subscribe_popup_form_content').hide('slow');
+			$('.subscribe_popup_form_content').hide('fast');
 			$('.subscribe_popup_form_content').empty();
 		}
 		else {

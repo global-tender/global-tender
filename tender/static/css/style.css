@@ -1874,7 +1874,7 @@ nav {
 .subscribe_seminar_type span {
 	display: block;
 	padding-bottom: 10px;
-	padding-top: 7px;
+	font-weight: bold;
 }
 
 .subscribe_seminar_type_checkblock {
