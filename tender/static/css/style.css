@@ -1863,6 +1863,7 @@ nav {
 .subscribe_form input[type=submit] {
 	color: #fff;
 	font-weight: bold;
+	text-shadow: 1px 1px #000;
 }
 
 
@@ -1875,11 +1876,14 @@ nav {
 	display: block;
 	padding-bottom: 10px;
 	font-weight: bold;
+	text-shadow: 1px 1px #000;
 }
 
 .subscribe_seminar_type_checkblock {
 	display: table-cell;
 	width: 105px;
+	font-weight: bold;
+	text-shadow: 1px 1px #000;
 }
 
 .subscribe_seminar_type input[type=checkbox] {
