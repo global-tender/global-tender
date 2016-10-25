@@ -98,13 +98,16 @@ $(document).ready(function() {
 
 
 	/* Animate subscribe block on page: left <> right */
-	$('.subscribe_popup_hide').on('click', function(){
-		$('.subscribe_popup').animate({'left':'-620'},400)
-	});
-	$('.main-info-text').hover(function(){
-		if ($('.subscribe_popup').css('left') == '-620px')
-		{
+	$('.subscribe_popup_hide_show').on('click', function(){
+		if ($('.subscribe_popup').css('left') == '0px') {
+			$('.subscribe_popup').animate({'left':'-320'},400);
+			$('.subscribe_popup_hide_show').children().addClass('fa-angle-double-right');
+			$('.subscribe_popup_hide_show').attr({title: 'Показать'});
+		}
+		else {
 			$('.subscribe_popup').animate({'left':'0'},400)
+			$('.subscribe_popup_hide_show').children().removeClass('fa-angle-double-right');
+			$('.subscribe_popup_hide_show').attr({title: 'Скрыть'});
 		}
 	});
 
