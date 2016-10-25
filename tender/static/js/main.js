@@ -92,7 +92,7 @@ function ajaxFormTry(ajaxForm){
 }
 
 
-
+/* Subscribe logic */
 $(document).ready(function() {
 
 
@@ -101,12 +101,14 @@ $(document).ready(function() {
 	$('.subscribe_popup_hide_show').on('click', function(){
 		if ($('.subscribe_popup').css('left') == '0px') {
 			$('.subscribe_popup').animate({'left':'-320'},400);
+			$('.subscribe_popup_hide_show').children().removeClass('fa-angle-double-left');
 			$('.subscribe_popup_hide_show').children().addClass('fa-angle-double-right');
 			$('.subscribe_popup_hide_show').attr({title: 'Показать'});
 		}
 		else {
-			$('.subscribe_popup').animate({'left':'0'},400)
+			$('.subscribe_popup').animate({'left':'0'},400);
 			$('.subscribe_popup_hide_show').children().removeClass('fa-angle-double-right');
+			$('.subscribe_popup_hide_show').children().addClass('fa-angle-double-left');
 			$('.subscribe_popup_hide_show').attr({title: 'Скрыть'});
 		}
 	});

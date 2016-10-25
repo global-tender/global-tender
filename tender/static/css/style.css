@@ -1849,6 +1849,10 @@ nav {
 	text-decoration: underline;
 }
 
+.subscribe_popup_form_content {
+	display: none;
+}
+
 
 .subscribe_form {
 	padding: 0px;
