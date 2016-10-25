@@ -118,6 +118,7 @@ $(document).ready(function() {
 	/* Show subscribe form over ajax request on click */
 	$(".subscribe_popup_main_href").on("click", function() {
 		if ($('.subscribe_popup_form_content').text() != "" ) {
+			$('.subscribe_popup_form_content').hide('slow');
 			$('.subscribe_popup_form_content').empty();
 		}
 		else {
@@ -126,6 +127,7 @@ $(document).ready(function() {
 				dataType: "html",
 				success : function (data) {
 					$('.subscribe_popup_form_content').html(data);
+					$('.subscribe_popup_form_content').show('slow');
 				}
 			});
 		}
