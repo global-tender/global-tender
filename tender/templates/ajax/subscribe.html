@@ -4,7 +4,7 @@
 
 	{% autoescape off %}
 	<hr />
-	<p class="subscribe_msg">E-Mail: <a href="mailto:{{email_addr}}">{{email_addr}}</a></p>
+	<p class="subscribe_msg">E-Mail: <a href="mailto:{{email_addr}}" onclick="return false;">{{email_addr}}</a></p>
 
 	{% for success_res in success %}
 		<p class="subscribe_msg">{{success_res}}</p>
@@ -14,9 +14,11 @@
 		<p class="subscribe_msg subscribe_msg_error">{{ error_res }}</p>
 	{% endfor %}
 
-	<hr />
-	<p class="subscribe_msg">Промокод: 0000</p>
-	<hr />
+	{% if success %}
+		<hr />
+		<p class="subscribe_msg">Промокод: <span class="subscribe_promo_code" id="subscribe_promo_code" onclick="selectText('subscribe_promo_code')">0000</span></p>
+		<hr />
+	{% endif %}
 	{% endautoescape %}
 
 {% else %}
