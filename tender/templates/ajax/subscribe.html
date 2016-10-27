@@ -101,12 +101,13 @@
 					return false; /* не отправлять форму если регион не выбран */
 				}
 
-
+				$('input[name="submit_subscribe"]').val('Ожидайте...');
 				$.post(
 					$(this).attr('action'),
 					$(this).serialize(),
 					function(data){
-						console.log(data);
+						$('.subscribe_popup_form_content').html(data);
+						return false;
 				});
 
 			});
