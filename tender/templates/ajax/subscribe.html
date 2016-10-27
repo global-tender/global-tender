@@ -1,53 +1,88 @@
 {% load customTags %}
 
-<form class="ajax_default_form subscribe_form" name="subscirbe" action="#" method="POST">
-	<div class="subscribe_seminar_type">
-		<span>Семинар:</span>
-		{% for fz in fz_list %}
-			{% autoescape off %}
-			<div class="subscribe_seminar_type_checkblock">
-				<input type="checkbox" name="seminar_type" value="{{fz.short_code}}" checked="checked" title="{{fz.description|strip_tags}}">{{fz.name}}<br />
-			</div>
-			{% endautoescape %}
-		{% endfor %}
-	</div>
-	<br />
+{% if error %}
 
-	<div class="subscribe_region">
-		<span class="subscribe_region_button"></span>
-		<span class="subscribe_region_chose">Выберите субъект РФ</span>
-	</div>
-	<div class="subscribe_region_list">
-		{% for region in regions_list %}
-			<span class="subscribe_region_id" data-id="{{region.id}}">{{region.region_name}}</span><br />
-		{% endfor %}
-	</div>
-	<input name="region_id" type="hidden" title="Выберите субъект РФ">
+	{% autoescape off %}
+	<p class="subscr_msg subscr_msg_error">{{ error }}</p>
+	{% endautoescape %}
 
-	<br /><input name="gt_email" type="email" placeholder="Ваш E-Mail" title="Ваш E-Mail" required="">
-	<br /><input type="submit" name="submit_subscribe" value="ПОЛУЧИТЬ СКИДКУ!" title="Будет направлено подтверждение подписки и Промо код">
-</form>
+{% elif success %}
 
-<script>
-	$(document).ready(function(){
+	{% autoescape off %}
+	{% for success_res in success %}
+		<p class="subscr_msg">{{success_res}}</p>
+	{% endfor %}
+	{% endautoescape %}
 
-		var subscribe_region_border_bottom = $('.subscribe_region').css('border-bottom');
-		var subscribe_region_border_radius = $('.subscribe_region').css('border-radius');
+{% else %}
 
-		$('.subscribe_region').on('click', function(){
-			if ($('.subscribe_region_list').css('height') == '0px') {
+	<form class="ajax_default_form subscribe_form" name="subscirbe" action="/subscribe/" method="POST">
+		<div class="subscribe_seminar_type">
+			<span>Семинар:</span>
+			{% for fz in fz_list %}
+				{% autoescape off %}
+				<div class="subscribe_seminar_type_checkblock">
+					<input type="checkbox" name="seminar_type" value="{{fz.short_code}}" checked="checked" title="{{fz.description|strip_tags}}">{{fz.name}}<br />
+				</div>
+				{% endautoescape %}
+			{% endfor %}
+		</div>
+		<br />
 
-				$('.subscribe_region').css('border-bottom', '0px');
-				$('.subscribe_region').css('border-bottom-left-radius', '0px');
-				$('.subscribe_region').css('border-bottom-right-radius', '0px');
+		<div class="subscribe_region">
+			<span class="subscribe_region_button"></span>
+			<span class="subscribe_region_chose">Выберите субъект РФ</span>
+		</div>
+		<div class="subscribe_region_list">
+			{% for region in regions_list %}
+				<span class="subscribe_region_id" data-id="{{region.id}}">{{region.region_name}}</span><br />
+			{% endfor %}
+		</div>
+		<input name="region_id" type="hidden" title="Выберите субъект РФ">
 
-				$('.subscribe_region_list').css('visibility', 'visible');
+		<br /><input name="gt_email" type="email" placeholder="Ваш E-Mail" title="Ваш E-Mail" required="">
+		<br /><input type="submit" name="submit_subscribe" value="ПОЛУЧИТЬ СКИДКУ!" title="Будет направлено подтверждение подписки и Промо код">
+	</form>
 
-				$('.subscribe_region_list').animate({ height: '150' }, 'slow');
-				$('.subscribe_region_button').css('background-position', '10px -183px');
+	<script>
+		$(document).ready(function(){
 
-			}
-			else {
+			var subscribe_region_border_bottom = $('.subscribe_region').css('border-bottom');
+			var subscribe_region_border_radius = $('.subscribe_region').css('border-radius');
+
+			$('.subscribe_region').on('click', function(){
+				if ($('.subscribe_region_list').css('height') == '0px') {
+
+					$('.subscribe_region').css('border-bottom', '0px');
+					$('.subscribe_region').css('border-bottom-left-radius', '0px');
+					$('.subscribe_region').css('border-bottom-right-radius', '0px');
+
+					$('.subscribe_region_list').css('visibility', 'visible');
+
+					$('.subscribe_region_list').animate({ height: '150' }, 'slow');
+					$('.subscribe_region_button').css('background-position', '10px -183px');
+
+				}
+				else {
+
+					$('.subscribe_region_list').animate(
+						{ height: '0' },
+						'slow',
+						function(){
+							$('.subscribe_region_list').css('visibility', 'hidden');
+							$('.subscribe_region').css('border-bottom', subscribe_region_border_bottom);
+							$('.subscribe_region').css('border-radius', subscribe_region_border_radius);
+						});
+					$('.subscribe_region_button').css('background-position', '10px -117px');
+
+				}
+			});
+
+			$('.subscribe_region_id').on('click', function(){
+				$('input[name="region_id"]').val( $(this).data('id') );
+
+				$('.subscribe_region_chose').text($(this).text());
+				$('.subscribe_region_chose').css('color', '#222');
 
 				$('.subscribe_region_list').animate(
 					{ height: '0' },
@@ -58,32 +93,23 @@
 						$('.subscribe_region').css('border-radius', subscribe_region_border_radius);
 					});
 				$('.subscribe_region_button').css('background-position', '10px -117px');
+			});
 
-			}
-		});
+			$('.subscribe_form').submit(function(){
+				if ( $('input[name="region_id"]').val() == '' ) {
+					$('.subscribe_region_chose').css('color', '#c03f31');
+					return false; /* не отправлять форму если регион не выбран */
+				}
 
-		$('.subscribe_region_id').on('click', function(){
-			$('input[name="region_id"]').val( $(this).data('id') );
 
-			$('.subscribe_region_chose').text($(this).text());
-			$('.subscribe_region_chose').css('color', '#222');
-
-			$('.subscribe_region_list').animate(
-				{ height: '0' },
-				'slow',
-				function(){
-					$('.subscribe_region_list').css('visibility', 'hidden');
-					$('.subscribe_region').css('border-bottom', subscribe_region_border_bottom);
-					$('.subscribe_region').css('border-radius', subscribe_region_border_radius);
+				$.post(
+					$(this).attr('action'),
+					$(this).serialize(),
+					function(data){
+						console.log(data);
 				});
-			$('.subscribe_region_button').css('background-position', '10px -117px');
-		});
 
-		$('.subscribe_form').submit(function(){
-			if ( $('input[name="region_id"]').val() == '' ) {
-				$('.subscribe_region_chose').css('color', '#c03f31');
-				return false; /* не отправлять форму если регион не выбран */
-			}
+			});
 		});
-	});
-</script>
+	</script>
+{% endif %}
