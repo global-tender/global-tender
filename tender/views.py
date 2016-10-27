@@ -269,7 +269,7 @@ def ajax_seminar(request, arg):
 			# Подписать контактный email адрес на рассылку по текущему региону
 			if seminar.event_fz.allow_subscribe:  # разрешена подписка на этот семинар
 				if seminar.event_city.region:  # поле "Регион" у города заполнено
-					resp = {'error':False, 'success':[]}
+					resp = {'error':[], 'success':[]}
 					over_seminar_request = True
 
 					resp = subscribe_logic([seminar.event_fz.short_code], seminar.event_city.region.id, send_copy_email_to, resp, over_seminar_request)
@@ -349,7 +349,7 @@ def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_req
 			for member in members['members']:
 				if member['email_address'] == email_addr:
 					member_email_subscribed = email_addr
-					resp['success'].append('Вы уже подписаны на рассылку:<br /><span>%s, %s</span>' % (region.region_name, sem_type.name))
+					resp['error'].append('Вы уже подписаны на рассылку:<br /><span>%s, %s</span>' % (region.region_name, sem_type.name))
 					break
 			if not member_email_subscribed:
 				resp_cli = client.member.create(list_id, {
@@ -370,7 +370,7 @@ def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_req
 					# Не удалось подписать пользователя по неизвестной причине
 					raise Exception('Failed to create member for list: %s.' % list_id)
 	except Exception as e:
-		resp['error'] = "Ошибка, не удалось подписать на рассылку.<br />Мы уже уведомлены о возникшем инциденте!"
+		resp['error'].append("Ошибка, не удалось подписать на рассылку.<br />Мы уже уведомлены о возникшем инциденте!")
 		err_lst = ''
 
 		if 'lists' in vars():
@@ -392,10 +392,11 @@ def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_req
 @xframe_options_exempt
 @csrf_exempt
 def ajax_subscribe(request):
-	resp = {'error':False, 'success':[]}
+	resp = {'error':[], 'success':[]}
 
 	fz_list = FZs.objects.filter(allow_subscribe=True)
 	regions_list = Regions.objects.all()
+	email_addr = None
 
 	if request.method == 'POST':
 
@@ -404,16 +405,16 @@ def ajax_subscribe(request):
 		email_addr = request.POST.get('gt_email', None)
 
 		if not seminar_types:
-			resp['error'] = "Не выбрано ни одного семинара!"
+			resp['error'].append("Не выбрано ни одного семинара!")
 		elif not region_id:
-			resp['error'] = "Не указан регион!"
+			resp['error'].append("Не указан регион!")
 		elif not email_addr:
-			resp['error'] = "Не указан E-Mail адрес!"
+			resp['error'].append("Не указан E-Mail адрес!")
 		else:
 			try:
 				validate_email(email_addr)
 			except ValidationError as e:
-				resp['error'] = "Неверный формат E-Mail адреса!"
+				resp['error'].append("Неверный формат E-Mail адреса!")
 
 		if not resp['error']:
 
@@ -427,6 +428,7 @@ def ajax_subscribe(request):
 		'error': resp['error'],
 		'fz_list': fz_list,
 		'regions_list': regions_list,
+		'email_addr': email_addr,
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
 

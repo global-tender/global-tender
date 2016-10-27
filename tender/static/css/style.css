@@ -1698,121 +1698,7 @@ nav {
 
 }
 
-/* Subscribe */
 
-.subscribe-title {
-	background: url(/static/images/lektors.jpg) no-repeat center center / cover;
-}
-
-.subscribe_page {
-	padding-left: 25px;
-	padding-right: 25px;
-	font-family: "Exo 2";
-}
-
-.subscribe_page h1 {
-	font-size: 20px;
-	text-align: center;
-	background-color: #507299;
-	color: #fff;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-.subscribe_page .subscribe_page_line {
-	padding: 20px;
-	background: #507299;
-	color: #fff;
-	text-align: center;
-}
-
-
-
-
-.subscribe_region {
-	width: 300px;
-	background-color: #fff;
-	border: 1px solid #507299;
-	border-radius: 5px;
-
-	color: #5b5b5b;
-	cursor: pointer;
-	overflow: hidden;
-	padding: 12px 10px;
-	position: relative;
-	text-align: left;
-	display: inline-block;
-	z-index: 2;
-	left: -2px;
-}
-
-.subscribe_region_button {
-	background: #fff url("/static/images/sort_arrow.png") no-repeat 10px -117px;
-	cursor: pointer;
-	display: inline-block;
-	height: 26px;
-	position: absolute;
-	right: 0;
-	top: 8px;
-	width: 30px;
-}
-
-.subscribe_region_chose {
-	color: #9c9d9e;
-}
-
-.subscribe_region_list {
-
-	background-color: #fff;
-
-	border: 1px solid #507299;
-	border-radius: 5px;
-
-	border-top: none;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
-
-	color: #666a6f;
-	height: 0px;
-	visibility: hidden;
-	overflow-x: hidden;
-	overflow-y: auto;
-	width: 320px;
-	margin: 0 auto;
-	position: relative;
-	top: -6px;
-	cursor: pointer;
-	left: -2px;
-}
-
-.subscribe_region_id {
-	border-bottom: 1px solid #eff0f1;
-	padding: 5px 0 5px 10px;
-	display: inline-block;
-	text-align: left;
-	width: 100%;
-}
-
-.subscribe_region_id:hover {
-	background-color: #eff0f1;
-}
-
-
-.subscr_msg span {
-	padding-left: 50px;
-	text-decoration: underline;
-}
-
-.subscr_msg {
-	font-weight: bold;
-	min-width: 300px;
-}
-
-.subscr_msg.subscr_msg_error {
-	color: #c03f31;
-}
 
 /* Subscirbe popup */
 
@@ -1891,7 +1777,95 @@ nav {
 	margin-bottom: 10px;
 }
 
+
+.subscribe_msg span {
+	padding-left: 50px;
+	text-decoration: underline;
+}
+
+.subscribe_msg {
+	font-weight: bold;
+	min-width: 300px;
+	color: #fff;
+	text-shadow: 1px 1px #000;
+}
+
+.subscribe_msg.subscribe_msg_error {
+	color: #FF1212;
+	font-family: "Exo 2";
+}
+
+
+.subscribe_region {
+	width: 300px;
+	background-color: #fff;
+	border: 1px solid #507299;
+	border-radius: 5px;
+
+	color: #5b5b5b;
+	cursor: pointer;
+	overflow: hidden;
+	padding: 12px 10px;
+	position: relative;
+	text-align: left;
+	display: inline-block;
+	z-index: 2;
+	left: -2px;
+}
+
+.subscribe_region_button {
+	background: #fff url("/static/images/sort_arrow.png") no-repeat 10px -117px;
+	cursor: pointer;
+	display: inline-block;
+	height: 26px;
+	position: absolute;
+	right: 0;
+	top: 8px;
+	width: 30px;
+}
+
+.subscribe_region_chose {
+	color: #9c9d9e;
+}
+
+.subscribe_region_list {
+
+	background-color: #fff;
+
+	border: 1px solid #507299;
+	border-radius: 5px;
+
+	border-top: none;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+
+	color: #666a6f;
+	height: 0px;
+	visibility: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
+	width: 320px;
+	margin: 0 auto;
+	position: relative;
+	top: -6px;
+	cursor: pointer;
+	left: -2px;
+}
+
+.subscribe_region_id {
+	border-bottom: 1px solid #eff0f1;
+	padding: 5px 0 5px 10px;
+	display: inline-block;
+	text-align: left;
+	width: 100%;
+}
+
+.subscribe_region_id:hover {
+	background-color: #eff0f1;
+}
+
 /* End Subscribe */
+
 
 
 .google-adsense-block {

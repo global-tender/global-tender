@@ -1,17 +1,22 @@
 {% load customTags %}
 
-{% if error %}
+{% if success or error %}
 
 	{% autoescape off %}
-	<p class="subscr_msg subscr_msg_error">{{ error }}</p>
-	{% endautoescape %}
+	<hr />
+	<p class="subscribe_msg">E-Mail: <a href="mailto:{{email_addr}}">{{email_addr}}</a></p>
 
-{% elif success %}
-
-	{% autoescape off %}
 	{% for success_res in success %}
-		<p class="subscr_msg">{{success_res}}</p>
+		<p class="subscribe_msg">{{success_res}}</p>
 	{% endfor %}
+
+	{% for error_res in error %}
+		<p class="subscribe_msg subscribe_msg_error">{{ error_res }}</p>
+	{% endfor %}
+
+	<hr />
+	<p class="subscribe_msg">Промокод: 0000</p>
+	<hr />
 	{% endautoescape %}
 
 {% else %}
