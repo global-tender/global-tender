@@ -106,9 +106,10 @@
 					$(this).attr('action'),
 					$(this).serialize(),
 					function(data){
+						$('.subscribe_popup_form_content').empty();
 						$('.subscribe_popup_form_content').html(data);
-						return false;
 				});
+				return false;
 
 			});
 		});
