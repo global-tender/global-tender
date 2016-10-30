@@ -1717,6 +1717,10 @@ nav {
 	border-bottom-left-radius: 0px;
 }
 
+.subscribe_popup.subscribe_popup_hidden {
+	left: -320px;
+}
+
 .subscribe_popup a {
 	color: #fff;
 	font-family: "Exo 2";

@@ -430,7 +430,10 @@ def ajax_subscribe(request):
 		'regions_list': regions_list,
 		'email_addr': email_addr,
 	}
-	return StreamingHttpResponse(template.render(template_args, request))
+	response = StreamingHttpResponse(template.render(template_args, request))
+	if resp['success']:
+		response.set_cookie('subscribed', 'yes', max_age=10000000)  # almost 4 months
+	return response
 
 
 

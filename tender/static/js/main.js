@@ -117,7 +117,7 @@ $(document).ready(function() {
 			$('.subscribe_popup').animate({'left':'-320'},400);
 			$('.subscribe_popup_hide_show').children().removeClass('fa-angle-double-left');
 			$('.subscribe_popup_hide_show').children().addClass('fa-angle-double-right');
-			$('.subscribe_popup_hide_show').attr({title: 'Показать'});
+			$('.subscribe_popup_hide_show').attr({title: 'Показать форму подписки'});
 		}
 		else {
 			$('.subscribe_popup').animate({'left':'0'},400);
