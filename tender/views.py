@@ -271,7 +271,7 @@ def ajax_seminar(request, arg):
 			# Подписать контактный email адрес на рассылку по текущему региону
 			if seminar.event_fz.allow_subscribe:  # разрешена подписка на этот семинар
 				if seminar.event_city.region:  # поле "Регион" у города заполнено
-					resp = {'error':[], 'success':[]}
+					resp = {'error':[], 'success':[], 'promocode':False}
 					over_seminar_request = True
 
 					resp = subscribe_logic([seminar.event_fz.short_code], seminar.event_city.region.id, send_copy_email_to, resp, over_seminar_request)

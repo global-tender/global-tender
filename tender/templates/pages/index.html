@@ -2,8 +2,6 @@
 <section class="wrapper-main">
 	<div class="wrapper-main-overlay"></div>
 
-	{% if request.user.is_authenticated %}
-
 	<div class="subscribe_popup {% if request.COOKIES.subscribed == 'yes' %}{{'subscribe_popup_hidden'}}{% endif %}">
 		<a href="#" class="subscribe_popup_main_href" title="Подписаться на рассылку о семинарах и получить скидку!">Подпишись получи СКИДКУ 10%!</a>
 		{% if request.COOKIES.subscribed == 'yes' %}
@@ -13,8 +11,6 @@
 		{% endif %}
 		<div class="subscribe_popup_form_content"></div>
 	</div>
-
-	{% endif %}
 
 	<div class="main-info">
 		<h1 class="main-info-text title">

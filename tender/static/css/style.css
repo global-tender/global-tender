@@ -201,6 +201,10 @@ h3.title {
 	.menu.menu-inner-seminars {
 		background: none;
 	}
+
+	.subscribe_popup {
+		display: none;
+	}
 }
 @media screen and (max-width: 460px) {
 	.menu .menu-ul {
