@@ -117,7 +117,7 @@ class Subscribe(models.Model):
 
 
 
-class Promocode(models.model):
+class Promocode(models.Model):
 
 	class Meta:
 		verbose_name_plural = 'Сайт: Промокоды'
