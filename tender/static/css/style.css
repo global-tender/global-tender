@@ -1878,6 +1878,16 @@ nav {
 	background-color: #eff0f1;
 }
 
+.subscribe_promocode_info {
+	color: #fff;
+	font-family: "Exo 2";
+	font-size: 12px;
+	text-shadow: 1px 1px #000;
+	max-width: 324px;
+	padding-top: 0px;
+	margin-top: 0px;
+}
+
 /* End Subscribe */
 
 

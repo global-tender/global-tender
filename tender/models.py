@@ -114,3 +114,16 @@ class Subscribe(models.Model):
 	email               = models.CharField(max_length=255, blank=False, null=False)
 	region              = models.ForeignKey(Regions, blank=True, null=True, default=None)
 	seminar_type        = models.ForeignKey(FZs, blank=True, null=True, default=None)
+
+
+
+class Promocode(models.model):
+
+	class Meta:
+		verbose_name_plural = 'Сайт: Промокоды'
+
+	def __str__(self):
+		return self.email + ' ' + self.promocode
+
+	email               = models.CharField(max_length=255, blank=False, null=False)
+	promocode           = models.CharField(max_length=255, blank=False, null=False)

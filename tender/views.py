@@ -26,7 +26,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 
-from tender.models import FZs, Seminars, Seminar_Programs, Cities, Clients, Subscribe, Regions
+from tender.models import FZs, Seminars, Seminar_Programs, Cities, Clients, Subscribe, Regions, Promocode
 
 
 def send_email_custom(subject, body, email_from, email_to):
@@ -255,7 +255,9 @@ def ajax_seminar(request, arg):
 		subject = 'Заявка на семинар: %s %s.%s.%s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
 		body_foot = ''
 		if send_copy_email == "yes":
-			body_foot = "\nКопия заявки отправлена на E-Mail адрес контактного лица.\n"
+			body_foot += "\nКопия заявки отправлена на E-Mail адрес контактного лица.\n"
+		if request.POST.get('promocode', ''):
+			body_foot += "\nУказан Промокод на скидку: %s\n" % request.POST.get('promocode', '')
 
 		send_email_custom(subject, body_head + body + body_foot, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
 
@@ -289,6 +291,20 @@ def ajax_seminar(request, arg):
 # Function
 def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_request=False):
 	try:
+		# Promo code logic
+		if not over_seminar_request:
+			user_has_promocode = Promocode.objects.filter(email=email_addr).first()
+			if not user_has_promocode:
+				new_promo = Promocode(
+					email=email_addr,
+					promocode=random.randrange(1000, 9999),
+				)
+				new_promo.save()
+
+				resp['promocode'] = new_promo.promocode
+		###
+
+
 		client = MailChimp('Globaltender', settings.MAILCHIMP_API_KEY)
 
 		region = Regions.objects.filter(id=region_id).first()  # Объект региона
@@ -362,6 +378,10 @@ def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_req
 					# Отправить уведомление администратору на почту
 					subject = "Новая подписка на рассылку на сайте global-tender.ru"
 					body = "Пользователь подписался на рассылку на сайте global-tender.ru.\n\nE-Mail: %s\nРегион: %s\nСеминар: %s\n" % (email_addr, region.region_name, sem_type.name)
+
+					if resp['promocode']:
+						body += "Промокод: %s\n" % resp['promocode']
+
 					if over_seminar_request:
 						subject += ", через заявку на семинар"
 						body += "\nПодписка автоматическая, через подачу заявки на участие в семинаре.\n"
@@ -369,6 +389,15 @@ def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_req
 				else:
 					# Не удалось подписать пользователя по неизвестной причине
 					raise Exception('Failed to create member for list: %s.' % list_id)
+
+		if resp['promocode']:
+			if resp['success']:
+				subject = "Ваш Промокод на скидку на участие в семинаре - global-tender.ru"
+				body = "Спасибо что подписались на рассылку о семинарах.\n\nВаш Промокод: %s\n\nСкидка разовая.\nИспользуйте полученный Промокод при подаче заявки на участие в семинаре через сайт или по телефону.\n" % resp['promocode']
+				send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, [email_addr])
+			else:
+				Promocode.objects.filter(email=email_addr).delete()
+
 	except Exception as e:
 		resp['error'].append("Ошибка, не удалось подписать на рассылку.<br />Мы уже уведомлены о возникшем инциденте!")
 		err_lst = ''
@@ -392,7 +421,7 @@ def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_req
 @xframe_options_exempt
 @csrf_exempt
 def ajax_subscribe(request):
-	resp = {'error':[], 'success':[]}
+	resp = {'error':[], 'success':[], 'promocode':False}
 
 	fz_list = FZs.objects.filter(allow_subscribe=True)
 	regions_list = Regions.objects.all()
@@ -429,6 +458,7 @@ def ajax_subscribe(request):
 		'fz_list': fz_list,
 		'regions_list': regions_list,
 		'email_addr': email_addr,
+		'promocode': resp['promocode'],
 	}
 	response = StreamingHttpResponse(template.render(template_args, request))
 	if resp['success']:

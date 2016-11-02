@@ -210,6 +210,10 @@
 					<div class="seminar-apply-block-row">
 						<span><input type="checkbox" name="send_copy_email" value="yes" {% if request.COOKIES.apply__send_copy_email == 'no' %} {% else %}checked{% endif %}> Отправить копию заявки на E-Mail контактного лица</span>
 					</div>
+					<div class="seminar-apply-block-row">
+						<span>Промокод (если есть):</span>
+						<span><input type="text" name="promocode" value="{{request.COOKIES.apply__promocode|unescape}}"></span>
+					</div>
 				</div>
 			</div>
 
