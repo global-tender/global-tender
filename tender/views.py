@@ -397,6 +397,7 @@ def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_req
 				send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, [email_addr])
 			else:
 				Promocode.objects.filter(email=email_addr).delete()
+				resp['promocode'] = False
 
 	except Exception as e:
 		resp['error'].append("Ошибка, не удалось подписать на рассылку.<br />Мы уже уведомлены о возникшем инциденте!")
