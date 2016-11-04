@@ -1903,8 +1903,23 @@ nav {
 }
 
 .promocode-question-mark {
+	position: relative;
+	top: 3px;
+}
+
+.promocode-question-mark:hover {
+	cursor: pointer;
+}
+
+.promocode-question-info {
+	padding: 5px;
 	position: absolute;
-	margin-top: -2px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin-top: -28px;
+	margin-left: -102px;
+	background: #fff;
+	display: none;
 }
 
 /* End Subscribe */
