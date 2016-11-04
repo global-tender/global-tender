@@ -1707,7 +1707,7 @@ nav {
 /* Subscirbe popup */
 
 .subscribe_popup {
-	background: rgba(0, 72, 169, 0.75);
+	background: rgba(0, 72, 169, 0.9);
 	border: 2px solid #fff;
 	position: absolute;
 	top: 100px;
@@ -1726,8 +1726,13 @@ nav {
 }
 
 .subscribe_popup_top_of_page {
-	top: 0px !important;
-	background: rgba(0, 72, 169, 1.0) !important;
+	top: -1px !important;
+}
+
+@media screen and (max-width: 1000px) {
+	.subscribe_popup_seminars {
+		display: none !important;
+	}
 }
 
 .subscribe_popup a {
@@ -1895,6 +1900,11 @@ nav {
 	max-width: 324px;
 	padding-top: 0px;
 	margin-top: 0px;
+}
+
+.promocode-question-mark {
+	position: absolute;
+	margin-top: -2px;
 }
 
 /* End Subscribe */

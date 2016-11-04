@@ -212,7 +212,10 @@
 					</div>
 					<div class="seminar-apply-block-row">
 						<span>Промокод (если есть):</span>
-						<span><input type="text" name="promocode" value="{{request.COOKIES.apply__promocode|unescape}}"></span>
+						<span>
+							<input type="text" name="promocode" value="{{request.COOKIES.apply__promocode|unescape}}">
+							<i class="fa fa-question fa-2x promocode-question-mark" aria-hidden="true"></i>
+						</span>
 					</div>
 				</div>
 			</div>

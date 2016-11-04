@@ -77,7 +77,7 @@ def seminars(request):
 		'title': page_title,
 		'menu_color_class': 'menu-black',
 		'menu_inner': 'menu-inner-seminars',
-		'subscribe_class': 'subscribe_popup_top_of_page',
+		'subscribe_class': 'subscribe_popup_top_of_page subscribe_popup_seminars',
 
 		'seminars': seminars_all_sorted,
 	}
