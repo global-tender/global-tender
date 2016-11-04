@@ -1725,6 +1725,11 @@ nav {
 	left: -320px;
 }
 
+.subscribe_popup_top_of_page {
+	top: 0px !important;
+	background: rgba(0, 72, 169, 1.0) !important;
+}
+
 .subscribe_popup a {
 	color: #fff;
 	font-family: "Exo 2";

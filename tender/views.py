@@ -77,6 +77,7 @@ def seminars(request):
 		'title': page_title,
 		'menu_color_class': 'menu-black',
 		'menu_inner': 'menu-inner-seminars',
+		'subscribe_class': 'subscribe_popup_top_of_page',
 
 		'seminars': seminars_all_sorted,
 	}
@@ -555,6 +556,7 @@ def feedback(request):
 		'title': 'Отзывы',
 		'menu_color_class': 'menu-white',
 		'menu_inner': 'menu-inner',
+		'subscribe_class': 'subscribe_popup_top_of_page',
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
 
@@ -568,6 +570,7 @@ def contacts(request):
 		'title': 'Контактная информация',
 		'menu_color_class': 'menu-white',
 		'menu_inner': 'menu-inner',
+		'subscribe_class': 'subscribe_popup_top_of_page',
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
 
@@ -604,6 +607,7 @@ def service(request):
 		'title': 'Подготовим гибкое положение по 223-ФЗ в соответствии с законными требованиями.',
 		'menu_color_class': 'menu-white',
 		'menu_inner': 'menu-inner',
+		'subscribe_class': 'subscribe_popup_top_of_page',
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
 
