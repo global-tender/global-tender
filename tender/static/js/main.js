@@ -147,12 +147,4 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.promocode-question-mark').hover(function() {
-		$('.promocode-question-info').show('slow');
-	},
-	function() {
-		$('.promocode-question-info').hide('slow');
-	});
-
-
 });
