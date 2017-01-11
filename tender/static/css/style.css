@@ -1326,7 +1326,7 @@ nav {
 	}
 }
 
-@media screen and (max-width: 799px) {
+@media screen and (max-width: 810px) {
 	.apply-seminar-btn-simple {
 		display: none;
 	}
@@ -1335,7 +1335,7 @@ nav {
 	}
 }
 
-@media screen and (min-width: 799px) {
+@media screen and (min-width: 810px) {
 	.apply-seminar-btn-simple {
 		display: inline;
 	}
