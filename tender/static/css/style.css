@@ -1331,6 +1331,12 @@ nav {
 	}
 }
 
+@media screen and (max-width: 739px) {
+	.apply-seminar-btn-simple {
+		display: none;
+	}
+}
+
 
 @media screen and (max-width: 640px) {
 	.sem-city {
