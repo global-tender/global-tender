@@ -1320,6 +1320,17 @@ nav {
 	background: rgba(55, 185, 2, 0.7);
 }
 
+@media screen and (max-width: 800px) {
+	.apply-seminar-btn-simple {
+		margin-left: 0px;
+		font-size: 27px;
+	}
+
+	.apply-seminar-btn-simple a {
+		padding: 0 10px;
+	}
+}
+
 
 @media screen and (max-width: 640px) {
 	.sem-city {
