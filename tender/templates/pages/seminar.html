@@ -14,7 +14,7 @@
 				<span class="city-date">{{seminar.event_date.day}} {{seminar.event_date.month|rus_month}} {{seminar.event_date.year}}</span>
 				<h1>{{seminar.event_city.name}}</h1>
 
-				{% if status == 'active' %}
+				{% if status == 'active' and not request.user_agent.is_mobile %}
 					<div class="apply-seminar-btn-simple"><a href="#" onclick="return showSeminarForm({{seminar.id}});">Подать заявку</a></div>
 				{% endif %}
 			</div>
@@ -58,10 +58,10 @@
 			{% endautoescape %}
 		{% endif %}
 
-		{% if status == 'active' %}
-			<!--<div class="row">
+		{% if status == 'active' and request.user_agent.is_mobile %}
+			<div class="row">
 				<a class="apply-seminar-btn" href="#" onclick="return showSeminarForm({{seminar.id}});">Подать заявку</a>
-			</div>-->
+			</div>
 		{% endif %}
 
 		<div class="row">
