@@ -1295,8 +1295,10 @@ nav {
 .apply-seminar-btn-simple a {
 	font-family: "Exo 2";
 
-	-webkit-transition: all .1s ease;
-	transition: all .1s ease;
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	transition: all ease 0.5s;
 
 	text-decoration: none;
 	color: #fff;
@@ -1311,8 +1313,10 @@ nav {
 }
 
 .apply-seminar-btn-simple a:hover {
-	-webkit-transition: all .1s ease;
-	transition: all .1s ease;
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	transition: all ease 0.5s;
 	background: rgba(55, 185, 2, 0.7);
 }
 
