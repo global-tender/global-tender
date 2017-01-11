@@ -1322,7 +1322,7 @@ nav {
 
 @media screen and (max-width: 800px) {
 	.apply-seminar-btn-simple {
-		margin-left: 0px;
+		margin-left: 5px;
 		font-size: 27px;
 	}
 
