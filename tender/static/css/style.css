@@ -1307,10 +1307,13 @@ nav {
 	display: inline-block;
 	border-top-right-radius: 11px;
 	border-top-left-radius: 11px;
+	text-shadow: 1px 1px #000;
 }
 
 .apply-seminar-btn-simple a:hover {
-	background: rgba(192, 63, 49, 0.7);
+	-webkit-transition: all .1s ease;
+	transition: all .1s ease;
+	background: rgba(55, 185, 2, 0.7);
 }
 
 
