@@ -1320,22 +1320,30 @@ nav {
 	background: rgba(55, 185, 2, 0.7);
 }
 
-@media screen and (max-width: 800px) {
-	.apply-seminar-btn-simple {
-		margin-left: 5px;
-		font-size: 27px;
-	}
-
-	.apply-seminar-btn-simple a {
-		padding: 0 10px;
-	}
-}
-
-@media screen and (max-width: 739px) {
+@media screen and (max-width: 799px) {
 	.apply-seminar-btn-simple {
 		display: none;
 	}
 }
+
+@media screen and (max-width: 799px) {
+	.apply-seminar-btn-simple {
+		display: none;
+	}
+	.apply-seminar-btn-mobile-only {
+		display: block;
+	}
+}
+
+@media screen and (min-width: 799px) {
+	.apply-seminar-btn-simple {
+		display: inline;
+	}
+	.apply-seminar-btn-mobile-only {
+		display: none;
+	}
+}
+
 
 
 @media screen and (max-width: 640px) {
