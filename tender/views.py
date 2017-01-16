@@ -6,6 +6,8 @@ import datetime
 import binascii
 import json
 import random
+import urllib.request
+import urllib.parse
 from collections import OrderedDict
 
 from mailchimp3 import MailChimp
@@ -34,6 +36,14 @@ def send_email_custom(subject, body, email_from, email_to):
 	connection.open()
 	email = mail.EmailMessage(subject, body, email_from, email_to, headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
 	email.send()
+
+	if email_to == settings.ADMIN_EMAIL_TO:
+		args = {}
+		args['api_id'] = settings.SMS_API_ID
+		args['to'] = settings.SMS_ADMIN_PHONE
+		args['text'] = "Событие с сайта global-tender.ru, проверьте почту"
+		url = "http://sms.ru/sms/send?%s" % (urllib.parse.urlencode(args))
+		resp = urllib.request.urlopen(url).read().decode()
 
 @xframe_options_exempt
 def index(request):
@@ -515,26 +525,14 @@ E-Mail: %s\n
 
 
 			subject = "Задан вопрос на сайте global-tender.ru"
-
-			connection = mail.get_connection()
-			connection.open()
-
-			email = mail.EmailMessage(subject, body_head + body, settings.ADMIN_EMAIL_FROM,
-				settings.ADMIN_EMAIL_TO, headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
-
-			email.send()
+			send_email_custom(subject, body_head + body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
 
 
 			# Send copy:
 			subject = "Копия: Задан вопрос на сайте global-tender.ru"
 			body_head = "Копия вашего вопроса с сайта global-tender.ru.\n\nСообщение доставлено, ожидайте ответа.\n"
 
-			email = mail.EmailMessage(subject, body_head + body, settings.ADMIN_EMAIL_FROM,
-				[gt_email], headers = {'Reply-To': settings.ADMIN_EMAIL_FROM}, connection=connection)
-
-			email.send()
-
-			connection.close()
+			send_email_custom(subject, body_head + body, settings.ADMIN_EMAIL_FROM, [gt_email])
 
 
 	template = loader.get_template('ajax/question.html')
@@ -732,8 +730,6 @@ def signup(request):
 			client.save()
 
 			##### SEND EMAIL WITH CONFIRMATION CODE #####
-			connection = mail.get_connection()
-			connection.open()
 
 			subject = "Пожалуйста, подтвердите свой адрес электронной почты - global-tender.ru"
 			body = """Добро пожаловать на global-tender.ru.\nЧтобы завершить регистрацию, вам необходимо подтвердить свой адрес электронной почты.\n
@@ -741,11 +737,7 @@ def signup(request):
 Спасибо,
 Команда global-tender\n""".format('https://'+request.META['HTTP_HOST'], client.email_confirm_code)
 
-			email = mail.EmailMessage(subject, body, settings.ADMIN_EMAIL_FROM,
-								  [email], connection=connection)
-
-			email.send()
-			connection.close()
+			send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, [email])
 
 			# Change popup
 			json_resp['redirectURL'] = ''
