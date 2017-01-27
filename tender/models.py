@@ -27,7 +27,6 @@ class FZs(models.Model):
 	description         = models.CharField(max_length=1000)
 	top_description     = models.CharField(max_length=255, default="", blank=True, null=True)
 	short_code          = models.CharField(max_length=255, default="", blank=False, null=False)
-	allow_subscribe     = models.BooleanField(default=False)
 	sort                = models.IntegerField(default=0)
 
 
@@ -100,30 +99,3 @@ class Clients(models.Model):
 
 	email_confirmed     = models.BooleanField(default=False)  # Был ли подтвержден E-Mail
 	email_confirm_code  = models.CharField(max_length=255, blank=True, null=True)  # Код потверждения E-Mail адреса
-
-
-
-class Subscribe(models.Model):
-
-	class Meta:
-		verbose_name_plural = 'Сайт: Подписки на рассылки'
-
-	def __str__(self):
-		return 'ID: ' + str(self.id) + ' | Email: ' + self.email
-
-	email               = models.CharField(max_length=255, blank=False, null=False)
-	region              = models.ForeignKey(Regions, blank=True, null=True, default=None)
-	seminar_type        = models.ForeignKey(FZs, blank=True, null=True, default=None)
-
-
-
-class Promocode(models.Model):
-
-	class Meta:
-		verbose_name_plural = 'Сайт: Промокоды'
-
-	def __str__(self):
-		return self.email + ' ' + self.promocode
-
-	email               = models.CharField(max_length=255, blank=False, null=False)
-	promocode           = models.CharField(max_length=255, blank=False, null=False)

@@ -1,9 +1,0 @@
-<div class="subscribe_popup {{subscribe_class}} {% if request.COOKIES.subscribed == 'yes' %}{{'subscribe_popup_hidden'}}{% endif %}">
-	<a href="#" class="subscribe_popup_main_href" title="Подписаться на рассылку о семинарах и получить скидку!">Подпишись получи СКИДКУ 10%!</a>
-	{% if request.COOKIES.subscribed == 'yes' %}
-		<a href="#" class="subscribe_popup_hide_show" title="Показать форму подписки"><i class="fa fa-angle-double-right"></i></a>
-	{% else %}
-		<a href="#" class="subscribe_popup_hide_show" title="Скрыть"><i class="fa fa-angle-double-left"></i></a>
-	{% endif %}
-	<div class="subscribe_popup_form_content"></div>
-</div>
