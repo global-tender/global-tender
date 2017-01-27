@@ -28,7 +28,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 
-from tender.models import FZs, Seminars, Seminar_Programs, Cities, Clients, Subscribe, Regions, Promocode
+from tender.models import FZs, Seminars, Seminar_Programs, Cities, Clients, Regions
 
 
 def send_email_custom(subject, body, email_from, email_to):
@@ -87,7 +87,6 @@ def seminars(request):
 		'title': page_title,
 		'menu_color_class': 'menu-black',
 		'menu_inner': 'menu-inner-seminars',
-		'subscribe_class': 'subscribe_popup_top_of_page subscribe_popup_seminars',
 
 		'seminars': seminars_all_sorted,
 	}
@@ -267,8 +266,6 @@ def ajax_seminar(request, arg):
 		body_foot = ''
 		if send_copy_email == "yes":
 			body_foot += "\nКопия заявки отправлена на E-Mail адрес контактного лица.\n"
-		if request.POST.get('promocode', ''):
-			body_foot += "\nУказан Промокод на скидку: %s\n" % request.POST.get('promocode', '')
 
 		send_email_custom(subject, body_head + body + body_foot, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
 
@@ -277,15 +274,6 @@ def ajax_seminar(request, arg):
 			body = 'Заявка на семинар отправлена, ожидайте обработки.\n\nСодержимое заявки:\n' + body
 
 			send_email_custom(subject, body_head + body, settings.ADMIN_EMAIL_FROM, [send_copy_email_to])
-
-		if send_copy_email_to != "":
-			# Подписать контактный email адрес на рассылку по текущему региону
-			if seminar.event_fz.allow_subscribe:  # разрешена подписка на этот семинар
-				if seminar.event_city.region:  # поле "Регион" у города заполнено
-					resp = {'error':[], 'success':[], 'promocode':False}
-					over_seminar_request = True
-
-					resp = subscribe_logic([seminar.event_fz.short_code], seminar.event_city.region.id, send_copy_email_to, resp, over_seminar_request)
 
 
 	template = loader.get_template('ajax/seminar.html')
@@ -296,187 +284,6 @@ def ajax_seminar(request, arg):
 		'send_copy_email': send_copy_email,
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
-
-
-
-# Function
-def subscribe_logic(seminar_types, region_id, email_addr, resp, over_seminar_request=False):
-	try:
-		# Promo code logic
-		if not over_seminar_request:
-			user_has_promocode = Promocode.objects.filter(email=email_addr).first()
-			if not user_has_promocode:
-				new_promo = Promocode(
-					email=email_addr,
-					promocode=random.randrange(1000, 9999),
-				)
-				new_promo.save()
-
-				resp['promocode'] = new_promo.promocode
-		###
-
-
-		client = MailChimp('Globaltender', settings.MAILCHIMP_API_KEY)
-
-		region = Regions.objects.filter(id=region_id).first()  # Объект региона
-
-		for seminar_short_code in seminar_types:
-
-			sem_type = FZs.objects.filter(short_code=seminar_short_code).first()  # Объект семинара
-
-			# Our DB:
-			subscr_user = Subscribe.objects.filter(email=email_addr,region=region,seminar_type=sem_type)
-			if not subscr_user:
-				subscr_new = Subscribe(
-					email=email_addr,
-					region=region,
-					seminar_type=sem_type,
-				)
-				subscr_new.save()
-
-			# mailchimp DB:
-
-			# Проверим существования Списка по указанной подписке, если нету, создадим.
-			list_id = False
-			lists = client.list.all(count=100000, fields="lists.name,lists.id")
-			for lst in lists['lists']:
-				if lst['name'] == 'global-tender.ru: %s, %s' % (region.region_name, sem_type.name):
-					list_id = lst['id']
-					break
-			if not list_id:
-				resp_cli = client.list.create({
-					'name': 'global-tender.ru: %s, %s' % (region.region_name, sem_type.name),
-					'contact': {
-						'company': 'Глобал-Тендер',
-						'address1': 'г. Ростов-на-Дону, Серафимовича 58а',
-						'city': 'Ростов-на-Дону',
-						'state': '',
-						'zip': '344002',
-						'country': 'RU',
-						'phone': ''
-					},
-					'permission_reminder': 'Вы получили письмо так как подписались на рассылку на сайте https://global-tender.ru',
-					'use_archive_bar': True,
-					'campaign_defaults' : {
-						'from_name': 'Глобал-Тендер',
-						'from_email': 'zakupki.gov@global-tender.ru',
-						'subject': '',
-						'language': 'ru'
-					},
-					'notify_on_subscribe': '',
-					'notify_on_unsubscribe': '',
-					'email_type_option': False,
-					'visibility': 'pub'
-				})
-				list_id = resp_cli['id']
-
-			# Получили ID Списка. Проверим существует ли подписчик в этом списке. Если нет, добавим
-			member_email_subscribed = False
-			members = client.member.all(list_id, count=100000, offset=0, fields="members.email_address")
-			for member in members['members']:
-				if member['email_address'] == email_addr:
-					member_email_subscribed = email_addr
-					resp['error'].append('Вы уже подписаны на рассылку:<br /><span>%s, %s</span>' % (region.region_name, sem_type.name))
-					break
-			if not member_email_subscribed:
-				resp_cli = client.member.create(list_id, {
-					'email_address': email_addr,
-					'status': 'subscribed',
-				})
-				if resp_cli['id']:
-					resp['success'].append('Подписка на рассылку создана:<br /><span>%s, %s</span>' % (region.region_name, sem_type.name))
-
-					# Отправить уведомление администратору на почту
-					subject = "Новая подписка на рассылку на сайте global-tender.ru"
-					body = "Пользователь подписался на рассылку на сайте global-tender.ru.\n\nE-Mail: %s\nРегион: %s\nСеминар: %s\n" % (email_addr, region.region_name, sem_type.name)
-
-					if resp['promocode']:
-						body += "Промокод: %s\n" % resp['promocode']
-
-					if over_seminar_request:
-						subject += ", через заявку на семинар"
-						body += "\nПодписка автоматическая, через подачу заявки на участие в семинаре.\n"
-					send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
-				else:
-					# Не удалось подписать пользователя по неизвестной причине
-					raise Exception('Failed to create member for list: %s.' % list_id)
-
-		if resp['promocode']:
-			if resp['success']:
-				subject = "Ваш Промокод на скидку на участие в семинаре - global-tender.ru"
-				body = "Спасибо что подписались на рассылку о семинарах.\n\nВаш Промокод: %s\n\nСкидка разовая.\nИспользуйте полученный Промокод при подаче заявки на участие в семинаре через сайт или по телефону.\n" % resp['promocode']
-				send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, [email_addr])
-			else:
-				Promocode.objects.filter(email=email_addr).delete()
-				resp['promocode'] = False
-
-	except Exception as e:
-		resp['error'].append("Ошибка, не удалось подписать на рассылку.<br />Мы уже уведомлены о возникшем инциденте!")
-		err_lst = ''
-
-		if 'lists' in vars():
-			err_lst += str(lists)
-		if 'members' in vars():
-			err_lst += str(members)
-
-		subject = "Ошибка подписки на рассылку global-tender.ru"
-		body = "Возник инцидент при попытке подписать пользователя на рассылку.\nВведенные данные:\n\nE-Mail: %s\nРегион: %s\nСеминар: %s\n\nДетальная информация об исключении:\n\n%s\n\n%s" % (email_addr, region.region_name, sem_type.name, str(sys.exc_info()), err_lst)
-		if over_seminar_request:
-			subject += ", через заявку на семинар"
-			body += "\n\nПодписка автоматическая, через подачу заявки на участие в семинаре.\n"
-		send_email_custom(subject, body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
-		print(body)
-	return resp
-
-
-
-@xframe_options_exempt
-@csrf_exempt
-def ajax_subscribe(request):
-	resp = {'error':[], 'success':[], 'promocode':False}
-
-	fz_list = FZs.objects.filter(allow_subscribe=True)
-	regions_list = Regions.objects.all()
-	email_addr = None
-
-	if request.method == 'POST':
-
-		seminar_types = request.POST.getlist('seminar_type', None)
-		region_id = request.POST.get('region_id', None)
-		email_addr = request.POST.get('gt_email', None)
-
-		if not seminar_types:
-			resp['error'].append("Не выбрано ни одного семинара!")
-		elif not region_id:
-			resp['error'].append("Не указан регион!")
-		elif not email_addr:
-			resp['error'].append("Не указан E-Mail адрес!")
-		else:
-			try:
-				validate_email(email_addr)
-			except ValidationError as e:
-				resp['error'].append("Неверный формат E-Mail адреса!")
-
-		if not resp['error']:
-
-			resp = subscribe_logic(seminar_types, region_id, email_addr, resp)
-
-
-	template = loader.get_template('ajax/subscribe.html')
-	template_args = {
-		'request': request,
-		'success': resp['success'],
-		'error': resp['error'],
-		'fz_list': fz_list,
-		'regions_list': regions_list,
-		'email_addr': email_addr,
-		'promocode': resp['promocode'],
-	}
-	response = StreamingHttpResponse(template.render(template_args, request))
-	if resp['success']:
-		response.set_cookie('subscribed', 'yes', max_age=10000000)  # almost 4 months
-	return response
-
 
 
 @xframe_options_exempt
@@ -554,7 +361,6 @@ def feedback(request):
 		'title': 'Отзывы',
 		'menu_color_class': 'menu-white',
 		'menu_inner': 'menu-inner',
-		'subscribe_class': 'subscribe_popup_top_of_page',
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
 
@@ -568,7 +374,6 @@ def contacts(request):
 		'title': 'Контактная информация',
 		'menu_color_class': 'menu-white',
 		'menu_inner': 'menu-inner',
-		'subscribe_class': 'subscribe_popup_top_of_page',
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
 
@@ -605,7 +410,6 @@ def service(request):
 		'title': 'Подготовим гибкое положение по 223-ФЗ в соответствии с законными требованиями.',
 		'menu_color_class': 'menu-white',
 		'menu_inner': 'menu-inner',
-		'subscribe_class': 'subscribe_popup_top_of_page',
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
 
