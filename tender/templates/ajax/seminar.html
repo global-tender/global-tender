@@ -6,9 +6,6 @@
 		<br /><br /><br />
 
 		<h2>Заявка успешно отправлена!</h2>
-		{% if send_copy_email == 'yes' %}
-			<h3>Также направлена копия на E-Mail контактного лица.</h3>
-		{% endif %}
 
 
 		<br /><br /><br />
@@ -207,9 +204,6 @@
 					<div class="seminar-apply-block-row">
 						<textarea name="comment">{{request.COOKIES.apply__comment|unescape}}</textarea>
 					</div>
-					<div class="seminar-apply-block-row">
-						<span><input type="checkbox" name="send_copy_email" value="yes" {% if request.COOKIES.apply__send_copy_email == 'no' %} {% else %}checked{% endif %}> Отправить копию заявки на E-Mail контактного лица</span>
-					</div>
 				</div>
 			</div>
 
@@ -265,15 +259,6 @@
 
 		});
 
-		$("input[name=send_copy_email]").click(function(){
-			if ($(this).prop('checked'))
-			{
-				$(this).val('yes');
-			}
-			else {
-				$(this).val('no');
-			}
-		});
 	});
 
 	$(document).ready(function(){

@@ -156,7 +156,6 @@ def seminar_detail_print(request, arg):
 @xframe_options_exempt
 @csrf_exempt
 def ajax_seminar(request, arg):
-	send_copy_email = ''
 
 	seminar = Seminars.objects.filter(id=arg)
 	if seminar:
@@ -165,18 +164,6 @@ def ajax_seminar(request, arg):
 	submitted = False
 	if request.method == 'POST':
 		submitted = True
-
-		############################################################
-		############################################################
-		send_copy_email = request.POST.get('send_copy_email', '')
-		send_copy_email_to = request.POST.get('contact_email','')
-		if send_copy_email == "yes":
-			try:
-				validate_email(send_copy_email_to)
-			except ValidationError as e:
-				send_copy_email = ''
-				send_copy_email_to = ''
-
 
 		form_act = request.POST.get('org_acting', '')
 		form_act_type = ''
@@ -236,7 +223,7 @@ def ajax_seminar(request, arg):
 				request.POST.get('head_post',''),
 				request.POST.get('contact_name',''),
 				request.POST.get('contact_post',''),
-				send_copy_email_to,
+				request.POST.get('contact_email',''),
 				request.POST.get('contact_phone',''),
 				request.POST['comment'],
 				request.POST.get('visitors_amount',''),
@@ -263,17 +250,8 @@ def ajax_seminar(request, arg):
 		############################################################
 		############################################################
 		subject = 'Заявка на семинар: %s %s.%s.%s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
-		body_foot = ''
-		if send_copy_email == "yes":
-			body_foot += "\nКопия заявки отправлена на E-Mail адрес контактного лица.\n"
 
-		send_email_custom(subject, body_head + body + body_foot, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
-
-		if send_copy_email == "yes":
-			subject = 'Вами отправлена заявка на семинар: %s %s.%s.%s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
-			body = 'Заявка на семинар отправлена, ожидайте обработки.\n\nСодержимое заявки:\n' + body
-
-			send_email_custom(subject, body_head + body, settings.ADMIN_EMAIL_FROM, [send_copy_email_to])
+		send_email_custom(subject, body_head + body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
 
 
 	template = loader.get_template('ajax/seminar.html')
@@ -281,7 +259,6 @@ def ajax_seminar(request, arg):
 		'request': request,
 		'seminar': seminar,
 		'submitted': submitted,
-		'send_copy_email': send_copy_email,
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
 
@@ -333,13 +310,6 @@ E-Mail: %s\n
 
 			subject = "Задан вопрос на сайте global-tender.ru"
 			send_email_custom(subject, body_head + body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
-
-
-			# Send copy:
-			subject = "Копия: Задан вопрос на сайте global-tender.ru"
-			body_head = "Копия вашего вопроса с сайта global-tender.ru.\n\nСообщение доставлено, ожидайте ответа.\n"
-
-			send_email_custom(subject, body_head + body, settings.ADMIN_EMAIL_FROM, [gt_email])
 
 
 	template = loader.get_template('ajax/question.html')
