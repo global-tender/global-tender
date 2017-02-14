@@ -1074,6 +1074,19 @@ nav {
 	text-decoration: none;
 }
 
+.google-adsense-seminars {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	clear: both;
+	text-align: center;
+}
+
+@media screen and (max-width: 730px) {
+	.google-adsense-seminars {
+		display: none;
+	}
+}
+
 .seminars_cell {
 	display: table-cell;
 	width: 50%;
