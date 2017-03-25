@@ -192,6 +192,14 @@ h3.title {
 	background: rgba(255, 255, 255, 0);
 }
 
+.menu-black .menu-ul .menu-li a.seminars-menu {
+	text-shadow: none;
+}
+
+.menu-black .menu-ul .menu-li a.seminars-menu:hover {
+	background: rgba(0, 0, 0, 0.9);
+}
+
 @media screen and (max-width: 900px) {
 	.menu a {
 		font-size: 16px;
