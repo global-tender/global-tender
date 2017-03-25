@@ -176,6 +176,22 @@ h3.title {
 .menu-ul .menu-li a:hover {
 	color: #ccc;
 }
+
+.menu-ul .menu-li a.seminars-menu {
+	border-radius: 4px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	box-shadow: 1px 1px 100px 2px #00A5BF;
+	padding-left: 5px;
+	padding-right: 7px;
+	background: rgba(255, 106, 0, 0.85);
+	text-shadow: 1px 1px #000;
+}
+
+.menu-ul .menu-li a.seminars-menu:hover {
+	background: rgba(255, 255, 255, 0);
+}
+
 @media screen and (max-width: 900px) {
 	.menu a {
 		font-size: 16px;

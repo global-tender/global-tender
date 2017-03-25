@@ -72,12 +72,6 @@
 			<span class="sem-name">Электронная почта:</span><span class="sem-val"><a href="mailto:{{seminar.event_contact_email}}" title="Написать на почту">{{seminar.event_contact_email}}</a></span>
 		</div>
 
-		<hr>
-		<div class="row pd-bot-sml">
-			{% autoescape off %}
-			{{seminar.event_fz.description}}
-			{% endautoescape %}
-		</div>
 
 		{% if seminar.event_title %}
 			<hr />
