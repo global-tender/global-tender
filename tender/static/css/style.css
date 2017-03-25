@@ -187,30 +187,26 @@ h3.title {
 	background: rgba(255, 106, 0, 0.85);
 	text-shadow: 1px 1px #000;
 
-	-webkit-transition: all .1s ease;
-	-ms-transition: all .1s ease;
-	-moz-transition: all .1s ease;
-	-o-transition: all .1s ease;
-	transition: all .1s ease;
+	-webkit-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5s ease;
 }
 
 .menu-ul .menu-li a.seminars-menu:hover {
 	background: rgba(255, 255, 255, 0);
 	box-shadow: none;
 
-	-webkit-transition: all .1s ease;
-	-ms-transition: all .1s ease;
-	-moz-transition: all .1s ease;
-	-o-transition: all .1s ease;
-	transition: all .1s ease;
+	-webkit-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5s ease;
 }
 
 .menu-black .menu-ul .menu-li a.seminars-menu {
 	text-shadow: none;
-}
-
-.menu-black .menu-ul .menu-li a.seminars-menu:hover {
-	background: rgba(0, 0, 0, 0.9);
 }
 
 @media screen and (max-width: 900px) {
