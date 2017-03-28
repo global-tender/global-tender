@@ -93,11 +93,13 @@
 
 		{% include seminar_program_template %}
 
+		{% if status == 'active' %}
 		<div>
 			<br />
 			<a class="apply-seminar-btn-bottom" href="#" onclick="return showSeminarForm({{seminar.id}});">Подать заявку</a>
 			<br />
 		</div>
+		{% endif %}
 
 	</div>
 </main>
