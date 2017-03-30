@@ -183,7 +183,7 @@ h3.title {
 	padding-bottom: 2px;
 	padding-left: 5px;
 	padding-right: 7px;
-	background: rgba(255, 106, 0, 0.85);
+	background: rgba(255, 0, 0, 0.7);
 	text-shadow: 1px 1px #000;
 
 	-webkit-transition: all .5s ease;
@@ -194,7 +194,7 @@ h3.title {
 }
 
 .menu-ul .menu-li a.seminars-menu:hover {
-	background: rgba(255, 255, 255, 0);
+	background: rgba(55, 185, 2, 0.7);
 
 	-webkit-transition: all .5s ease;
 	-ms-transition: all .5s ease;
