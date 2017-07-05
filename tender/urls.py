@@ -29,6 +29,7 @@ urlpatterns = [
 	url(r'^humans.txt$', views.humans, name='humans.txt'),
 
 	url(r'^ajax/seminar/(?P<arg>\d+)/?$', views.ajax_seminar, name='ajax_seminar'),
+	url(r'^ajax/seminar_simple/(?P<arg>\d+)/?$', views.ajax_seminar_simple, name='ajax_seminar'),
 
 	url(r'^ajax/question/?$', views.ajax_question, name='ajax_question'),
 

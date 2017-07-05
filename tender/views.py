@@ -265,6 +265,48 @@ def ajax_seminar(request, arg):
 
 @xframe_options_exempt
 @csrf_exempt
+def ajax_seminar_simple(request, arg):
+
+	seminar = Seminars.objects.filter(id=arg)
+	if seminar:
+		seminar = seminar[0]
+
+	submitted = False
+	if request.method == 'POST':
+		submitted = True
+
+		body_head = "Семинар: %s %s.%s.%s\n\n" % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
+		body = """
+		Тема: %s\n
+		1. Организация: %s\n
+		2. Ф.И.О.: %s\n
+		3. Телефон: %s\n
+		4. E-mail: %s\n
+		""" % (strip_tags(seminar.event_fz.description),
+				request.POST.get('org_name',''),
+				request.POST.get('contact_name',''),
+				request.POST.get('contact_phone',''),
+				request.POST.get('contact_email',''),
+		)
+
+		############################################################
+		############################################################
+		subject = 'Заявка на семинар: %s %s.%s.%s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
+
+		send_email_custom(subject, body_head + body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
+
+
+	template = loader.get_template('ajax/seminar_simple.html')
+	template_args = {
+		'request': request,
+		'seminar': seminar,
+		'submitted': submitted,
+	}
+	return StreamingHttpResponse(template.render(template_args, request))
+
+
+@xframe_options_exempt
+@csrf_exempt
 def ajax_question(request):
 
 	submitted = False
