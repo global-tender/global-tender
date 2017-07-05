@@ -425,6 +425,18 @@ def service(request):
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
 
+@xframe_options_exempt
+def privacy(request):
+	template = loader.get_template('router.html')
+	template_args = {
+		'content': 'pages/privacy.html',
+		'request': request,
+		'title': 'Политика конфиденциальности',
+		'menu_color_class': 'menu-white',
+		'menu_inner': 'menu-inner',
+	}
+	return StreamingHttpResponse(template.render(template_args, request))
+
 
 
 
