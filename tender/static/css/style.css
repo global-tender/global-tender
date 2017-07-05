@@ -1916,6 +1916,8 @@ nav {
 
 	.footer .footer-text {
 		font-size: 9px;
+		height: 25px;
+		line-height: 25px;
 	}
 }
 
