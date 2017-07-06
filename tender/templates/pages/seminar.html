@@ -10,7 +10,9 @@
 		<div class="wrapper">
 			<div class="sem-city-date-name">
 				<span class="city-date">{{seminar.event_date.day}} {{seminar.event_date.month|rus_month}} {{seminar.event_date.year}}</span>
-				<h1>{{seminar.event_city.name}}</h1>
+				{% if seminar.event_city.name != 'Вебинар' %}
+					<h1>{{seminar.event_city.name}}</h1>
+				{% endif %}
 
 				{% if status == 'active' %}
 					<div class="apply-seminar-btn-simple"><a href="#" onclick="return showSeminarForm({{seminar.id}});">Подать заявку</a></div>

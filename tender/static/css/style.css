@@ -1682,6 +1682,14 @@ nav {
 .seminar-apply .seminar-apply-block .seminar-apply-block-row a.add-another-visitor:hover {
 	text-decoration: none;
 }
+.seminar-apply .seminar-apply-block .seminar-apply-block-row a.seminar-apply-privacy {
+	color: #222;
+	text-decoration: none;
+	border-bottom: 1px dashed #ccc;
+}
+.seminar-apply .seminar-apply-block .seminar-apply-block-row a.seminar-apply-privacy:hover {
+	border-bottom: none;
+}
 
 .seminar-apply .seminar-apply-block .visitors {
 	overflow: hidden;
