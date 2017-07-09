@@ -201,16 +201,19 @@
 			<div class="seminar-apply-block">
 				<div class="seminar-apply-block-title">Комментарий:</div>
 				<div class="seminar-apply-block-body">
+
 					<div class="seminar-apply-block-row">
 						<textarea name="comment">{{request.COOKIES.apply__comment|unescape}}</textarea>
 					</div>
+
+					<div class="seminar-apply-block-row">
+						<span>Я подтверждаю согласие на обработку <a class="seminar-apply-privacy" href="/privacy/" target="_blank" title="Политика конфиденциальности">персональных данных</a></span>
+						<span><input type="checkbox" name="confirm_personal_data_management" required></span>
+					</div>
+
 				</div>
 			</div>
 
-			<div class="seminar-apply-block-row">
-				<span>Я подтверждаю согласие на обработку <a class="seminar-apply-privacy" href="/privacy/" target="_blank" title="Политика конфиденциальности">персональных данных</a></span>
-				<span><input type="checkbox" name="confirm_personal_data_management" required></span>
-			</div>
 
 			<div class="seminar-submit">
 				<button class="seminar-submit-button" type="submit">Подать заявку</button>
