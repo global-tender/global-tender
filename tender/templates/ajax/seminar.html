@@ -19,7 +19,7 @@
 		<a href="#" class="seminar-apply-close">
 			<i class="fa fa-times"></i>
 		</a>
-		
+
 
 		<form class="seminar-apply-form" name="seminar-apply-form" action="/ajax/seminar/{{seminar.id}}/" method="POST" onsubmit="return ajaxFormTry($(this));">
 
@@ -205,6 +205,11 @@
 						<textarea name="comment">{{request.COOKIES.apply__comment|unescape}}</textarea>
 					</div>
 				</div>
+			</div>
+
+			<div class="seminar-apply-block-row">
+				<span>Я подтверждаю согласие на обработку <a class="seminar-apply-privacy" href="/privacy/" target="_blank" title="Политика конфиденциальности">персональных данных</a></span>
+				<span><input type="checkbox" name="confirm_personal_data_management" required></span>
 			</div>
 
 			<div class="seminar-submit">

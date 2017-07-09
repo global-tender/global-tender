@@ -59,7 +59,7 @@ var down_link = (function(){
 
 function showSeminarForm(seminar_id)
 {
-	$.fancybox('/ajax/seminar_simple/'+seminar_id+'/', {
+	$.fancybox('/ajax/seminar/'+seminar_id+'/', {
 		type:'ajax',
 
 		autoSize: true,
