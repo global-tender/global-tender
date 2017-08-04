@@ -281,12 +281,16 @@ def ajax_seminar_simple(request, arg):
 		1. Организация: %s\n
 		2. Ф.И.О.: %s\n
 		3. Телефон: %s\n
-		4. E-mail: %s\n
+		4. E-mail: %s\n\n
+		5. Реквизиты: \n%s\n\n
+		6. Комментарий: %s\n
 		""" % (strip_tags(seminar.event_fz.description),
 				request.POST.get('org_name',''),
 				request.POST.get('contact_name',''),
 				request.POST.get('contact_phone',''),
 				request.POST.get('contact_email',''),
+				request.POST['payment_info'],
+				request.POST['comment'],
 		)
 
 		############################################################
