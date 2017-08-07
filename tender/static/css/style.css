@@ -1309,6 +1309,10 @@ nav {
 	padding: 20px;
 }
 
+.seminar-table ul li {
+	padding-bottom: 10px;
+}
+
 .apply-seminar-btn {
 	display: inline-block;
 	vertical-align: middle;
