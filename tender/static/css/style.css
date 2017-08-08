@@ -1208,7 +1208,7 @@ nav {
 	position: relative;
 	font-family: "Exo 2";
 	font-size: 36px;
-	top: 45%;
+	top: 40%;
 	border-bottom: none;
 	display: table;
 	margin: 0 auto;
@@ -1223,14 +1223,14 @@ nav {
 	position: relative;
 	font-family: "Exo 2";
 	font-size: 20px;
-	top: 45%;
+	top: 40%;
 	border-bottom: none;
 	display: table;
 	margin: 0 auto;
 	text-align: center;
 	padding-left: 10px;
 	padding-right: 10px;
-	padding-top: 10px;
+	padding-top: 12px;
 }
 
 .city-info {
@@ -1507,11 +1507,11 @@ nav {
 	}
 
 	.sem-top-description {
-		font-size: 16px;
+		font-size: 14px;
 	}
 
 	.mini-sem-top-description {
-		font-size: 12px;
+		font-size: 11px;
 	}
 }
 
