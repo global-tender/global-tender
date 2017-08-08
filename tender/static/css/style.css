@@ -1209,7 +1209,7 @@ nav {
 	font-family: "Exo 2";
 	font-size: 36px;
 	top: 45%;
-	border-bottom: 1px solid #fff;
+	border-bottom: none;
 	display: table;
 	margin: 0 auto;
 	text-align: center;
