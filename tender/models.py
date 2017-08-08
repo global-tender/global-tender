@@ -26,6 +26,7 @@ class FZs(models.Model):
 	name                = models.CharField(max_length=1000)
 	description         = models.CharField(max_length=1000)
 	top_description     = models.CharField(max_length=255, default="", blank=True, null=True)
+	mini_top_desc       = models.CharField(max_length=255, defult="", blank=True, null=True)
 	short_code          = models.CharField(max_length=255, default="", blank=False, null=False)
 	sort                = models.IntegerField(default=0)
 

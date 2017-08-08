@@ -1217,6 +1217,22 @@ nav {
 	padding-right: 10px;
 }
 
+.mini-sem-top-description {
+	color: #fff;
+	z-index: 100;
+	position: relative;
+	font-family: "Exo 2";
+	font-size: 20px;
+	top: 45%;
+	border-bottom: none;
+	display: table;
+	margin: 0 auto;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+}
+
 .city-info {
 	position: absolute;
 	bottom: 0;
@@ -1492,6 +1508,10 @@ nav {
 
 	.sem-top-description {
 		font-size: 16px;
+	}
+
+	.mini-sem-top-description {
+		font-size: 12px;
 	}
 }
 

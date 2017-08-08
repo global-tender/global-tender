@@ -4,6 +4,9 @@
 
 	{% if seminar.event_fz.top_description %}
 		<div class="sem-top-description">{{seminar.event_fz.top_description}}</div>
+		{% if seminar.event_fz.mini_top_desc %}
+			<div class="mini-sem-top-description">{{seminar.event_fz.mini_top_desc}}</div>
+		{% endif %}
 	{% endif %}
 
 	<div class="city-info">
