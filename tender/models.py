@@ -85,6 +85,7 @@ class Seminars(models.Model):
 	event_is_active     = models.BooleanField(default=True)
 	event_urgent_info   = models.CharField(max_length=1000, default="", blank=True, null=True)
 	event_place         = models.CharField(max_length=1000, default="", blank=True, null=True)
+	event_is_webinar       = models.BooleanField(default=False)
 
 
 

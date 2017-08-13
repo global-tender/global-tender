@@ -6,7 +6,7 @@
 		<br /><br /><br />
 
 		<h2>Заявка успешно отправлена!</h2>
-
+		<h3>Документы для участия в скором времени поступят на Ваш электронный адрес!</h3>
 
 		<br /><br /><br />
 	</div>
@@ -24,10 +24,10 @@
 		<form class="seminar-apply-form" name="seminar-apply-form" action="/ajax/seminar_simple/{{seminar.id}}/" method="POST" onsubmit="return ajaxFormTry($(this));">
 
 			<div class="seminar-apply-block">
-				<div class="seminar-apply-block-title">Заявка на семинар, {{seminar.event_city.name}}, {{seminar.event_date.day}} {{seminar.event_date.month|rus_month}} {{seminar.event_date.year}}:</div>
+				<div class="seminar-apply-block-title">Заявка на {% if not seminar.event_is_webinar %}семинар, {% endif %}{{seminar.event_city.name}}, {{seminar.event_date.day}} {{seminar.event_date.month|rus_month}} {{seminar.event_date.year}}:</div>
 				<div class="seminar-apply-block-body">
 					<div class="seminar-apply-block-row">
-						<span>Полное название организации (включая форму собственности):</span>
+						<span>Полное название организации:</span>
 						<span><input type="text" name="org_name" required></span>
 					</div>
 
