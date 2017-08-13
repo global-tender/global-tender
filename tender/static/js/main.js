@@ -85,6 +85,28 @@ function showAskQuestion()
 }
 
 
+function showAskLektor(seminar_id)
+{
+	$.fancybox('/ajax/ask_lektor/'+seminar_id+'/', {
+		type:'ajax',
+
+		autoSize: true,
+		fitToView: false,
+		maxWidth: "100%",
+
+		modal: true,
+		helpers: {
+			overlay:{
+				locked:true,
+				closeClick: false,
+			}
+		},
+	});
+
+	return false;
+}
+
+
 function ajaxFormTry(ajaxForm){
 
 	if ($('input[name="submit_message"]').length)

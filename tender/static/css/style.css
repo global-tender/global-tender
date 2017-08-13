@@ -1430,6 +1430,42 @@ nav {
 	transition: all ease 0.5s;
 }
 
+.ask-lektor-button {
+
+	height: 30px;
+	line-height: 30px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	background: #507299;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	color: #fff;
+	font-weight: 600;
+	padding: 0 15px;
+
+	text-align: center;
+	margin: 0 auto;
+	display: block;
+	font-size: 18px;
+	transition: ease .5s all;
+	font-family: "Exo 2";
+
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	transition: all ease 0.5s;
+}
+
+.ask-lektor-button:hover {
+	background: #845099;
+
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	transition: all ease 0.5s;
+}
+
 @media screen and (max-width: 799px) {
 	.apply-seminar-btn-simple {
 		display: none;
@@ -1512,6 +1548,14 @@ nav {
 
 	.mini-sem-top-description {
 		font-size: 11px;
+	}
+
+	.ask-lektor-button {
+		height: inherit;
+		line-height: inherit;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		font-size: 14px;
 	}
 }
 
@@ -1735,6 +1779,12 @@ nav {
 
 .seminar-apply .seminar-apply-block .seminar-apply-block-row textarea.payment_info {
 	width: 61%;
+	margin-bottom: 10px;
+	height: 70px;
+}
+
+.seminar-apply .seminar-apply-block .seminar-apply-block-row textarea.ask_lektor_textarea {
+	width: 80%;
 	margin-bottom: 10px;
 	height: 70px;
 }

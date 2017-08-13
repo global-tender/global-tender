@@ -1,0 +1,117 @@
+{% load customTags %}
+
+{% if submitted %}
+
+	<div class="modal-wrap">
+		<br /><br /><br />
+
+		<h2>Сообщение успешно отправлено!</h2>
+
+		<br /><br /><br />
+	</div>
+
+{% else %}
+<div class="seminar-apply">
+	
+
+	<div class="seminar-apply-wrapper">
+		<a href="#" class="seminar-apply-close">
+			<i class="fa fa-times"></i>
+		</a>
+		
+
+		<form class="seminar-apply-form" name="seminar-apply-form" action="/ajax/ask_lektor/{{seminar.id}}/" method="POST" onsubmit="return ajaxFormTry($(this));">
+
+			<div class="seminar-apply-block">
+				<div class="seminar-apply-block-title"></div>
+				<div class="seminar-apply-block-body">
+
+					<div class="seminar-apply-block-row">
+						<span>Ф.И.О.:</span>
+						<span><input type="text" name="contact_name" required></span>
+					</div>
+
+					<div class="seminar-apply-block-row">
+						<span>E-mail:</span>
+						<span><input type="email" name="contact_email" required></span>
+					</div>
+
+				</div>
+			</div>
+
+
+			<div class="seminar-apply-block">
+				<div class="seminar-apply-block-title">Добавить свой пункт для обсуждения или задать вопрос лектору:</div>
+				<div class="seminar-apply-block-body">
+
+					<div class="seminar-apply-block-row">
+						<textarea name="ask_lektor_textarea" required></textarea>
+					</div>
+
+					<div class="seminar-apply-block-row">
+						<span>Я подтверждаю согласие на обработку <a class="seminar-apply-privacy" href="/privacy/" target="_blank" title="Политика конфиденциальности">персональных данных</a></span>
+						<span><input type="checkbox" name="confirm_personal_data_management" required></span>
+					</div>
+
+				</div>
+			</div>
+
+
+			<div class="seminar-submit">
+				<button class="seminar-submit-button" type="submit">Отправить</button>
+			</div>
+
+		</form>
+
+	</div>
+
+</div>
+
+<script>
+
+	$(document).ready(function(){
+
+		$('.seminar-apply-close').on('click', function(){
+			$.fancybox.close();
+		});
+
+		setTimeout( function() { $('input[name="contact_name"]').focus(); }, 500 );
+
+	});
+
+</script>
+
+{% endif %}
+
+
+<!-- Yandex.Metrika counter --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter22043605 = new Ya.Metrika({ id:22043605, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/22043605" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+	(function (d, w, c) {
+		(w[c] = w[c] || []).push(function() {
+			try {
+				w.yaCounter33786709 = new Ya.Metrika({
+					id:33786709,
+					clickmap:true,
+					trackLinks:true,
+					accurateTrackBounce:true,
+					webvisor:true
+				});
+			} catch(e) { }
+		});
+
+		var n = d.getElementsByTagName("script")[0],
+		s = d.createElement("script"),
+		f = function () { n.parentNode.insertBefore(s, n); };
+		s.type = "text/javascript";
+		s.async = true;
+		s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+		if (w.opera == "[object Opera]") {
+			d.addEventListener("DOMContentLoaded", f, false);
+		} else { f(); }
+	})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/33786709" style="position:absolute; left:-9999px;" alt="metrika" /></div></noscript>
+<!-- /Yandex.Metrika counter -->

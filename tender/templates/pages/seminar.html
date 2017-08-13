@@ -102,11 +102,18 @@
 
 		{% include seminar_program_template %}
 
-		{% if status == 'active' %}
+		{% if status == 'active' and not seminar.event_is_webinar %}
 		<div>
 			<br />
 			<a class="apply-seminar-btn-bottom" href="#" onclick="return showSeminarForm({{seminar.id}});">Подать заявку</a>
 			<br />
+		</div>
+		{% endif %}
+
+		{% if seminar.event_is_webinar %}
+		<div>
+			<br />
+			<a class="ask-lektor-button" href="#" onclick="return showAskLektor({{seminar.id}});">Добавить свой пункт для обсуждения или задать вопрос лектору</a>
 		</div>
 		{% endif %}
 
