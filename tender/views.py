@@ -379,11 +379,11 @@ def ajax_ask_lektor(request, arg):
 	if request.method == 'POST':
 		submitted = True
 
-		body_head = "Семинар: %s %s.%s.%s\n\n" % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
+		body_head = "%s %s.%s.%s\n\n" % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
 		body = """
-		1. Ф.И.О.: %s\n
+		1. Имя: %s\n
 		2. E-mail: %s\n\n
-		3. Текст: %s\n
+		3. Сообщение: %s\n
 		""" % (request.POST.get('contact_name',''),
 				request.POST.get('contact_email',''),
 				request.POST['ask_lektor_textarea'],
