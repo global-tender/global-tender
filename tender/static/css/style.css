@@ -1431,9 +1431,6 @@ nav {
 }
 
 .ask-lektor-button {
-
-	height: 30px;
-	line-height: 30px;
 	text-decoration: none;
 	text-transform: uppercase;
 	font-weight: bold;
@@ -1443,6 +1440,8 @@ nav {
 	color: #fff;
 	font-weight: 600;
 	padding: 0 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 
 	text-align: center;
 	margin: 0 auto;
@@ -1551,10 +1550,6 @@ nav {
 	}
 
 	.ask-lektor-button {
-		height: inherit;
-		line-height: inherit;
-		padding-top: 5px;
-		padding-bottom: 5px;
 		font-size: 14px;
 	}
 }
