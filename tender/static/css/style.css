@@ -1401,7 +1401,7 @@ nav {
 	text-decoration: none;
 	text-transform: uppercase;
 	font-weight: bold;
-	background: #ff0000;
+	background: #E41111;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
 	color: #fff;
@@ -1422,7 +1422,7 @@ nav {
 }
 
 .apply-seminar-btn-bottom:hover {
-	background: maroon;
+	background: #ff0000;
 
 	-webkit-transition: all ease 0.5s;
 	-moz-transition: all ease 0.5s;
