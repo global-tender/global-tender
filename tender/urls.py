@@ -32,6 +32,8 @@ urlpatterns = [
 	url(r'^ajax/seminar/(?P<arg>\d+)/?$', views.ajax_seminar, name='ajax_seminar'),
 	url(r'^ajax/seminar_simple/(?P<arg>\d+)/?$', views.ajax_seminar_simple, name='ajax_seminar'),
 	url(r'^ajax/ask_lektor/(?P<arg>\d+)/?$', views.ajax_ask_lektor, name='ajax_ask_lektor'),
+	url(r'^ajax/order_corp_study/?$', views.ajax_order_corp_study, name='ajax_order_corp_study'),
+	url(r'^ajax/order_call/?$', views.ajax_order_call, name='ajax_order_call'),
 
 	url(r'^ajax/question/?$', views.ajax_question, name='ajax_question'),
 

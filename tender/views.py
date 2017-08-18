@@ -405,6 +405,76 @@ def ajax_ask_lektor(request, arg):
 	return StreamingHttpResponse(template.render(template_args, request))
 
 
+@xframe_options_exempt
+@csrf_exempt
+def ajax_order_corp_study(request):
+
+	seminar = Seminars.objects.filter(id=arg)
+	if seminar:
+		seminar = seminar[0]
+
+	submitted = False
+	if request.method == 'POST':
+		submitted = True
+
+		body_head = "%s %s.%s.%s\n\n" % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
+		body = """
+		1. Имя: %s\n
+		2. E-mail: %s\n\n
+		3. Сообщение: %s\n
+		""" % (request.POST.get('contact_name',''),
+				request.POST.get('contact_email',''),
+				request.POST['ask_lektor_textarea'],
+		)
+
+		############################################################
+		############################################################
+		subject = 'Добавлен свой пункт для обсуждения или задан вопрос лектору: %s %s.%s.%s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
+
+		send_email_custom(subject, body_head + body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
+
+
+	template = loader.get_template('ajax/ask_lektor.html')
+	template_args = {
+		'request': request,
+		'seminar': seminar,
+		'submitted': submitted,
+	}
+	return StreamingHttpResponse(template.render(template_args, request))
+
+
+@xframe_options_exempt
+@csrf_exempt
+def ajax_order_call(request):
+
+	submitted = False
+	if request.method == 'POST':
+		submitted = True
+
+		body_head = "Заказан обратный звонок с сайта global-tender.ru\n\n"
+		body = """
+		1. Ф.И.О.: %s\n
+		2. E-mail: %s\n
+		3. Телефон: %s\n
+		""" % (request.POST.get('contact_name',''),
+				request.POST.get('contact_email',''),
+				request.POST.get('contact_phone',''),
+		)
+
+		############################################################
+		############################################################
+		subject = 'Заказан обратный звонок с сайта global-tender.ru'
+
+		send_email_custom(subject, body_head + body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
+
+
+	template = loader.get_template('ajax/order_call.html')
+	template_args = {
+		'request': request,
+		'submitted': submitted,
+	}
+	return StreamingHttpResponse(template.render(template_args, request))
+
 
 @xframe_options_exempt
 def feedback(request):

@@ -1111,11 +1111,17 @@ nav {
 	text-decoration: none;
 }
 
+.seminars-order-corp {
+	clear: both;
+}
+
 .seminars-order-corp a {
 	margin-left: 25px;
 	margin-right: 25px;
+
+	margin-bottom: 10px;
+
 	font-family: "Exo 2";
-	clear: both;
 
 	border: 1px solid #fff;
 	padding: 10px;
@@ -1136,13 +1142,17 @@ nav {
 
 .seminars-order-corp a:hover{
 	border: 1px solid #2872C7;
-	background: #fff;
+	background: #B2D6FF;
 	color: #222;
 
 	-webkit-transition: all ease 0.5s;
 	-moz-transition: all ease 0.5s;
 	-o-transition: all ease 0.5s;
 	transition: all ease 0.5s;
+}
+
+.seminars-order-back-call {
+	clear: both;
 }
 
 .seminars-order-back-call a {
@@ -1170,7 +1180,7 @@ nav {
 
 .seminars-order-back-call a:hover{
 	border: 1px solid #588600;
-	background: #fff;
+	background: #DCF5AD;
 	color: #222;
 
 	-webkit-transition: all ease 0.5s;

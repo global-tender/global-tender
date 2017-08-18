@@ -106,6 +106,48 @@ function showAskLektor(seminar_id)
 	return false;
 }
 
+function orderCorpStudy()
+{
+	$.fancybox('/ajax/order_corp_study/', {
+		type:'ajax',
+
+		autoSize: true,
+		fitToView: false,
+		maxWidth: "100%",
+
+		modal: true,
+		helpers: {
+			overlay:{
+				locked:true,
+				closeClick: false,
+			}
+		},
+	});
+
+	return false;
+}
+
+function orderCall()
+{
+	$.fancybox('/ajax/order_call/', {
+		type:'ajax',
+
+		autoSize: true,
+		fitToView: false,
+		maxWidth: "100%",
+
+		modal: true,
+		helpers: {
+			overlay:{
+				locked:true,
+				closeClick: false,
+			}
+		},
+	});
+
+	return false;
+}
+
 
 function ajaxFormTry(ajaxForm){
 
