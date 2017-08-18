@@ -1111,6 +1111,74 @@ nav {
 	text-decoration: none;
 }
 
+.seminars-order-corp a {
+	margin-left: 25px;
+	margin-right: 25px;
+	font-family: "Exo 2";
+	clear: both;
+
+	border: 1px solid #fff;
+	padding: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-radius: 11px;
+	background: #2872C7;
+	color: #fff;
+	text-decoration: none;
+	display: inline-block;
+	text-align: left;
+
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	transition: all ease 0.5s;
+}
+
+.seminars-order-corp a:hover{
+	border: 1px solid #2872C7;
+	background: #fff;
+	color: #222;
+
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	transition: all ease 0.5s;
+}
+
+.seminars-order-back-call a {
+	margin-left: 25px;
+	margin-right: 25px;
+	font-family: "Exo 2";
+	clear: both;
+
+	border: 1px solid #fff;
+	padding: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-radius: 11px;
+	background: #588600;
+	color: #fff;
+	text-decoration: none;
+	display: inline-block;
+	text-align: left;
+
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	transition: all ease 0.5s;
+}
+
+.seminars-order-back-call a:hover{
+	border: 1px solid #588600;
+	background: #fff;
+	color: #222;
+
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	transition: all ease 0.5s;
+}
+
 .google-adsense-seminars {
 	padding-top: 15px;
 	padding-bottom: 15px;
