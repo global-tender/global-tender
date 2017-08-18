@@ -1103,6 +1103,7 @@ nav {
 	padding: 15px 15px;
 	margin-left: 25px;
 	margin-right: 25px;
+	padding-left: 0px;
 	font-family: "Exo 2";
 	clear: both;
 }
@@ -1187,6 +1188,20 @@ nav {
 	-moz-transition: all ease 0.5s;
 	-o-transition: all ease 0.5s;
 	transition: all ease 0.5s;
+}
+
+@media screen and (max-width: 640px) {
+	.seminars-swap-url a {
+		font-size: 14px;
+	}
+
+	.seminars-order-corp a {
+		font-size: 14px;
+	}
+
+	.seminars-order-back-call a {
+		font-size: 14px;
+	}
 }
 
 .google-adsense-seminars {
