@@ -15,10 +15,7 @@
 				<li>Ответы на вопросы.</li>
 			</ul>
 
-			<div>
-				<br />
-				<a class="ask-lektor-button" href="#" onclick="return showAskLektor({{seminar.id}});">Добавить свой пункт для обсуждения или задать вопрос лектору</a>
-			</div>
+			{% include 'static/ask_lektor_button.html' %}
 		</td>
 	</tr>
 </table>
