@@ -409,35 +409,52 @@ def ajax_ask_lektor(request, arg):
 @csrf_exempt
 def ajax_order_corp_study(request):
 
-	seminar = Seminars.objects.filter(id=arg)
-	if seminar:
-		seminar = seminar[0]
-
 	submitted = False
 	if request.method == 'POST':
 		submitted = True
 
-		body_head = "%s %s.%s.%s\n\n" % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
+
+		org_type = request.POST.get('org_type', 'zakaz')	# zakaz или postavka
+		org_type_rus = ''
+		if org_type == 'zakaz':
+			org_type_rus = 'Заказчик'
+		else:
+			org_type_rus = 'Поставщик'
+
+		zakon = request.POST.get('zakon', '223')	# 223, 44 или medcine
+		zakon_rus = ''
+		if zakon == '223':
+			zakon_rus = '223-ФЗ'
+		elif zakon == '44':
+			zakon_rus = '44-ФЗ'
+		else:
+			zakon_rus = 'Лекарственные закупки'
+
+
+		body_head = "Заявка на корпоративное обучение с сайта global-tender.ru\n\n"
 		body = """
-		1. Имя: %s\n
-		2. E-mail: %s\n\n
-		3. Сообщение: %s\n
+		1. Ф.И.О.: %s\n
+		2. E-mail: %s\n
+		3. Телефон: %s\n
+		4. Тип участника: %s\n
+		5. Закон: %s\n
 		""" % (request.POST.get('contact_name',''),
 				request.POST.get('contact_email',''),
-				request.POST['ask_lektor_textarea'],
+				request.POST.get('contact_phone'),
+				org_type_rus,
+				zakon_rus,
 		)
 
 		############################################################
 		############################################################
-		subject = 'Добавлен свой пункт для обсуждения или задан вопрос лектору: %s %s.%s.%s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year)
+		subject = 'Заявка на корпоративное обучение с сайта global-tender.ru'
 
 		send_email_custom(subject, body_head + body, settings.ADMIN_EMAIL_FROM, settings.ADMIN_EMAIL_TO)
 
 
-	template = loader.get_template('ajax/ask_lektor.html')
+	template = loader.get_template('ajax/order_corp_study.html')
 	template_args = {
 		'request': request,
-		'seminar': seminar,
 		'submitted': submitted,
 	}
 	return StreamingHttpResponse(template.render(template_args, request))
