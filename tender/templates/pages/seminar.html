@@ -2,7 +2,16 @@
 
 <div class="wrapper-full sem-city" style="background-image: url('/uploads/{{seminar.event_city.picture.name}}')">
 
-	{% if seminar.event_fz.top_description %}
+	{% if seminar.event_primary_title %}
+		{% autoescape off %}
+
+		<div class="sem-top-description">{{seminar.event_primary_title}}</div>
+		{% if seminar.event_primary_mini %}
+			<div class="mini-sem-top-description">{{seminar.event_primary_mini}}</div>
+		{% endif %}
+
+		{% endautoescape %}
+	{% elif seminar.event_fz.top_description %}
 		{% autoescape off %}
 
 		<div class="sem-top-description">{{seminar.event_fz.top_description}}</div>
