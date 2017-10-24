@@ -1,0 +1,48 @@
+{% load customTags %}
+
+<div class="wrapper-full sem-city" style="background-image: url('/uploads/{{seminar.event_city.picture.name}}')">
+
+	{% if seminar.event_fz.top_description %}
+		{% autoescape off %}
+
+		<div class="sem-top-description">{{seminar.event_fz.top_description}}</div>
+		{% if seminar.event_fz.mini_top_desc %}
+			<div class="mini-sem-top-description">{{seminar.event_fz.mini_top_desc}}</div>
+		{% endif %}
+
+		{% endautoescape %}
+	{% endif %}
+
+	<div class="city-info">
+		<div class="wrapper">
+			<div class="sem-city-date-name">
+				<span class="city-date">Трансляция</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<main class="wrapper clearfix">
+
+	<div class="webinar-stream">
+		<div class="videowrapper_mobile_only">
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/_hPRaOMbRak?rel=0" frameborder="0" allowfullscreen></iframe>
+		</div>
+
+		<!--<div id="hypercomments_widget"></div>
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+		_hcwp.push({widget:"Stream", widget_id: 95411});
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/95411/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>-->
+
+	</div>
+</main>

@@ -154,6 +154,35 @@ def seminar_detail_print(request, arg):
 
 
 @xframe_options_exempt
+def seminar_detail_stream(request, arg):
+
+	seminar = Seminars.objects.filter(id=arg)
+
+	if seminar:
+		seminar = seminar[0]
+	else:
+		return HttpResponseRedirect('/seminars/')
+
+	# Online Трансляция вводится впервые для единственного вебинара
+	# В случае повторения, сделать нормальный код и добавить в модель: будет ли трансляция, код видео вставки
+	if seminar.id != 100:
+		return HttpResponseRedirect('/seminars/')
+
+
+	template = loader.get_template('router.html')
+	template_args = {
+		'content': 'pages/seminar_stream.html',
+		'request': request,
+		'title': '%s %s.%s.%s - %s' % (seminar.event_city.name, seminar.event_date.strftime('%d'), seminar.event_date.strftime('%m'), seminar.event_date.year, seminar.event_fz.name),
+		'menu_color_class': 'menu-white',
+		'menu_inner': 'menu-inner',
+
+		'seminar': seminar,
+	}
+	return StreamingHttpResponse(template.render(template_args, request))
+
+
+@xframe_options_exempt
 @csrf_exempt
 def ajax_seminar(request, arg):
 
