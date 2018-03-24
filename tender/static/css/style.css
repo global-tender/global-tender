@@ -331,7 +331,7 @@ nav {
 	font-weight: 300;
 	margin: 0;
 	padding: 10px;
-	font: 60px 'Exo 2', 'Open Sans', sans-serif;
+	font: 80px 'Exo 2', 'Open Sans', sans-serif;
 	text-align: center;
 	
 	left: 0;
@@ -358,17 +358,17 @@ nav {
 
 @media screen and (max-width: 950px) {
 	.wrapper-main .main-info .main-info-text {
-		font-size: 50px;
+		font-size: 60px;
 	}
 }
 @media screen and (max-width: 800px) {
 	.wrapper-main .main-info .main-info-text {
-		font-size: 40px;
+		font-size: 50px;
 	}
 }
 @media screen and (max-width: 640px) {
 	.wrapper-main .main-info .main-info-text {
-		font-size: 28px;
+		font-size: 38px;
 	}
 }
 @media screen and (max-width: 400px) {
