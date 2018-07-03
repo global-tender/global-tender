@@ -420,7 +420,7 @@ nav {
 .wrapper-good .wrapper {
 	position: relative;
 	padding: 50px 0;
-	z-index: 2;
+	z-index: 1;
 }
 .wrapper-good .title {
 	text-align: center;
